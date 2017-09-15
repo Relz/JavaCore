@@ -18,12 +18,12 @@ class TopWords {
 		forEachFileWord(inputFileName, new FileReading());
 	}
 
-	public static void printlnError(String msg) {
+	private static void printlnError(String msg) {
 		System.out.println(String.format("Error: %s", msg));
 		System.exit(1);
 	}
 	
-	public static void forEachFileWord(String fileName, FileReadingInterface callback) {
+	private static void forEachFileWord(String fileName, FileReadingInterface callback) {
 		try {
 			Scanner scanner = new Scanner(new  File(fileName));
 			while (scanner.hasNext()) {
