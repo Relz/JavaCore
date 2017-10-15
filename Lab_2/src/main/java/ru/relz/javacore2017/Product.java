@@ -2,15 +2,15 @@ package main.java.ru.relz.javacore2017;
 
 abstract class Product implements IProduct {
 
-	Product(String name, int price, int bonus) {
-		_name = name;
+	Product(int id, int price, int bonus) {
+		_id = id;
 		_price = price;
 		_bonus = bonus;
 	}
 
-	private final String _name;
-	public String getName() {
-		return _name;
+	private final int _id;
+	public int getId() {
+		return _id;
 	}
 
 	private final int _price;
@@ -32,5 +32,9 @@ abstract class Product implements IProduct {
 		static String rolton = "Ролтон";
 		static String vodka = "Водка";
 		static String cigarette = "Сигареты";
+		static String sugar = "Сахар";
+		static String salt = "Соль";
+		static String tomato = "Помидоры";
+		static String potato = "Картофель";
 	}
 }

@@ -1,7 +1,7 @@
 package main.java.ru.relz.javacore2017;
 
 public interface IProduct {
-	String getName();
+	int getId();
 	int getPrice();
 	int getBonus();
 }
