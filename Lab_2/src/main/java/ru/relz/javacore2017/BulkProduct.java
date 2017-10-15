@@ -1,8 +1,8 @@
 package main.java.ru.relz.javacore2017;
 
 public class BulkProduct extends Product {
-	BulkProduct(int price, int bonus, int weight) {
-		super(price, bonus);
+	BulkProduct(String name, int price, int bonus, int weight) {
+		super(name, price, bonus);
 
 		_weight = weight;
 	}
