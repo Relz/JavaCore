@@ -3,12 +3,12 @@ package main.java.ru.relz.javacore2017;
 import java.util.List;
 
 class Basket {
-	private List<Product> _items;
+	private List<IProduct> _items;
 
 /**
  * Adds a Product object to the Basket object back.
  * */
-	public void add(Product product) {
+	public void add(IProduct product) {
 		_items.add(product);
 	}
 
@@ -17,7 +17,7 @@ class Basket {
  *
  * @return the product
  * */
-	public Product get() {
+	public IProduct get() {
 		return _items.remove(0);
 	}
 
