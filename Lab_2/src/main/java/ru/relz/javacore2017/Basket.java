@@ -1,15 +1,16 @@
 package main.java.ru.relz.javacore2017;
 
+import java.util.ArrayList;
 import java.util.List;
 
 class Basket {
-	private List<IProduct> _items;
+	private List<IProduct> _products = new ArrayList<>();
 
 /**
  * Adds a Product object to the Basket object back.
  * */
-	public void add(IProduct product) {
-		_items.add(product);
+	void add(IProduct product) {
+		_products.add(product);
 	}
 
 /**
@@ -17,8 +18,8 @@ class Basket {
  *
  * @return the product
  * */
-	public IProduct get() {
-		return _items.remove(0);
+	IProduct get() {
+		return _products.remove(0);
 	}
 
 /**
@@ -26,7 +27,7 @@ class Basket {
  *
  * @return {@code true} if Basket object contains no elements
  */
-	public boolean isEmpty() {
-		return _items.isEmpty();
+	boolean isEmpty() {
+		return _products.isEmpty();
 	}
 }

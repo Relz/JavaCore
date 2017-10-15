@@ -1,6 +1,6 @@
 package main.java.ru.relz.javacore2017;
 
-public class PackedProduct extends Product {
+class PackedProduct extends Product {
 	PackedProduct(String name, int price, int bonus, int quantity) {
 		super(name, price, bonus);
 
@@ -8,7 +8,7 @@ public class PackedProduct extends Product {
 	}
 
 	private int _quantity;
-	public int getQuantity() {
+	int getQuantity() {
 		return _quantity;
 	}
 }

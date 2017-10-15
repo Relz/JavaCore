@@ -8,7 +8,7 @@ public class BulkProduct extends Product {
 	}
 
 	private final int _weight;
-	public int getWeight() {
+	int getWeight() {
 		return _weight;
 	}
 }

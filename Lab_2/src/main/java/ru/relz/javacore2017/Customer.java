@@ -6,12 +6,12 @@ class Customer {
 	}
 
 	private final CustomerType _type;
-	public CustomerType getType() {
+	CustomerType getType() {
 		return _type;
 	}
 
 	private final Basket _basket = new Basket();
-	public Basket getBacket() {
+	Basket getBacket() {
 		return _basket;
 	}
 }
