@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 class Basket {
-	private final List<IProduct> _products = new ArrayList<>();
+	private final List<Product> _products = new ArrayList<>();
 
 	/**
 	 * Adds a Product object to the Basket object back.
 	 */
-	void add(IProduct product) {
+	void add(Product product) {
 		_products.add(product);
 	}
 
@@ -18,7 +18,7 @@ class Basket {
 	 *
 	 * @return the product
 	 */
-	IProduct get() {
+	Product get() {
 		return _products.remove(0);
 	}
 
