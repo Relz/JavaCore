@@ -12,17 +12,17 @@ class Product {
 	}
 
 	private final int _id;
-	public int getId() {
+	int getId() {
 		return _id;
 	}
 
 	private final String _name;
-	public String getName() {
+	String getName() {
 		return _name;
 	}
 
 	private final double _price;
-	public double getPrice() {
+	double getPrice() {
 		return _price;
 	}
 
@@ -32,12 +32,12 @@ class Product {
 	}
 
 	private final ProductType _productType;
-	public ProductType getProductType() {
+	ProductType getType() {
 		return _productType;
 	}
 
 	private final int _bonus;
-	public int getBonus() {
+	int getBonus() {
 		return _bonus;
 	}
 }
