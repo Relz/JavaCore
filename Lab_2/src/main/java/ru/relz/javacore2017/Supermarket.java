@@ -1,77 +1,88 @@
 package main.java.ru.relz.javacore2017;
 
-import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 class Supermarket {
-	private static final String tableName = "product";
-	private static Connection connection = null;
-	private static Statement statement = null;
+	private static final int timeUnitMinutes = 5;
+	private static final int _secondsInMinute = 60;
+	private static final int _millisecondsInSecond = 1000;
+
+	private final DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+	private final Date startDate = new Date();
+
+	private int _workingTimeLeft = 0;
 
 	Supermarket() {
-		createConnection();
+		Database.createConnection();
+		_products = Database.getProducts();
 	}
 
-	private int _workingTime;
-	int getWorkingTime() {
-		return _workingTime;
+	private int _workingTimeMinutes;
+	int getWorkingTimeMinutes() {
+		return _workingTimeMinutes;
 	}
 
-	void setWorkingTime(int workingTime) {
-		_workingTime = workingTime;
+	void setWorkingTimeMinutes(int workingTimeMinutes) {
+		_workingTimeMinutes = workingTimeMinutes;
+	}
+
+	private final List<Customer> _customers = new ArrayList<>();
+	List<Customer> getCustomers() {
+		return _customers;
+	}
+
+	private List<Product> _products = new ArrayList<>();
+	List<Product> getProducts() {
+		return _products;
 	}
 
 	/**
-	 * Performs the sql query to database, selecting all rows in "product" table.
-	 * Prints stack trace if a database access error occurs.
-	 *
-	 * @return the list of available supermarket's products
+	 * Adds a Customer object to the list of supermarket's customers,
+	 * prints about customer arrival.
 	 */
-	List<Product> getProducts() {
-		try {
-			List<Product> result = new ArrayList<>();
-			statement = connection.createStatement();
-			ResultSet resultSet = statement.executeQuery("select * from " + tableName);
-			while (resultSet.next()) {
-				int id = resultSet.getInt(1);
-				String name = resultSet.getString(2);
-				double price = resultSet.getDouble(3);
-				int amount = resultSet.getInt(4);
-				ProductType productType = ProductType.toProductType(resultSet.getInt(5));
-				int bonus = resultSet.getInt(6);
-				result.add(new Product(id, name, price, amount, productType, bonus));
-			}
-			resultSet.close();
-			statement.close();
+	void addCustomer(Customer customer) {
+		_customers.add(customer);
+		System.out.println(customer.getType().toString() + " вошёл в магазин");
+	}
 
-			return result;
-		} catch (SQLException sqlExcept) {
-			sqlExcept.printStackTrace();
+	/**
+	 * Asks database for product with specified id and amount.
+	 * removes product amount from database and prints customer's product getting action
+	 * if there is such product id and enough amount.
+	 *
+	 * @return {@code null} if there is no product with such id or there is not enough product amount,
+	 * 			otherwise product object
+	 * */
+	Product getProduct(CustomerType customerType, int productId, int productAmount) {
+		Product result = Database.getProduct(productId, productAmount);
+		if (result != null) {
+			System.out.print(customerType.toString() + " положил в свою корзину " + result.getAmount());
+			if (result.getType() == ProductType.Packed) {
+				System.out.print(" шт ");
+			} else if (result.getType() == ProductType.Bulk) {
+				System.out.print(" гр ");
+			}
+			System.out.println(result.getName());
 		}
 
-		return null;
+		return result;
 	}
 
 	/**
 	 * Performs supermarket work cycle until end of working time.
-	 * Call {@code onEachUnitOfTime} method each unit of time.
+	 * Call {@code onEachTimeUnit} method each unit of time.
 	 * Call {@code onFinished} method on working time ends.
 	 */
 	void work(SupermarketWorkInterface supermarketWorkInterface) {
-		supermarketWorkInterface.onEachUnitOfTime();
-		supermarketWorkInterface.onFinished();
-	}
-
-	/**
-	 * Loads apache derby embedded driver and initializes connection to database.
-	 * Prints stack trace if a database access error occurs or the url is {@code null}
-	 */
-	private void createConnection() {
-		try {
-			Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
-			connection = DriverManager.getConnection("jdbc:derby:D:/workspace/Java/Lab_2/product;create=true");
-		} catch (Exception except) {
-			except.printStackTrace();
+		System.out.println("Магазин начал свою работу");
+		while (_workingTimeMinutes > 0) {
+			System.out.println("Сейчас " + dateFormat.format(startDate.getTime() + _workingTimeLeft * _secondsInMinute * _millisecondsInSecond));
+			supermarketWorkInterface.onEachTimeUnit(this);
+			_workingTimeMinutes -= timeUnitMinutes;
+			_workingTimeLeft += timeUnitMinutes;
 		}
+		supermarketWorkInterface.onFinished();
 	}
 }
