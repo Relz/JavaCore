@@ -52,12 +52,19 @@ class SupermarketWork implements SupermarketWorkInterface {
 				}
 			}
 		});
-
 	}
 
 	@Override
-	public void onFinished() {
-
+	public void onFinished(Supermarket supermarket) {
+		supermarket.forEachCustomer((Iterator<Customer> customerIterator) -> {
+			Customer customer = customerIterator.next();
+			customer.getBacket().forEachProduct((Iterator<Product> productIterator) -> {
+				Product product = productIterator.next();
+				customer.getBacket().get(productIterator);
+				supermarket.returnProductBack(product, customer);
+			});
+			supermarket.removeCustomer(customerIterator, customer);
+		});
 	}
 
 	private static int getRandomNumber(int from, int to) {
