@@ -16,7 +16,7 @@ final class Database {
 	static void createConnection() {
 		try {
 			Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
-			connection = DriverManager.getConnection("jdbc:derby:/data/workspace/Java/Lab_2/product;create=true");
+			connection = DriverManager.getConnection("jdbc:derby:/data/workspace/Java/Lab_2/supermarket;create=true");
 		} catch (Exception except) {
 			except.printStackTrace();
 		}
@@ -32,7 +32,7 @@ final class Database {
 		try {
 			List<Product> result = new ArrayList<>();
 			statement = connection.createStatement();
-			ResultSet resultSet = statement.executeQuery("SELECT * FROM " + tableName);
+			ResultSet resultSet = statement.executeQuery(String.format("SELECT * FROM %s", tableName));
 			while (resultSet.next()) {
 				int id = resultSet.getInt(1);
 				String name = resultSet.getString(2);
@@ -64,12 +64,12 @@ final class Database {
 	static Product getProduct(int productId, int productAmount) {
 		try {
 			statement = connection.createStatement();
-			ResultSet resultSet = statement.executeQuery("SELECT * FROM " + tableName + " WHERE ID = " + productId);
+			ResultSet resultSet = statement.executeQuery(String.format("SELECT * FROM %s WHERE ID_PRODUCT = %d", tableName, productId));
 			Product product = getProductFromResultSet(resultSet);
 			if (product == null || product.getAmount() < productAmount) {
 				return null;
 			}
-			statement.execute("UPDATE " + tableName + " SET AMOUNT = AMOUNT - " + productAmount + " WHERE ID = " + productId);
+			statement.execute(String.format("UPDATE %s SET AMOUNT = AMOUNT - %d WHERE ID_PRODUCT = %d", tableName, productAmount, productId));
 			statement.close();
 
 			return new Product(product.getId(), product.getName(), product.getPrice(), productAmount, product.getType(), product.getBonus());
@@ -113,7 +113,7 @@ final class Database {
 	static void returnBackProduct(Product product) {
 		try {
 			statement = connection.createStatement();
-			statement.execute("UPDATE " + tableName + " SET AMOUNT = AMOUNT + " + product.getAmount() + " WHERE ID = " + product.getId());
+			statement.execute(String.format("UPDATE %s SET AMOUNT = AMOUNT + %d WHERE ID_PRODUCT = %d", tableName, product.getAmount(), product.getId()));
 			statement.close();
 		} catch (SQLException sqlExcept) {
 			sqlExcept.printStackTrace();
