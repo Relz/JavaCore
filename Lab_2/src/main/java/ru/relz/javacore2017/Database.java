@@ -16,7 +16,7 @@ final class Database {
 	static void createConnection() {
 		try {
 			Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
-			connection = DriverManager.getConnection("jdbc:derby:D:/workspace/Java/Lab_2/product;create=true");
+			connection = DriverManager.getConnection("jdbc:derby:/data/workspace/Java/Lab_2/product;create=true");
 		} catch (Exception except) {
 			except.printStackTrace();
 		}
@@ -105,5 +105,18 @@ final class Database {
 		}
 
 		return null;
+	}
+
+	/**
+	 * Restores product to database
+	 * */
+	static void returnBackProduct(Product product) {
+		try {
+			statement = connection.createStatement();
+			statement.execute("UPDATE " + tableName + " SET AMOUNT = AMOUNT + " + product.getAmount() + " WHERE ID = " + product.getId());
+			statement.close();
+		} catch (SQLException sqlExcept) {
+			sqlExcept.printStackTrace();
+		}
 	}
 }
