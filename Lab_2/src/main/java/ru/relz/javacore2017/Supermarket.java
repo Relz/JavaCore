@@ -118,7 +118,8 @@ class Supermarket {
 			_workingTimeMinutes -= timeUnitMinutes;
 			_workingTimeLeft += timeUnitMinutes;
 		}
-		supermarketWorkInterface.onFinished();
+		System.out.println("Кассы завершили свою работу, магазин готовится к закрытию");
+		supermarketWorkInterface.onFinished(this);
 	}
 
 	/**
