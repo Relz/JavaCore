@@ -121,6 +121,11 @@ class Supermarket {
 		supermarketWorkInterface.onFinished();
 	}
 
+	/**
+	 * Returns customer name by his type and number
+	 *
+	 * @return customer type and number in string typedef
+	 * */
 	private String getCustomerName(Customer customer) {
 		return customer.getType().toString() + " " + _customersToIds.get(customer);
 	}
