@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="supermarket2">
+  <database-model serializer="dbm" rdbms="DERBY" format-version="4.4">
+    <root id="1"/>
+    <schema id="2" parent="1" name="APP">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="NULLID"/>
+    <schema id="4" parent="1" name="SQLJ"/>
+    <schema id="5" parent="1" name="SYS"/>
+    <schema id="6" parent="1" name="SYSCAT"/>
+    <schema id="7" parent="1" name="SYSCS_DIAG"/>
+    <schema id="8" parent="1" name="SYSCS_UTIL"/>
+    <schema id="9" parent="1" name="SYSFUN"/>
+    <schema id="10" parent="1" name="SYSIBM"/>
+    <schema id="11" parent="1" name="SYSPROC"/>
+    <schema id="12" parent="1" name="SYSSTAT"/>
+    <table id="13" parent="2" name="PRODUCT"/>
+    <table id="14" parent="2" name="PRODUCT_TYPE"/>
+    <column id="15" parent="13" name="ID">
+      <Position>1</Position>
+      <DataType>INTEGER(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="16" parent="13" name="NAME">
+      <Position>2</Position>
+      <DataType>VARCHAR(30)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="17" parent="13" name="PRICE">
+      <Position>3</Position>
+      <DataType>DOUBLE(52)|8</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="18" parent="13" name="AMOUNT">
+      <Position>4</Position>
+      <DataType>INTEGER(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="19" parent="13" name="ID_PRODUCT_TYPE">
+      <Position>5</Position>
+      <DataType>INTEGER(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="20" parent="13" name="BONUS">
+      <Position>6</Position>
+      <DataType>INTEGER(10)|4</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>0</DefaultExpression>
+    </column>
+    <index id="21" parent="13" name="PRODUCT_NAME_UINDEX">
+      <ColNames>NAME</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="22" parent="13" name="SQL171015134927550">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="23" parent="13" name="PRODUCT_PRODUCT_TYPE_ID_FK">
+      <ColNames>ID_PRODUCT_TYPE</ColNames>
+      <RefSchemaName>APP</RefSchemaName>
+      <RefTableName>PRODUCT_TYPE</RefTableName>
+      <RefKeyName>SQL171015135131350</RefKeyName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+    <column id="24" parent="14" name="ID">
+      <Position>1</Position>
+      <DataType>INTEGER(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="25" parent="14" name="NAME">
+      <Position>2</Position>
+      <DataType>VARCHAR(20)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="26" parent="14" name="PRODUCT_TYPE_NAME_UINDEX">
+      <ColNames>NAME</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="27" parent="14" name="SQL171015135131350">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+  </database-model>
+</dataSource>
