@@ -3,14 +3,18 @@ package main.java.ru.relz.javacore2017;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.function.Consumer;
 
 class Supermarket {
 	private static final int timeUnitMinutes = 5;
 	private static final int _secondsInMinute = 60;
 	private static final int _millisecondsInSecond = 1000;
 
+	private final List<Customer> _customers = new ArrayList<>();
 	private final DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 	private final Date startDate = new Date();
+	private final HashMap<Customer, Integer> _customersToIds = new HashMap<>();
+	private int _customerId = 0;
 
 	private int _workingTimeLeft = 0;
 
@@ -28,14 +32,19 @@ class Supermarket {
 		_workingTimeMinutes = workingTimeMinutes;
 	}
 
-	private final List<Customer> _customers = new ArrayList<>();
-	List<Customer> getCustomers() {
-		return _customers;
-	}
-
 	private List<Product> _products = new ArrayList<>();
 	List<Product> getProducts() {
 		return _products;
+	}
+
+	/**
+	 * Performs the given action for each customer
+	 * */
+	void forEachCustomer(Consumer<Iterator<Customer>> action) {
+		Iterator<Customer> customerIterator = _customers.iterator();
+		while (customerIterator.hasNext()) {
+			action.accept(customerIterator);
+		}
 	}
 
 	/**
@@ -43,8 +52,10 @@ class Supermarket {
 	 * prints about customer arrival.
 	 */
 	void addCustomer(Customer customer) {
+		++_customerId;
 		_customers.add(customer);
-		System.out.println(customer.getType().toString() + " вошёл в магазин");
+		_customersToIds.put(customer, _customerId);
+		System.out.println(getCustomerName(customer) + " вошёл в магазин");
 	}
 
 	/**
@@ -55,10 +66,10 @@ class Supermarket {
 	 * @return {@code null} if there is no product with such id or there is not enough product amount,
 	 * 			otherwise product object
 	 * */
-	Product getProduct(CustomerType customerType, int productId, int productAmount) {
+	Product getProduct(Customer customer, int productId, int productAmount) {
 		Product result = Database.getProduct(productId, productAmount);
 		if (result != null) {
-			System.out.print(customerType.toString() + " положил в свою корзину " + result.getAmount());
+			System.out.print(getCustomerName(customer) + " положил в свою корзину " + result.getAmount());
 			if (result.getType() == ProductType.Packed) {
 				System.out.print(" шт ");
 			} else if (result.getType() == ProductType.Bulk) {
@@ -68,6 +79,30 @@ class Supermarket {
 		}
 
 		return result;
+	}
+
+	/**
+	 * Removes the first occurrence of the specified element from this list of customers
+	 * if he hasn't any product in his basket,
+	 * prints customer's action
+	 * */
+	void removeCustomer(Iterator<Customer> customerIterator, Customer customer) {
+		String customerName = getCustomerName(customer);
+		if (!customer.getBacket().isEmpty()) {
+			System.out.println("Предотвращена попытка ухода покупателя " + customerName + " с корзиной с продуктами");
+
+			return;
+		}
+		System.out.println(customerName + " вышел из магазина");
+		customerIterator.remove();
+	}
+
+	/**
+	 * Returns product back to supermarket, prints customer's return back action
+	 * */
+	void returnProductBack(Product product, Customer customer) {
+		Database.returnBackProduct(product);
+		System.out.println(getCustomerName(customer) + " положил " + product.getName() + " обратно");
 	}
 
 	/**
@@ -84,5 +119,9 @@ class Supermarket {
 			_workingTimeLeft += timeUnitMinutes;
 		}
 		supermarketWorkInterface.onFinished();
+	}
+
+	private String getCustomerName(Customer customer) {
+		return customer.getType().toString() + " " + _customersToIds.get(customer);
 	}
 }
