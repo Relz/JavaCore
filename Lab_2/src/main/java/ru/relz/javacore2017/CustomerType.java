@@ -20,6 +20,6 @@ enum CustomerType {
 	}
 
 	static CustomerType getRandom() {
-		return CustomerType.values()[(int) (Math.random() * (CustomerType.values().length - 1))];
+		return CustomerType.values()[(int) (Math.random() * (CustomerType.values().length))];
 	}
 }
