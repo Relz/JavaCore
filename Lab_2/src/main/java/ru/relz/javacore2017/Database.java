@@ -16,7 +16,7 @@ final class Database {
 	static void createConnection() {
 		try {
 			Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
-			connection = DriverManager.getConnection("jdbc:derby:/data/workspace/Java/Lab_2/supermarket;create=true");
+			connection = DriverManager.getConnection("jdbc:derby:D:/workspace/Java/Lab_2/supermarket;create=true");
 		} catch (Exception except) {
 			except.printStackTrace();
 		}
@@ -34,13 +34,7 @@ final class Database {
 			statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(String.format("SELECT * FROM %s", tableName));
 			while (resultSet.next()) {
-				int id = resultSet.getInt(1);
-				String name = resultSet.getString(2);
-				double price = resultSet.getDouble(3);
-				int amount = resultSet.getInt(4);
-				ProductType productType = ProductType.toProductType(resultSet.getInt(5));
-				int bonus = resultSet.getInt(6);
-				result.add(new Product(id, name, price, amount, productType, bonus));
+				result.add(getProductFromResultSet(resultSet));
 			}
 			resultSet.close();
 			statement.close();
@@ -72,7 +66,7 @@ final class Database {
 			statement.execute(String.format("UPDATE %s SET AMOUNT = AMOUNT - %d WHERE ID_PRODUCT = %d", tableName, productAmount, productId));
 			statement.close();
 
-			return new Product(product.getId(), product.getName(), product.getPrice(), productAmount, product.getType(), product.getBonus());
+			return new Product(product.getId(), product.getName(), product.getPrice(), productAmount, product.getType(), product.getBonus(), product.isForAdult());
 		} catch (SQLException sqlExcept) {
 			sqlExcept.printStackTrace();
 		}
@@ -95,8 +89,9 @@ final class Database {
 				int amount = resultSet.getInt(4);
 				ProductType productType = ProductType.toProductType(resultSet.getInt(5));
 				int bonus = resultSet.getInt(6);
+				boolean forAdult = resultSet.getBoolean(7);
 
-				return new Product(id, name, price, amount, productType, bonus);
+				return new Product(id, name, price, amount, productType, bonus, forAdult);
 			}
 
 			return null;
