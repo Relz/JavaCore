@@ -2,13 +2,14 @@ package main.java.ru.relz.javacore2017;
 
 class Product {
 
-	Product(int id, String name, double price, int amount, ProductType productType, int bonus) {
+	Product(int id, String name, double price, int amount, ProductType productType, int bonus, boolean forAdult) {
 		_id = id;
 		_name = name;
 		_price = price;
 		_amount = amount;
 		_productType = productType;
 		_bonus = bonus;
+		_forAdult = forAdult;
 	}
 
 	private final int _id;
@@ -39,5 +40,10 @@ class Product {
 	private final int _bonus;
 	int getBonus() {
 		return _bonus;
+	}
+
+	private final boolean _forAdult;
+	boolean isForAdult() {
+		return _forAdult;
 	}
 }
