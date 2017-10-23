@@ -30,7 +30,7 @@
     </column>
     <column id="17" parent="13" name="PRICE">
       <Position>3</Position>
-      <DataType>INTEGER(10)|4</DataType>
+      <DataType>DOUBLE(52)|8</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="18" parent="13" name="AMOUNT">
@@ -45,33 +45,45 @@
     </column>
     <column id="20" parent="13" name="BONUS">
       <Position>6</Position>
-      <DataType>INTEGER(10)|4</DataType>
+      <DataType>DOUBLE(52)|8</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="21" parent="13" name="PRODUCT_NAME_UINDEX">
+    <column id="21" parent="13" name="FOR_ADULT">
+      <Position>7</Position>
+      <DataType>BOOLEAN(1)|16</DataType>
+      <DefaultExpression>FALSE</DefaultExpression>
+    </column>
+    <index id="22" parent="13" name="PRODUCT_NAME_UINDEX">
       <ColNames>NAME</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="22" parent="13" name="SQL171020205649780">
+    <key id="23" parent="13" name="SQL171021202903690">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID_PRODUCT</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="23" parent="14" name="ID_PRODUCT_TYPE">
+    <foreign-key id="24" parent="13" name="PRODUCT_PRODUCT_TYPE_ID_PRODUCT_TYPE_FK">
+      <ColNames>ID_PRODUCT_TYPE</ColNames>
+      <RefSchemaName>APP</RefSchemaName>
+      <RefTableName>PRODUCT_TYPE</RefTableName>
+      <RefKeyName>SQL171020210214980</RefKeyName>
+      <RefColNames>ID_PRODUCT_TYPE</RefColNames>
+    </foreign-key>
+    <column id="25" parent="14" name="ID_PRODUCT_TYPE">
       <Position>1</Position>
       <DataType>INTEGER(10)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="24" parent="14" name="NAME">
+    <column id="26" parent="14" name="NAME">
       <Position>2</Position>
       <DataType>VARCHAR(20)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="25" parent="14" name="PRODUCT_TYPE_NAME_UINDEX">
+    <index id="27" parent="14" name="PRODUCT_TYPE_NAME_UINDEX">
       <ColNames>NAME</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="26" parent="14" name="SQL171020210214980">
+    <key id="28" parent="14" name="SQL171020210214980">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID_PRODUCT_TYPE</ColNames>
       <Primary>1</Primary>
