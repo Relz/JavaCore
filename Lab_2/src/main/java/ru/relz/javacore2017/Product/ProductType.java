@@ -1,11 +1,11 @@
-package main.java.ru.relz.javacore2017;
+package main.java.ru.relz.javacore2017.Product;
 
 public enum ProductType {
 	None,
 	Packed,
 	Bulk;
 
-	static ProductType toProductType(int value) {
+	public static ProductType toProductType(int value) {
 		if (value == 1) {
 			return ProductType.Packed;
 		} else if (value == 2) {

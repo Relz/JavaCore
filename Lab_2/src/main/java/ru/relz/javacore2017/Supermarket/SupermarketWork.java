@@ -1,9 +1,14 @@
-package main.java.ru.relz.javacore2017;
+package main.java.ru.relz.javacore2017.Supermarket;
+
+import main.java.ru.relz.javacore2017.CashDesk.CashDesk;
+import main.java.ru.relz.javacore2017.Customer.Customer;
+import main.java.ru.relz.javacore2017.Customer.CustomerType;
+import main.java.ru.relz.javacore2017.Product.Product;
 
 import java.util.Iterator;
 
-import static main.java.ru.relz.javacore2017.RandomHelper.getRandomNumber;
-import static main.java.ru.relz.javacore2017.RandomHelper.getRandomProductAmount;
+import static main.java.ru.relz.javacore2017.RandomHelper.RandomHelper.getRandomNumber;
+import static main.java.ru.relz.javacore2017.RandomHelper.RandomHelper.getRandomProductAmount;
 
 class SupermarketWork implements SupermarketWorkInterface {
 	@Override

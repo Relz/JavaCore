@@ -1,12 +1,15 @@
-package main.java.ru.relz.javacore2017;
+package main.java.ru.relz.javacore2017.Customer;
+
+import main.java.ru.relz.javacore2017.Basket.*;
+import main.java.ru.relz.javacore2017.Payment.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static main.java.ru.relz.javacore2017.RandomHelper.getRandomPaymentMethod;
+import static main.java.ru.relz.javacore2017.RandomHelper.RandomHelper.*;
 
-class Customer {
-	Customer(CustomerType type, double cash, double cardCash, double bonusCount) {
+public class Customer {
+	public Customer(CustomerType type, double cash, double cardCash, double bonusCount) {
 		this.type = type;
 		this.cash = cash;
 		this.cardCash = cardCash;
@@ -14,21 +17,21 @@ class Customer {
 	}
 
 	private final CustomerType type;
-	CustomerType getType() {
+	public CustomerType getType() {
 		return type;
 	}
 
 	private double cash = 0.0;
-	double getCash() {
+	public double getCash() {
 		return cash;
 	}
 
-	void setCash(double value) {
+	public void setCash(double value) {
 		cash = value;
 	}
 
 	private double cardCash = 0.0;
-	double getCardCash() {
+	public double getCardCash() {
 		return cardCash;
 	}
 
@@ -37,7 +40,7 @@ class Customer {
 	}
 
 	private double bonusCount = 0.0;
-	double getBonusCount() {
+	public double getBonusCount() {
 		return bonusCount;
 	}
 
@@ -46,23 +49,23 @@ class Customer {
 	}
 
 	private final Basket basket = new Basket();
-	Basket getBacket() {
+	public Basket getBacket() {
 		return basket;
 	}
 
 	private boolean inQueue = false;
-	boolean isInQueue() {
+	public boolean isInQueue() {
 		return inQueue;
 	}
 
-	void setInQueue(boolean value) {
+	public void setInQueue(boolean value) {
 		inQueue = value;
 	}
 
 	/**
 	 * Processes payment
 	 * */
-	boolean pay(double totalAmount, double possibleBonuses, PaymentMethod paymentMethod) {
+	public boolean pay(double totalAmount, double possibleBonuses, PaymentMethod paymentMethod) {
 		switch (paymentMethod) {
 			case Cash:
 				cash -= totalAmount;
@@ -80,7 +83,7 @@ class Customer {
 		}
 	}
 
-	PaymentMethod getDesiredPaymentMethod(double totalPaymentAmount) {
+	public PaymentMethod getDesiredPaymentMethod(double totalPaymentAmount) {
 		List<PaymentMethod> availablePaymentMethods = new ArrayList<>();
 		if (cash > totalPaymentAmount) {
 			availablePaymentMethods.add(PaymentMethod.Cash);

@@ -1,25 +1,27 @@
-package main.java.ru.relz.javacore2017;
+package main.java.ru.relz.javacore2017.Payment;
+
+import main.java.ru.relz.javacore2017.Product.Product;
 
 import java.util.ArrayList;
 import java.util.List;
 
-class Bill {
+public class Bill {
 	private final List<Product> products = new ArrayList<>();
 
 	private int totalAmount = 0;
-	int getTotalAmount() {
+	public int getTotalAmount() {
 		return totalAmount;
 	}
 
 	private int totalBonuses = 0;
-	int getTotalBonuses() {
+	public int getTotalBonuses() {
 		return totalBonuses;
 	}
 
 	/**
 	 * Appends product to end of the bill
 	 * */
-	void add(Product product) {
+	public void add(Product product) {
 		products.add(product);
 		totalAmount += product.getPrice() * product.getAmount();
 		totalBonuses += product.getBonus() * product.getAmount();
@@ -28,7 +30,7 @@ class Bill {
 	/**
 	 * Removes product from the bill
 	 * */
-	void remove(Product product) {
+	public void remove(Product product) {
 		if (products.remove(product)) {
 			totalAmount -= product.getPrice() * product.getAmount();
 			totalBonuses -= product.getBonus() * product.getAmount();
@@ -38,12 +40,12 @@ class Bill {
 	/**
 	 * Removes all products from the bill
 	 * */
-	void clear() {
+	public void clear() {
 		products.clear();
 		totalAmount = 0;
 	}
 
-	void applyDiscount(Discount discount) {
+	public void applyDiscount(Discount discount) {
 		totalAmount -= totalAmount * discount.getPercentage() / 100;
 	}
 }

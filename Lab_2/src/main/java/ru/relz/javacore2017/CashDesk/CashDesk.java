@@ -1,34 +1,39 @@
-package main.java.ru.relz.javacore2017;
+package main.java.ru.relz.javacore2017.CashDesk;
+
+import main.java.ru.relz.javacore2017.Customer.*;
+import main.java.ru.relz.javacore2017.Payment.*;
+import main.java.ru.relz.javacore2017.Product.*;
+import main.java.ru.relz.javacore2017.Supermarket.*;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-class CashDesk {
+public class CashDesk {
 	private final String name;
 	private final Supermarket supermarket;
 	private final List<Customer> queue = new ArrayList<>();
 	private final List<Product> products = new ArrayList<>();
 
-	CashDesk(Supermarket supermarket, String name) {
+	public CashDesk(Supermarket supermarket, String name) {
 		this.name = name;
 		this.supermarket = supermarket;
 	}
 
-	int getQueueSize() {
+	public int getQueueSize() {
 		return queue.size();
 	}
 
 	private boolean opened = true;
-	boolean isOpened() {
+	public boolean isOpened() {
 		return opened;
 	}
 
-	void open() {
+	public void open() {
 		opened = true;
 	}
 
-	void close() {
+	public void close() {
 		System.out.println("Касса " + name + " закрылась");
 		opened = false;
 		Iterator<Customer> customerIterator = queue.iterator();
@@ -39,19 +44,19 @@ class CashDesk {
 		queue.clear();
 	}
 
-	void addCustomerToQueue(Customer customer) {
+	public void addCustomerToQueue(Customer customer) {
 		queue.add(customer);
 		customer.setInQueue(true);
 		System.out.println(supermarket.getCustomerName(customer) + " встал в очередь на кассу " + name);
 	}
 
-	void removeCustomerFromQueue(Iterator<Customer> customerIterator, Customer customer) {
+	public void removeCustomerFromQueue(Iterator<Customer> customerIterator, Customer customer) {
 		customerIterator.remove();
 		customer.setInQueue(false);
 		System.out.println(supermarket.getCustomerName(customer) + " покинул кассу " + name);
 	}
 
-	void processQueue(int customerCount) {
+	public void processQueue(int customerCount) {
 		if (!opened) {
 			return;
 		}

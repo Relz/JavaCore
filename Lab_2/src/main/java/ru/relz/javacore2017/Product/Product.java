@@ -1,8 +1,8 @@
-package main.java.ru.relz.javacore2017;
+package main.java.ru.relz.javacore2017.Product;
 
-class Product {
+public class Product {
 
-	Product(int id, String name, double price, int amount, ProductType productType, int bonus, boolean forAdult) {
+	public Product(int id, String name, double price, int amount, ProductType productType, int bonus, boolean forAdult) {
 		this.id = id;
 		this.name = name;
 		this.price = price;
@@ -13,37 +13,37 @@ class Product {
 	}
 
 	private final int id;
-	int getId() {
+	public int getId() {
 		return id;
 	}
 
 	private final String name;
-	String getName() {
+	public String getName() {
 		return name;
 	}
 
 	private final double price;
-	double getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
 	private final int amount;
-	int getAmount() {
+	public int getAmount() {
 		return amount;
 	}
 
 	private final ProductType productType;
-	ProductType getType() {
+	public ProductType getType() {
 		return productType;
 	}
 
 	private final int bonus;
-	int getBonus() {
+	public int getBonus() {
 		return bonus;
 	}
 
 	private final boolean forAdult;
-	boolean isForAdult() {
+	public boolean isForAdult() {
 		return forAdult;
 	}
 }

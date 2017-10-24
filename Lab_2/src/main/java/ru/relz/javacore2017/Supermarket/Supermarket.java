@@ -1,4 +1,9 @@
-package main.java.ru.relz.javacore2017;
+package main.java.ru.relz.javacore2017.Supermarket;
+
+import main.java.ru.relz.javacore2017.CashDesk.*;
+import main.java.ru.relz.javacore2017.Customer.*;
+import main.java.ru.relz.javacore2017.Database.Database;
+import main.java.ru.relz.javacore2017.Product.*;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -6,9 +11,9 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.function.Consumer;
 
-import static main.java.ru.relz.javacore2017.RandomHelper.getRandomNumber;
+import static main.java.ru.relz.javacore2017.RandomHelper.RandomHelper.getRandomNumber;
 
-class Supermarket {
+public class Supermarket {
 	static final int TIME_UNIT_MINUTES = 5;
 
 	private static final int SECONDS_IN_MINUTE = 60;
@@ -23,22 +28,22 @@ class Supermarket {
 	private int customerId = 0;
 	private int workingTimeLeft = 0;
 
-	Supermarket() {
+	public Supermarket() {
 		Database.createConnection();
 		products = Database.getProducts();
 	}
 
 	private int workingTimeMinutes;
-	int getWorkingTimeMinutes() {
+	public int getWorkingTimeMinutes() {
 		return workingTimeMinutes;
 	}
 
-	void setWorkingTimeMinutes(int workingTimeMinutes) {
+	public void setWorkingTimeMinutes(int workingTimeMinutes) {
 		this.workingTimeMinutes = workingTimeMinutes;
 	}
 
 	private List<Product> products = new ArrayList<>();
-	List<Product> getProducts() {
+	public List<Product> getProducts() {
 		return products;
 	}
 
@@ -47,7 +52,7 @@ class Supermarket {
 		put(CustomerType.Adult, 0);
 		put(CustomerType.Retired, 20);
 	}};
-	HashMap<CustomerType, Integer> getDiscountPercentages() {
+	public HashMap<CustomerType, Integer> getDiscountPercentages() {
 		return discountPercentages;
 	}
 	/**
@@ -55,15 +60,15 @@ class Supermarket {
 	 *
 	 * @param name name for cash desk
 	 * */
-	void addCashDesk(String name) {
+	public void addCashDesk(String name) {
 		CashDesk cashDesk = new CashDesk(this, name);
 		cashDesks.add(cashDesk);
 	}
 
 	/**
-	 * Performs the given action for each customer
+	 * Performs the given action for each Customer
 	 * */
-	void forEachCustomer(Consumer<Iterator<Customer>> action) {
+	public void forEachCustomer(Consumer<Iterator<Customer>> action) {
 		Iterator<Customer> customerIterator = customers.iterator();
 		while (customerIterator.hasNext()) {
 			action.accept(customerIterator);
@@ -72,9 +77,9 @@ class Supermarket {
 
 	/**
 	 * Adds a Customer object to the list of supermarket's customers,
-	 * prints about customer arrival.
+	 * prints about Customer arrival.
 	 */
-	void addCustomer(Customer customer) {
+	public void addCustomer(Customer customer) {
 		++customerId;
 		customers.add(customer);
 		customersToIds.put(customer, customerId);
@@ -83,7 +88,7 @@ class Supermarket {
 
 	/**
 	 * Asks database for product with specified id and amount.
-	 * removes product amount from database and prints customer's product getting action
+	 * removes product amount from database and prints Customer's product getting action
 	 * if there is such product id and enough amount.
 	 *
 	 * @return {@code null} if there is no product with such id or there is not enough product amount,
@@ -107,9 +112,9 @@ class Supermarket {
 	/**
 	 * Removes the first occurrence of the specified element from this list of customers
 	 * if he hasn't any product in his basket,
-	 * prints customer's action
+	 * prints Customer's action
 	 * */
-	void removeCustomer(Iterator<Customer> customerIterator, Customer customer) {
+	public void removeCustomer(Iterator<Customer> customerIterator, Customer customer) {
 		String customerName = getCustomerName(customer);
 		if (!customer.getBacket().isEmpty()) {
 			System.out.println("Предотвращена попытка ухода покупателя " + customerName + " с корзиной с продуктами");
@@ -125,9 +130,9 @@ class Supermarket {
 	}
 
 	/**
-	 * Returns product back to supermarket, prints customer's return back action
+	 * Returns product back to supermarket, prints Customer's return back action
 	 * */
-	void returnProductBack(Product product, Customer customer) {
+	public void returnProductBack(Product product, Customer customer) {
 		Database.returnBackProduct(product);
 		System.out.println(getCustomerName(customer) + " положил " + product.getName() + " обратно");
 	}
@@ -137,7 +142,7 @@ class Supermarket {
 	 * Calls {@code onEachTimeUnit} method each unit of time.
 	 * Calls {@code onFinished} method on working time ends.
 	 */
-	void work(SupermarketWorkInterface supermarketWorkInterface) throws IOException {
+	public void work(SupermarketWorkInterface supermarketWorkInterface) throws IOException {
 		System.out.println("Магазин начал свою работу");
 		while (workingTimeMinutes > 0) {
 			System.out.println("Сейчас " + dateFormat.format(startDate.getTime() + workingTimeLeft * SECONDS_IN_MINUTE * MILLISECONDS_IN_SECOND));
@@ -150,7 +155,7 @@ class Supermarket {
 		supermarketWorkInterface.onFinished(this);
 	}
 
-	CashDesk getBestCashDesk() {
+	public CashDesk getBestCashDesk() {
 		CashDesk bestCashDesk = cashDesks.get(0);
 		for (CashDesk cashDesk : cashDesks) {
 			if (cashDesk.isOpened() && cashDesk.getQueueSize() < bestCashDesk.getQueueSize()) {
@@ -161,7 +166,7 @@ class Supermarket {
 		return bestCashDesk;
 	}
 
-	void processCashDesks() {
+	public void processCashDesks() {
 		cashDesks.forEach((CashDesk cashDesk) -> {
 			cashDesk.processQueue(Supermarket.TIME_UNIT_MINUTES);
 			if (getRandomNumber(0, 10) == 0) {
@@ -175,11 +180,11 @@ class Supermarket {
 	}
 
 	/**
-	 * Returns customer name by his type and number
+	 * Returns Customer name by his type and number
 	 *
-	 * @return customer type and number in string typedef
+	 * @return Customer type and number in string typedef
 	 * */
-	String getCustomerName(Customer customer) {
+	public String getCustomerName(Customer customer) {
 		return customer.getType().toString() + " " + customersToIds.get(customer);
 	}
 }

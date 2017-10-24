@@ -1,6 +1,6 @@
-package main.java.ru.relz.javacore2017;
+package main.java.ru.relz.javacore2017.Customer;
 
-enum CustomerType {
+public enum CustomerType {
 	Child,
 	Adult,
 	Retired;
@@ -19,7 +19,7 @@ enum CustomerType {
 		}
 	}
 
-	static CustomerType getRandom() {
+	public static CustomerType getRandom() {
 		return CustomerType.values()[(int) (Math.random() * (CustomerType.values().length))];
 	}
 }

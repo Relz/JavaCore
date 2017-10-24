@@ -1,4 +1,4 @@
-package main.java.ru.relz.javacore2017;
+package main.java.ru.relz.javacore2017.Supermarket;
 
 import java.io.IOException;
 
