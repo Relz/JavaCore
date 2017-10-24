@@ -36,8 +36,8 @@ class Customer {
 		_cardCash = value;
 	}
 
-	private Double _bonusCount = 0.0;
-	Double getBonusCount() {
+	private double _bonusCount = 0.0;
+	double getBonusCount() {
 		return _bonusCount;
 	}
 
@@ -68,8 +68,6 @@ class Customer {
 			availablePaymentMethods.add(PaymentMethod.Card);
 		}
 		if (_bonusCount > totalPaymentAmount) {
-			availablePaymentMethods.add(PaymentMethod.Bonuses);
-			availablePaymentMethods.add(PaymentMethod.Bonuses);
 			availablePaymentMethods.add(PaymentMethod.Bonuses);
 		}
 		if (availablePaymentMethods.isEmpty()) {
