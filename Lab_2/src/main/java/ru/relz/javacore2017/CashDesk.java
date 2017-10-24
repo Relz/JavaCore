@@ -80,27 +80,26 @@ class CashDesk {
 			Discount discount = new Discount(supermarket.getDiscountPercentages().get(customer.getType()));
 			bill.applyDiscount(discount);
 			if (discount.getPercentage() != 0) {
-				System.out.println(", со скидкой: " + bill.getTotalAmount());
-			} else {
-				System.out.println();
+				System.out.print(", со скидкой: " + bill.getTotalAmount());
 			}
+			System.out.println();
 
 			PaymentMethod paymentMethod = customer.getDesiredPaymentMethod(bill.getTotalAmount());
-			System.out.println(customerName);
-			if (!customer.pay(bill.getTotalAmount(), paymentMethod)) {
+			System.out.print(customerName);
+			if (!customer.pay(bill.getTotalAmount(), bill.getTotalBonuses(), paymentMethod)) {
 				System.out.println(" не в состоянии оплатить покупку (" + bill.getTotalAmount() + ")");
 				products.forEach((Product product) -> supermarket.returnProductBack(product, customer));
 			} else {
-				System.out.println(" оплатил покупку (" + bill.getTotalAmount() + ")");
+				System.out.print(" оплатил покупку (" + bill.getTotalAmount() + ")");
 				switch (paymentMethod) {
 					case Cash:
-						System.out.println("наличными и получил " + bill.getTotalBonuses() + " бонусов");
+						System.out.println(" наличными и получил " + bill.getTotalBonuses() + " бонусов");
 						break;
 					case Card:
-						System.out.println("картой и получил " + bill.getTotalBonuses() + " бонусов");
+						System.out.println(" картой и получил " + bill.getTotalBonuses() + " бонусов");
 						break;
 					case Bonuses:
-						System.out.println("бонусами");
+						System.out.println(" бонусами");
 						break;
 				}
 			}

@@ -62,13 +62,15 @@ class Customer {
 	/**
 	 * Processes payment
 	 * */
-	boolean pay(double totalAmount, PaymentMethod paymentMethod) {
+	boolean pay(double totalAmount, double possibleBonuses, PaymentMethod paymentMethod) {
 		switch (paymentMethod) {
 			case Cash:
 				cash -= totalAmount;
+				bonusCount += possibleBonuses;
 				return true;
 			case Card:
 				cardCash -= totalAmount;
+				bonusCount += possibleBonuses;
 				return true;
 			case Bonuses:
 				bonusCount -= totalAmount;

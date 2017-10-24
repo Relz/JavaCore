@@ -18,10 +18,12 @@ class SupermarketWork implements SupermarketWorkInterface {
 			for (int i = 0; i < wantedProductCount; ++i) {
 				int randomProductIndex = getRandomNumber(0, supermarket.getProducts().size() - 1);
 				Product randomProduct = supermarket.getProducts().get(randomProductIndex);
-				int productId = randomProduct.getId();
 				int productMaxAmount = randomProduct.getAmount();
+				if (productMaxAmount == 0) {
+					continue;
+				}
 				int productAmount = getRandomProductAmount(randomProduct, productMaxAmount / 5);
-				Product wantedProduct = supermarket.getProduct(customer, productId, productAmount);
+				Product wantedProduct = supermarket.getProduct(customer, randomProduct.getId(), productAmount);
 				if (wantedProduct != null) {
 					customer.getBacket().add(wantedProduct);
 				}
