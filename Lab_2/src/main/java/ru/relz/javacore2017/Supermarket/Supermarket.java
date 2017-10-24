@@ -24,6 +24,7 @@ public class Supermarket {
 	private final DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 	private final Date startDate = new Date();
 	private final List<NamedCashDesk> cashDesks = new ArrayList<>();
+	private final HashMap<CustomerType, Discount> discountPercentages = new HashMap<>();
 
 	private int customerId = 0;
 	private int workingTimeLeft = 0;
@@ -46,8 +47,6 @@ public class Supermarket {
 	List<Product> getProducts() {
 		return products;
 	}
-
-	private HashMap<CustomerType, Discount> discountPercentages = new HashMap<>();
 
 	/**
 	 * Returns discount for specified customer type

@@ -2,21 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ca8fe240-1f45-4e88-ac72-ae20424889c7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Basket/Container.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/CashDesk/NamedCashDesk.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Customer/BonusesHolder.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Customer/CardCashHolder.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Customer/CashHolder.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Customer/CustomerInterface.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Basket/Basket.java" afterPath="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Basket/Basket.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/CashDesk/CashDesk.java" afterPath="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/CashDesk/CashDesk.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Customer/Customer.java" afterPath="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Customer/Customer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Payment/Bill.java" afterPath="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Payment/Bill.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Supermarket/Supermarket.java" afterPath="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Supermarket/Supermarket.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Supermarket/SupermarketWork.java" afterPath="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Supermarket/SupermarketWork.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Supermarket/SupermarketWorkInterface.java" afterPath="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Supermarket/SupermarketWorkInterface.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Supermarket/SupermarketSimulator.java" afterPath="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/SupermarketSimulator.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="supermarket/" />
@@ -81,9 +68,11 @@
       <file leaf-file-name="Supermarket.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Supermarket/Supermarket.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="19" lean-forward="true" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
-              <folding />
+            <state relative-caret-position="204">
+              <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -460,7 +449,7 @@
       <workItem from="1508754320857" duration="429000" />
       <workItem from="1508779291672" duration="6773000" />
       <workItem from="1508834102482" duration="8346000" />
-      <workItem from="1508843009397" duration="12576000" />
+      <workItem from="1508843009397" duration="13205000" />
     </task>
     <task id="LOCAL-00001" summary="Инициализирован проект, добавлен класс корзины покупателя">
       <created>1508059838350</created>
@@ -770,11 +759,18 @@
       <option name="project" value="LOCAL" />
       <updated>1508840291824</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="Добавлены интерфейсы классов">
+      <created>1508869408967</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1508869408967</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="122474000" />
+    <option name="totallyTimeSpent" value="123103000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1366" height="768" extended-state="6" />
@@ -1123,9 +1119,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Supermarket/Supermarket.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="19" lean-forward="true" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
-          <folding />
+        <state relative-caret-position="204">
+          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
