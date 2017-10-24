@@ -43,13 +43,6 @@ class Bill {
 		totalAmount = 0;
 	}
 
-	/**
-	 * Processes payment
-	 * */
-	double pay(double customerMoney) {
-		return customerMoney - totalAmount;
-	}
-
 	void applyDiscount(Discount discount) {
 		totalAmount -= totalAmount * discount.getPercentage() / 100;
 	}

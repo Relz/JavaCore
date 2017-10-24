@@ -59,6 +59,25 @@ class Customer {
 		inQueue = value;
 	}
 
+	/**
+	 * Processes payment
+	 * */
+	boolean pay(double totalAmount, PaymentMethod paymentMethod) {
+		switch (paymentMethod) {
+			case Cash:
+				cash -= totalAmount;
+				return true;
+			case Card:
+				cardCash -= totalAmount;
+				return true;
+			case Bonuses:
+				bonusCount -= totalAmount;
+				return true;
+			default:
+				return false;
+		}
+	}
+
 	PaymentMethod getDesiredPaymentMethod(double totalPaymentAmount) {
 		List<PaymentMethod> availablePaymentMethods = new ArrayList<>();
 		if (cash > totalPaymentAmount) {

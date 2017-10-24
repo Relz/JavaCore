@@ -75,28 +75,34 @@ class CashDesk {
 				bill.add(product);
 				products.add(product);
 			}
-			System.out.println("Сумма покупки: " + bill.getTotalAmount());
+
+			System.out.print("Сумма покупки: " + bill.getTotalAmount());
 			Discount discount = new Discount(supermarket.getDiscountPercentages().get(customer.getType()));
 			bill.applyDiscount(discount);
-			System.out.println("Сумма покупки со скидкой: " + bill.getTotalAmount());
+			if (discount.getPercentage() != 0) {
+				System.out.println(", со скидкой: " + bill.getTotalAmount());
+			} else {
+				System.out.println();
+			}
 
 			PaymentMethod paymentMethod = customer.getDesiredPaymentMethod(bill.getTotalAmount());
-			switch (paymentMethod) {
-				case Cash:
-					customer.setCash(bill.pay(customer.getCash()));
-					System.out.println(customerName + " оплатил покупку (" + bill.getTotalAmount() + ") наличными и получил " + bill.getTotalBonuses() + " бонусов");
-					break;
-				case Card:
-					customer.setCardCash(bill.pay(customer.getCardCash()));
-					System.out.println(customerName + " оплатил покупку (" + bill.getTotalAmount() + ") картой и получил " + bill.getTotalBonuses() + " бонусов");
-					break;
-				case Bonuses:
-					customer.setBonusCount(bill.pay(customer.getBonusCount()));
-					System.out.println(customerName + " оплатил покупку (" + bill.getTotalAmount() + ") бонусами");
-					break;
-				default:
-					System.out.println(customerName + " не в состоянии оплатить покупку (" + bill.getTotalAmount() + ")");
-					products.forEach((Product product) -> supermarket.returnProductBack(product, customer));
+			System.out.println(customerName);
+			if (!customer.pay(bill.getTotalAmount(), paymentMethod)) {
+				System.out.println(" не в состоянии оплатить покупку (" + bill.getTotalAmount() + ")");
+				products.forEach((Product product) -> supermarket.returnProductBack(product, customer));
+			} else {
+				System.out.println(" оплатил покупку (" + bill.getTotalAmount() + ")");
+				switch (paymentMethod) {
+					case Cash:
+						System.out.println("наличными и получил " + bill.getTotalBonuses() + " бонусов");
+						break;
+					case Card:
+						System.out.println("картой и получил " + bill.getTotalBonuses() + " бонусов");
+						break;
+					case Bonuses:
+						System.out.println("бонусами");
+						break;
+				}
 			}
 
 			customerIterator.remove();
