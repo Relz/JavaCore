@@ -9,8 +9,4 @@ class Discount {
 	int getPercentage() {
 		return _percentage;
 	}
-
-	void setPercentage(int percentage) {
-		_percentage = percentage;
-	}
 }
