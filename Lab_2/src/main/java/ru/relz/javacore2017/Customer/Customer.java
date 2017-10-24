@@ -8,12 +8,21 @@ import java.util.List;
 
 import static main.java.ru.relz.javacore2017.RandomHelper.RandomHelper.*;
 
-public class Customer {
+public class Customer implements CustomerInterface, CashHolder, CardCashHolder, BonusesHolder {
 	public Customer(CustomerType type, double cash, double cardCash, double bonusCount) {
 		this.type = type;
 		this.cash = cash;
 		this.cardCash = cardCash;
 		this.bonusCount = bonusCount;
+	}
+
+	private int id;
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int value) {
+		id = value;
 	}
 
 	private final CustomerType type;
@@ -35,7 +44,7 @@ public class Customer {
 		return cardCash;
 	}
 
-	void setCardCash(double value) {
+	public void setCardCash(double value) {
 		cardCash = value;
 	}
 
@@ -44,7 +53,7 @@ public class Customer {
 		return bonusCount;
 	}
 
-	void setBonusCount(double value) {
+	public void setBonusCount(double value) {
 		bonusCount = value;
 	}
 
@@ -60,6 +69,15 @@ public class Customer {
 
 	public void setInQueue(boolean value) {
 		inQueue = value;
+	}
+
+	/**
+	 * Returns Customer name by his type and number
+	 *
+	 * @return Customer type and number in string typedef
+	 * */
+	public String getFullName() {
+		return getType().toString() + " " + getId();
 	}
 
 	/**

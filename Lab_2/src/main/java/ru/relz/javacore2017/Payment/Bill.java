@@ -45,6 +45,9 @@ public class Bill {
 		totalAmount = 0;
 	}
 
+	/**
+	 * Applies discount, decreasing total amount
+	 * */
 	public void applyDiscount(Discount discount) {
 		totalAmount -= totalAmount * discount.getPercentage() / 100;
 	}

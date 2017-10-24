@@ -7,28 +7,22 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class Basket {
+public class Basket implements Container {
 	private final List<Product> products = new ArrayList<>();
 
-	/**
-	 * Adds a Product object to the Basket object back.
-	 *
-	 * @param product product to add to basket
-	 */
 	public void add(Product product) {
 		products.add(product);
 	}
 
-	/**
-	 * Performs the given action for each element of the basket
-	 *
-	 * @param action callback to call every product iterator
-	 * */
 	public void forEachProduct(Consumer<Iterator<Product>> action) {
 		Iterator<Product> productIterator = products.iterator();
 		while (productIterator.hasNext()) {
 			action.accept(productIterator);
 		}
+	}
+
+	public boolean isEmpty() {
+		return products.isEmpty();
 	}
 
 	/**
@@ -60,14 +54,5 @@ public class Basket {
 	 */
 	public void get(Iterator<Product> productIterator) {
 		productIterator.remove();
-	}
-
-	/**
-	 * Returns {@code true} if Basket object contains no elements.
-	 *
-	 * @return {@code true} if Basket object contains no elements
-	 */
-	public boolean isEmpty() {
-		return products.isEmpty();
 	}
 }

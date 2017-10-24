@@ -1,6 +1,6 @@
 package main.java.ru.relz.javacore2017.Supermarket;
 
-import main.java.ru.relz.javacore2017.CashDesk.CashDesk;
+import main.java.ru.relz.javacore2017.CashDesk.NamedCashDesk;
 import main.java.ru.relz.javacore2017.Customer.Customer;
 import main.java.ru.relz.javacore2017.Customer.CustomerType;
 import main.java.ru.relz.javacore2017.Product.Product;
@@ -10,7 +10,7 @@ import java.util.Iterator;
 import static main.java.ru.relz.javacore2017.RandomHelper.RandomHelper.getRandomNumber;
 import static main.java.ru.relz.javacore2017.RandomHelper.RandomHelper.getRandomProductAmount;
 
-class SupermarketWork implements SupermarketWorkInterface {
+public class SupermarketWork implements SupermarketWorkInterface {
 	@Override
 	public void onEachTimeUnit(Supermarket supermarket) {
 		for (int i = 0; i < getRandomNumber(0, Supermarket.TIME_UNIT_MINUTES); ++i) {
@@ -59,7 +59,7 @@ class SupermarketWork implements SupermarketWorkInterface {
 			}
 			if (!customer.isInQueue() && !customer.getBacket().isEmpty()) {
 				// Join to cash desk
-				CashDesk bestCashDesk = supermarket.getBestCashDesk();
+				NamedCashDesk bestCashDesk = supermarket.getBestCashDesk();
 				bestCashDesk.addCustomerToQueue(customer);
 			}
 		});
