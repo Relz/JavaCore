@@ -9,9 +9,9 @@ class RandomHelper {
 	static int getRandomProductAmount(Product product, int productMaxAmount) {
 		switch (product.getType()) {
 			case Packed:
-				return getRandomNumber(1, 10);
+				return getRandomNumber(1, productMaxAmount);
 			case Bulk:
-				return getRandomNumber(100, 10000);
+				return getRandomNumber(100, productMaxAmount);
 			default:
 				return 1;
 		}

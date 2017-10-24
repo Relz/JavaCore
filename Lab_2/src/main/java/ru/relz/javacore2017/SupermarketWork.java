@@ -6,10 +6,9 @@ import static main.java.ru.relz.javacore2017.RandomHelper.getRandomNumber;
 import static main.java.ru.relz.javacore2017.RandomHelper.getRandomProductAmount;
 
 class SupermarketWork implements SupermarketWorkInterface {
-
 	@Override
 	public void onEachTimeUnit(Supermarket supermarket) {
-		for (int i = 0; i < getRandomNumber(0, Supermarket.timeUnitMinutes); ++i) {
+		for (int i = 0; i < getRandomNumber(0, Supermarket.TIME_UNIT_MINUTES); ++i) {
 			supermarket.addCustomer(new Customer(CustomerType.getRandom(), getRandomNumber(0, 1000), getRandomNumber(0, 10000), getRandomNumber(0, 1000)));
 		}
 		supermarket.forEachCustomer((Iterator<Customer> customerIterator) -> {

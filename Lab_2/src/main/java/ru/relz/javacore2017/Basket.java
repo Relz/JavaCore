@@ -6,20 +6,20 @@ import java.util.List;
 import java.util.function.Consumer;
 
 class Basket {
-	private final List<Product> _products = new ArrayList<>();
+	private final List<Product> products = new ArrayList<>();
 
 	/**
 	 * Adds a Product object to the Basket object back.
 	 */
 	void add(Product product) {
-		_products.add(product);
+		products.add(product);
 	}
 
 	/**
 	 * Performs the given action for each element of the basket
 	 * */
 	void forEachProduct(Consumer<Iterator<Product>> action) {
-		Iterator<Product> productIterator = _products.iterator();
+		Iterator<Product> productIterator = products.iterator();
 		while (productIterator.hasNext()) {
 			action.accept(productIterator);
 		}
@@ -31,7 +31,7 @@ class Basket {
 	 * @return the product
 	 */
 	Product get() {
-		return _products.remove(0);
+		return products.remove(0);
 	}
 
 	/**
@@ -40,7 +40,7 @@ class Basket {
 	 * @return the product
 	 */
 	Product get(Product product) {
-		_products.remove(product);
+		products.remove(product);
 
 		return product;
 	}
@@ -58,6 +58,6 @@ class Basket {
 	 * @return {@code true} if Basket object contains no elements
 	 */
 	boolean isEmpty() {
-		return _products.isEmpty();
+		return products.isEmpty();
 	}
 }

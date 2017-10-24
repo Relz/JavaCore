@@ -2,11 +2,11 @@ package main.java.ru.relz.javacore2017;
 
 class Discount {
 	Discount(int percentage) {
-		_percentage = percentage;
+		this.percentage = percentage;
 	}
 
-	private int _percentage = 0;
+	private int percentage = 0;
 	int getPercentage() {
-		return _percentage;
+		return percentage;
 	}
 }

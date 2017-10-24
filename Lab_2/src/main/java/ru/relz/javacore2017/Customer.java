@@ -7,67 +7,67 @@ import static main.java.ru.relz.javacore2017.RandomHelper.getRandomPaymentMethod
 
 class Customer {
 	Customer(CustomerType type, double cash, double cardCash, double bonusCount) {
-		_type = type;
-		_cash = cash;
-		_cardCash = cardCash;
-		_bonusCount = bonusCount;
+		this.type = type;
+		this.cash = cash;
+		this.cardCash = cardCash;
+		this.bonusCount = bonusCount;
 	}
 
-	private final CustomerType _type;
+	private final CustomerType type;
 	CustomerType getType() {
-		return _type;
+		return type;
 	}
 
-	private double _cash = 0.0;
+	private double cash = 0.0;
 	double getCash() {
-		return _cash;
+		return cash;
 	}
 
 	void setCash(double value) {
-		_cash = value;
+		cash = value;
 	}
 
-	private double _cardCash = 0.0;
+	private double cardCash = 0.0;
 	double getCardCash() {
-		return _cardCash;
+		return cardCash;
 	}
 
 	void setCardCash(double value) {
-		_cardCash = value;
+		cardCash = value;
 	}
 
-	private double _bonusCount = 0.0;
+	private double bonusCount = 0.0;
 	double getBonusCount() {
-		return _bonusCount;
+		return bonusCount;
 	}
 
 	void setBonusCount(double value) {
-		_bonusCount = value;
+		bonusCount = value;
 	}
 
-	private final Basket _basket = new Basket();
+	private final Basket basket = new Basket();
 	Basket getBacket() {
-		return _basket;
+		return basket;
 	}
 
-	private boolean _inQueue = false;
+	private boolean inQueue = false;
 	boolean isInQueue() {
-		return _inQueue;
+		return inQueue;
 	}
 
 	void setInQueue(boolean value) {
-		_inQueue = value;
+		inQueue = value;
 	}
 
 	PaymentMethod getDesiredPaymentMethod(double totalPaymentAmount) {
 		List<PaymentMethod> availablePaymentMethods = new ArrayList<>();
-		if (_cash > totalPaymentAmount) {
+		if (cash > totalPaymentAmount) {
 			availablePaymentMethods.add(PaymentMethod.Cash);
 		}
-		if (_cardCash > totalPaymentAmount) {
+		if (cardCash > totalPaymentAmount) {
 			availablePaymentMethods.add(PaymentMethod.Card);
 		}
-		if (_bonusCount > totalPaymentAmount) {
+		if (bonusCount > totalPaymentAmount) {
 			availablePaymentMethods.add(PaymentMethod.Bonuses);
 		}
 		if (availablePaymentMethods.isEmpty()) {

@@ -3,47 +3,47 @@ package main.java.ru.relz.javacore2017;
 class Product {
 
 	Product(int id, String name, double price, int amount, ProductType productType, int bonus, boolean forAdult) {
-		_id = id;
-		_name = name;
-		_price = price;
-		_amount = amount;
-		_productType = productType;
-		_bonus = bonus;
-		_forAdult = forAdult;
+		this.id = id;
+		this.name = name;
+		this.price = price;
+		this.amount = amount;
+		this.productType = productType;
+		this.bonus = bonus;
+		this.forAdult = forAdult;
 	}
 
-	private final int _id;
+	private final int id;
 	int getId() {
-		return _id;
+		return id;
 	}
 
-	private final String _name;
+	private final String name;
 	String getName() {
-		return _name;
+		return name;
 	}
 
-	private final double _price;
+	private final double price;
 	double getPrice() {
-		return _price;
+		return price;
 	}
 
-	private final int _amount;
+	private final int amount;
 	int getAmount() {
-		return _amount;
+		return amount;
 	}
 
-	private final ProductType _productType;
+	private final ProductType productType;
 	ProductType getType() {
-		return _productType;
+		return productType;
 	}
 
-	private final int _bonus;
+	private final int bonus;
 	int getBonus() {
-		return _bonus;
+		return bonus;
 	}
 
-	private final boolean _forAdult;
+	private final boolean forAdult;
 	boolean isForAdult() {
-		return _forAdult;
+		return forAdult;
 	}
 }

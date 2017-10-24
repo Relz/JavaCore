@@ -9,46 +9,46 @@ import java.util.function.Consumer;
 import static main.java.ru.relz.javacore2017.RandomHelper.getRandomNumber;
 
 class Supermarket {
-	static final int timeUnitMinutes = 5;
+	static final int TIME_UNIT_MINUTES = 5;
 
-	private static final int _secondsInMinute = 60;
-	private static final int _millisecondsInSecond = 1000;
+	private static final int SECONDS_IN_MINUTE = 60;
+	private static final int MILLISECONDS_IN_SECOND = 1000;
 
-	private final List<Customer> _customers = new ArrayList<>();
+	private final List<Customer> customers = new ArrayList<>();
 	private final DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 	private final Date startDate = new Date();
-	private final HashMap<Customer, Integer> _customersToIds = new HashMap<>();
-	private final List<CashDesk> _cashDesks = new ArrayList<>();
+	private final HashMap<Customer, Integer> customersToIds = new HashMap<>();
+	private final List<CashDesk> cashDesks = new ArrayList<>();
 
-	private int _customerId = 0;
-	private int _workingTimeLeft = 0;
+	private int customerId = 0;
+	private int workingTimeLeft = 0;
 
 	Supermarket() {
 		Database.createConnection();
-		_products = Database.getProducts();
+		products = Database.getProducts();
 	}
 
-	private int _workingTimeMinutes;
+	private int workingTimeMinutes;
 	int getWorkingTimeMinutes() {
-		return _workingTimeMinutes;
+		return workingTimeMinutes;
 	}
 
 	void setWorkingTimeMinutes(int workingTimeMinutes) {
-		_workingTimeMinutes = workingTimeMinutes;
+		this.workingTimeMinutes = workingTimeMinutes;
 	}
 
-	private List<Product> _products = new ArrayList<>();
+	private List<Product> products = new ArrayList<>();
 	List<Product> getProducts() {
-		return _products;
+		return products;
 	}
 
-	private HashMap<CustomerType, Integer> _discountPercentages = new HashMap<CustomerType, Integer>() {{
+	private HashMap<CustomerType, Integer> discountPercentages = new HashMap<CustomerType, Integer>() {{
 		put(CustomerType.Child, 0);
 		put(CustomerType.Adult, 0);
 		put(CustomerType.Retired, 20);
 	}};
 	HashMap<CustomerType, Integer> getDiscountPercentages() {
-		return _discountPercentages;
+		return discountPercentages;
 	}
 	/**
 	 * Adds cash desk to supermarket with specified name
@@ -57,14 +57,14 @@ class Supermarket {
 	 * */
 	void addCashDesk(String name) {
 		CashDesk cashDesk = new CashDesk(this, name);
-		_cashDesks.add(cashDesk);
+		cashDesks.add(cashDesk);
 	}
 
 	/**
 	 * Performs the given action for each customer
 	 * */
 	void forEachCustomer(Consumer<Iterator<Customer>> action) {
-		Iterator<Customer> customerIterator = _customers.iterator();
+		Iterator<Customer> customerIterator = customers.iterator();
 		while (customerIterator.hasNext()) {
 			action.accept(customerIterator);
 		}
@@ -75,9 +75,9 @@ class Supermarket {
 	 * prints about customer arrival.
 	 */
 	void addCustomer(Customer customer) {
-		++_customerId;
-		_customers.add(customer);
-		_customersToIds.put(customer, _customerId);
+		++customerId;
+		customers.add(customer);
+		customersToIds.put(customer, customerId);
 		System.out.println(getCustomerName(customer) + " вошёл в магазин");
 	}
 
@@ -118,7 +118,7 @@ class Supermarket {
 		}
 		System.out.println(customerName + " вышел из магазина");
 		if (customerIterator == null) {
-			_customers.remove(customer);
+			customers.remove(customer);
 		} else {
 			customerIterator.remove();
 		}
@@ -139,11 +139,11 @@ class Supermarket {
 	 */
 	void work(SupermarketWorkInterface supermarketWorkInterface) throws IOException {
 		System.out.println("Магазин начал свою работу");
-		while (_workingTimeMinutes > 0) {
-			System.out.println("Сейчас " + dateFormat.format(startDate.getTime() + _workingTimeLeft * _secondsInMinute * _millisecondsInSecond));
+		while (workingTimeMinutes > 0) {
+			System.out.println("Сейчас " + dateFormat.format(startDate.getTime() + workingTimeLeft * SECONDS_IN_MINUTE * MILLISECONDS_IN_SECOND));
 			supermarketWorkInterface.onEachTimeUnit(this);
-			_workingTimeMinutes -= timeUnitMinutes;
-			_workingTimeLeft += timeUnitMinutes;
+			workingTimeMinutes -= TIME_UNIT_MINUTES;
+			workingTimeLeft += TIME_UNIT_MINUTES;
 			System.in.read();
 		}
 		System.out.println("Кассы завершили свою работу, магазин готовится к закрытию");
@@ -151,8 +151,8 @@ class Supermarket {
 	}
 
 	CashDesk getBestCashDesk() {
-		CashDesk bestCashDesk = _cashDesks.get(0);
-		for (CashDesk cashDesk : _cashDesks) {
+		CashDesk bestCashDesk = cashDesks.get(0);
+		for (CashDesk cashDesk : cashDesks) {
 			if (cashDesk.isOpened() && cashDesk.getQueueSize() < bestCashDesk.getQueueSize()) {
 				bestCashDesk = cashDesk;
 			}
@@ -162,8 +162,8 @@ class Supermarket {
 	}
 
 	void processCashDesks() {
-		_cashDesks.forEach((CashDesk cashDesk) -> {
-			cashDesk.processQueue(Supermarket.timeUnitMinutes);
+		cashDesks.forEach((CashDesk cashDesk) -> {
+			cashDesk.processQueue(Supermarket.TIME_UNIT_MINUTES);
 			if (getRandomNumber(0, 10) == 0) {
 				if (cashDesk.isOpened()) {
 					cashDesk.close();
@@ -180,6 +180,6 @@ class Supermarket {
 	 * @return customer type and number in string typedef
 	 * */
 	String getCustomerName(Customer customer) {
-		return customer.getType().toString() + " " + _customersToIds.get(customer);
+		return customer.getType().toString() + " " + customersToIds.get(customer);
 	}
 }

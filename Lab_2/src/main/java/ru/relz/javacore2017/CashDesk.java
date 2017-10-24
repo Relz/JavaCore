@@ -5,78 +5,78 @@ import java.util.Iterator;
 import java.util.List;
 
 class CashDesk {
-	private final String _name;
-	private final Supermarket _supermarket;
-	private final List<Customer> _queue = new ArrayList<>();
-	private final List<Product> _products = new ArrayList<>();
+	private final String name;
+	private final Supermarket supermarket;
+	private final List<Customer> queue = new ArrayList<>();
+	private final List<Product> products = new ArrayList<>();
 
 	CashDesk(Supermarket supermarket, String name) {
-		_name = name;
-		_supermarket = supermarket;
+		this.name = name;
+		this.supermarket = supermarket;
 	}
 
 	int getQueueSize() {
-		return _queue.size();
+		return queue.size();
 	}
 
-	private boolean _opened = true;
+	private boolean opened = true;
 	boolean isOpened() {
-		return _opened;
+		return opened;
 	}
 
 	void open() {
-		_opened = true;
+		opened = true;
 	}
 
 	void close() {
-		System.out.println("Касса " + _name + " закрылась");
-		_opened = false;
-		Iterator<Customer> customerIterator = _queue.iterator();
+		System.out.println("Касса " + name + " закрылась");
+		opened = false;
+		Iterator<Customer> customerIterator = queue.iterator();
 		while (customerIterator.hasNext()) {
 			Customer customer = customerIterator.next();
 			removeCustomerFromQueue(customerIterator, customer);
 		}
-		_queue.clear();
+		queue.clear();
 	}
 
 	void addCustomerToQueue(Customer customer) {
-		_queue.add(customer);
+		queue.add(customer);
 		customer.setInQueue(true);
-		System.out.println(_supermarket.getCustomerName(customer) + " встал в очередь на кассу " + _name);
+		System.out.println(supermarket.getCustomerName(customer) + " встал в очередь на кассу " + name);
 	}
 
 	void removeCustomerFromQueue(Iterator<Customer> customerIterator, Customer customer) {
 		customerIterator.remove();
 		customer.setInQueue(false);
-		System.out.println(_supermarket.getCustomerName(customer) + " покинул кассу " + _name);
+		System.out.println(supermarket.getCustomerName(customer) + " покинул кассу " + name);
 	}
 
 	void processQueue(int customerCount) {
-		if (!_opened) {
+		if (!opened) {
 			return;
 		}
-		Iterator<Customer> customerIterator = _queue.iterator();
+		Iterator<Customer> customerIterator = queue.iterator();
 		while (customerIterator.hasNext()) {
 			Customer customer = customerIterator.next();
 			if (customerCount == 0) {
 				break;
 			}
-			_products.clear();
+			products.clear();
 
-			String customerName = _supermarket.getCustomerName(customer);
+			String customerName = supermarket.getCustomerName(customer);
 			Bill bill = new Bill();
 			while (!customer.getBacket().isEmpty()) {
 				Product product = customer.getBacket().get();
 				if (product.isForAdult() && customer.getType() == CustomerType.Child) {
 					System.out.println("Предотвращена попытка " + customerName + " купить " + product.getName());
-					_supermarket.returnProductBack(product, customer);
+					supermarket.returnProductBack(product, customer);
 					continue;
 				}
 				bill.add(product);
-				_products.add(product);
+				products.add(product);
 			}
 			System.out.println("Сумма покупки: " + bill.getTotalAmount());
-			Discount discount = new Discount(_supermarket.getDiscountPercentages().get(customer.getType()));
+			Discount discount = new Discount(supermarket.getDiscountPercentages().get(customer.getType()));
 			bill.applyDiscount(discount);
 			System.out.println("Сумма покупки со скидкой: " + bill.getTotalAmount());
 
@@ -96,11 +96,11 @@ class CashDesk {
 					break;
 				default:
 					System.out.println(customerName + " не в состоянии оплатить покупку (" + bill.getTotalAmount() + ")");
-					_products.forEach((Product product) -> _supermarket.returnProductBack(product, customer));
+					products.forEach((Product product) -> supermarket.returnProductBack(product, customer));
 			}
 
 			customerIterator.remove();
-			_supermarket.removeCustomer(null, customer);
+			supermarket.removeCustomer(null, customer);
 			--customerCount;
 		}
 	}
