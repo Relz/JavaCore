@@ -1,0 +1,1153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ca8fe240-1f45-4e88-ac72-ae20424889c7" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Database/Database.java" afterPath="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Database/Database.java" />
+    </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <ignored path="supermarket/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_TABLE_DETAILS" value="true" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <expand>
+      <path>
+        <item name="" type="eadb38e5:DatabaseStructure$Root" />
+        <item name="supermarket" type="e3449647:DbNodeDescriptor" />
+      </path>
+      <path>
+        <item name="" type="eadb38e5:DatabaseStructure$Root" />
+        <item name="supermarket" type="e3449647:DbNodeDescriptor" />
+        <item name="APP" type="e3449647:DbNodeDescriptor" />
+      </path>
+      <path>
+        <item name="" type="eadb38e5:DatabaseStructure$Root" />
+        <item name="supermarket" type="e3449647:DbNodeDescriptor" />
+        <item name="APP" type="e3449647:DbNodeDescriptor" />
+        <item name="PRODUCT" type="e3449647:DbNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="ProductSummator.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Payment/ProductSummator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="29" column="5" lean-forward="false" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Supermarket.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Supermarket/Supermarket.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="167">
+              <caret line="33" column="25" lean-forward="false" selection-start-line="33" selection-start-column="25" selection-end-line="33" selection-end-column="25" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Logger.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Supermarket/Logger.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="378">
+              <caret line="28" column="66" lean-forward="false" selection-start-line="28" selection-start-column="66" selection-end-line="28" selection-end-column="66" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NamedCashDesk.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/CashDesk/NamedCashDesk.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="466">
+              <caret line="58" column="66" lean-forward="false" selection-start-line="58" selection-start-column="66" selection-end-line="58" selection-end-column="66" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Database.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Database/Database.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="20" column="13" lean-forward="true" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="console.sql" pinned="false" current-in-tab="false">
+        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/47af53be-a3a9-4e66-93e4-0a8a25cc1524/console.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PRODUCT" pinned="false" current-in-tab="false">
+        <entry file="das://table:/ab9da4cb/47af53be-a3a9-4e66-93e4-0a8a25cc1524/APP.PRODUCT">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CashDesk.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/CashDesk/CashDesk.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="72">
+              <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoggingCashDesk.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/CashDesk/LoggingCashDesk.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="5" column="33" lean-forward="false" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SupermarketWork.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Supermarket/SupermarketWork.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+              <folding>
+                <marker date="1509293188607" expanded="true" signature="3364:3367" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Class" />
+        <option value="Interface" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>this</find>
+      <find>dateFormat</find>
+      <find>pay</find>
+      <find>getCustomerName</find>
+      <find>forEach</find>
+      <find>print(</find>
+      <find>println(</find>
+      <find>printf</find>
+      <find>int</find>
+      <find>int</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>customer.getFullName</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/CartItem.java" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/459005c7-6018-40db-8038-e4ba0229cf18/console.sql" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/ProductType.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/DataBase.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/IProduct.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/PackedProduct.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/BulkProduct.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/SupermarketWorkingInterface.java" />
+        <option value="$PROJECT_DIR$/../.gitignore" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/PaymentMethod.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/CustomerType.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Discount.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Supermarket.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/RandomHelper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Bill.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Product.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Customer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/CashDesk.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/SupermarketWork.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Basket.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/customer/CustomerType.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/customer/Customer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Payment/PaymentMethod.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Payment/Method.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Database.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Product/ProductType.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Customer/CustomerType.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Payment/Discount.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Supermarket/SupermarketSimulator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Basket/Container.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Basket/Basket.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/CashDesk/CashDesk.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Customer/CashHolder.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Customer/CardCashHolder.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Customer/BonusesHolder.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Customer/Customer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Customer/CustomerInterface.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Database/DatabaseInterface.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/SupermarketWorkInterface.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/CashDesk/LoggingCashDesk.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Supermarket/SupermarketWorkInterface.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Payment/Bill.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Product/Product.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/SupermarketSimulator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Supermarket/SupermarketWork.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/RandomHelper/RandomHelper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Payment/ProductSummator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Supermarket/Logger.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/CashDesk/NamedCashDesk.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Supermarket/Supermarket.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Database/Database.java" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
+    <option name="y" value="27" />
+    <option name="width" value="1366" />
+    <option name="height" value="741" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>Android</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Supermarket" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Supermarket" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../SELECT_t___FROM_APP_PRODUCT_t.tsv" />
+    <property name="com.intellij.database.dataSource.DataSourceTemplate" value="Derby (Embedded)&#10;Sqlite (Xerial)" />
+    <property name="SearchEverywhereHistoryKey" value="List&#9;PSI&#9;JAVA://java.awt.List&#10;Math&#9;FILE&#9;jar://C:/Program Files/Java/jdk-9/lib/src.zip!/java.base/java/lang/Math.java" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Supermarket" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="main.java.ru.relz.javacore2017" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="main.java.ru.relz.javacore2017.SupermarketSimulator" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="Lab_2" />
+      <envs />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <recent_temporary>
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ca8fe240-1f45-4e88-ac72-ae20424889c7" name="Default" comment="" />
+      <created>1506446356037</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1506446356037</updated>
+      <workItem from="1506446363059" duration="108000" />
+      <workItem from="1506483382349" duration="339000" />
+      <workItem from="1506483763434" duration="123000" />
+      <workItem from="1506539007982" duration="307000" />
+      <workItem from="1508054908438" duration="541000" />
+      <workItem from="1508055485332" duration="16176000" />
+      <workItem from="1508074279442" duration="5839000" />
+      <workItem from="1508229351263" duration="3551000" />
+      <workItem from="1508246914983" duration="1372000" />
+      <workItem from="1508263810867" duration="14971000" />
+      <workItem from="1508314814741" duration="1580000" />
+      <workItem from="1508351921243" duration="2759000" />
+      <workItem from="1508423628793" duration="16246000" />
+      <workItem from="1508451741261" duration="8349000" />
+      <workItem from="1508531303155" duration="3700000" />
+      <workItem from="1508602459555" duration="18389000" />
+      <workItem from="1508754320857" duration="429000" />
+      <workItem from="1508779291672" duration="6773000" />
+      <workItem from="1508834102482" duration="8346000" />
+      <workItem from="1508843009397" duration="16852000" />
+      <workItem from="1508925335177" duration="4077000" />
+      <workItem from="1508930876117" duration="1350000" />
+      <workItem from="1509012194064" duration="515000" />
+      <workItem from="1509107563400" duration="1718000" />
+      <workItem from="1509188655898" duration="50000" />
+      <workItem from="1509289808975" duration="5621000" />
+      <workItem from="1509297727944" duration="1355000" />
+    </task>
+    <task id="LOCAL-00001" summary="Инициализирован проект, добавлен класс корзины покупателя">
+      <created>1508059838350</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1508059838350</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Добавлен enum для типизации покупателя">
+      <created>1508059869008</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1508059869008</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Добавлен класс покупателя">
+      <created>1508059957821</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1508059957821</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Доработана иерархия классов продукта">
+      <created>1508062269809</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1508062269809</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Добавлено поле имени продукта">
+      <created>1508062837380</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1508062837380</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Исправлена ошибка: не инициализировал список продуктов">
+      <created>1508063202442</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1508063202442</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Исправил отступы, добавил модификатор final к списку продуктов в корзине">
+      <created>1508073983044</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1508073983044</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Добавлен тип продукта">
+      <created>1508074013336</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1508074013336</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Переход от передачи строк к передаче id продукта">
+      <created>1508074177513</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1508074177513</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Рефакторинг иерархии классов">
+      <created>1508283955629</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1508283955629</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Инициализирован класс для организации цикла событий супермаркета">
+      <created>1508284111958</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1508284111958</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Добавлен класс супермаркета&#10;Соединяется с базой данных, добавлен метод возврата списка доступных продуктов магазина">
+      <created>1508284290851</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1508284290851</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Добавлен метод получения строки из типа покупателя и метод получения случайного покупателя">
+      <created>1508446862404</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1508446862405</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Переименован метод получения типа продукта">
+      <created>1508447099498</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1508447099498</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Добавлена утилита для работы с базой данных">
+      <created>1508447301475</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1508447301475</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Добавлены методы&#10;Получения списка товаров из базы данных&#10;Забирания товара из магазина в корзину&#10;Добавлен callback класс для рабочего процесса супермаркета">
+      <created>1508447463133</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1508447463133</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Добавлен метод возврата товара">
+      <created>1508503152379</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1508503152380</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Добавлена логика случайной работы магазина&#10;Покупатели могут:&#10;-попытаться выйти из магазина с неоплаченными продуктами в корзине;&#10;-вернуть товар из корзины;&#10;-выйти без покупок.">
+      <created>1508503294200</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1508503294200</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Модифицирован класс супермаркета&#10;Вместо получения списка покупателей добавлен метод прохода по всем итераторам покупателей,&#10;Добавлен метод удаления покупателя из списка,&#10;Добавлен метод возврата продукта магазину.">
+      <created>1508503497849</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1508503497849</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Дополнен класс корзины&#10;Добавлен метод прохода по всем итераторам продуктов корзины, добавлен метод удаления продукта из корзины по итератору">
+      <created>1508503566439</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1508503566439</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Добавлена документация для метода получения уникального имени покупателя">
+      <created>1508503733998</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1508503733998</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Добавлен вывод сообщения при завершении времени работы супермаркета">
+      <created>1508504475154</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1508504475154</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Добавлено поведение супермаркета при завершении времени его работы">
+      <created>1508504512756</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1508504512756</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Добавлено поведение супермаркета при завершении времени его работы">
+      <created>1508504524395</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1508504524395</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Переименована база данных, конкатенация изменена на String.format">
+      <created>1508533910000</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1508533910000</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Изменены настройки проекта">
+      <created>1508534655918</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1508534655918</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Добавлено игнорирование базы данных в Git">
+      <created>1508534787301</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1508534787301</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Добавлен класс скидки">
+      <created>1508798669372</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1508798669372</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Добавлен класс чека">
+      <created>1508799129904</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1508799129904</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Добавлен свойство классу продукта: для взрослых">
+      <created>1508799211604</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1508799211604</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Функции для случайных значений вынесены в RandomHelper">
+      <created>1508799245519</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1508799245519</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Добавлен класс способа оплаты">
+      <created>1508799275830</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1508799275830</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Упрощение кода">
+      <created>1508799386356</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1508799386356</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Исправлен баг: не было возможности получения покупателя-пенсионера">
+      <created>1508799448872</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1508799448872</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Покупателю добавлены разные возможности оплаты и метод получения случайного способа оплаты в зависимости от цены вопроса">
+      <created>1508799536745</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1508799536745</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Добавлен класс кассы и магазину добавлен три кассы">
+      <created>1508799607344</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1508799607344</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Добавлен класс кассы и магазину добавлен три кассы">
+      <created>1508799624825</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1508799624825</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Расширение супермаркета&#10;имеет возможность добавлять кассы,&#10;добавлен метод получения наиболее выгодной кассы,&#10;добавлен метод обработки работы касс">
+      <created>1508799753540</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1508799753540</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Расширена логика работы супермакрета&#10;Покупатели могут занять очередь на кассу, кассы обрабатывают очередь">
+      <created>1508799814483</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1508799814483</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Double -&gt; double">
+      <created>1508836263564</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1508836263564</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Убран лишний метод">
+      <created>1508836293769</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1508836293769</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Исправлены ошибки форматирования&#10;приватные переменные не имеют нижнего подчёркивания">
+      <created>1508837148282</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1508837148282</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Метод оплаты перенесён из Bill в Customer">
+      <created>1508839039116</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1508839039116</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Добавлена защита от покупки закончившегося товара">
+      <created>1508840291824</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1508840291824</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Добавлены интерфейсы классов">
+      <created>1508869408967</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1508869408967</updated>
+    </task>
+    <task id="LOCAL-00046" summary="Рефакторинг">
+      <created>1508871944027</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1508871944028</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Добавлено логирование">
+      <created>1509294701202</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1509294701202</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="141436000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="-24" width="1366" height="792" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32307693" sideWeight="0.49707174" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32775453" sideWeight="0.50292826" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="CheckStyle" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1647145" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22913617" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Learn" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48811188" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914925" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <MESSAGE value="Добавлен вывод сообщения при завершении времени работы супермаркета" />
+    <MESSAGE value="Добавлено поведение супермаркета при завершении времени его работы" />
+    <MESSAGE value="Переименована база данных, конкатенация изменена на String.format" />
+    <MESSAGE value="Изменены настройки проекта" />
+    <MESSAGE value="Добавлено игнорирование базы данных в Git" />
+    <MESSAGE value="Добавлен класс скидки" />
+    <MESSAGE value="Добавлен класс чека" />
+    <MESSAGE value="Добавлен свойство классу продукта: для взрослых" />
+    <MESSAGE value="Функции для случайных значений вынесены в RandomHelper" />
+    <MESSAGE value="Добавлен класс способа оплаты" />
+    <MESSAGE value="Упрощение кода" />
+    <MESSAGE value="Исправлен баг: не было возможности получения покупателя-пенсионера" />
+    <MESSAGE value="Покупателю добавлены разные возможности оплаты и метод получения случайного способа оплаты в зависимости от цены вопроса" />
+    <MESSAGE value="Добавлен класс кассы и магазину добавлен три кассы" />
+    <MESSAGE value="Расширение супермаркета&#10;имеет возможность добавлять кассы,&#10;добавлен метод получения наиболее выгодной кассы,&#10;добавлен метод обработки работы касс" />
+    <MESSAGE value="Расширена логика работы супермакрета&#10;Покупатели могут занять очередь на кассу, кассы обрабатывают очередь" />
+    <MESSAGE value="Double -&gt; double" />
+    <MESSAGE value="Убран лишний метод" />
+    <MESSAGE value="Исправлены ошибки форматирования&#10;приватные переменные не имеют нижнего подчёркивания" />
+    <MESSAGE value="Метод оплаты перенесён из Bill в Customer" />
+    <MESSAGE value="Добавлена защита от покупки закончившегося товара" />
+    <MESSAGE value="Классы распределены по пакетам" />
+    <MESSAGE value="Добавлены интерфейсы классов" />
+    <MESSAGE value="Рефакторинг" />
+    <MESSAGE value="Добавлено логирование" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлено логирование" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="das://table:/58b49183/47af53be-a3a9-4e66-93e4-0a8a25cc1524/APP.PRODUCT" />
+    <entry file="das://table:/58b49183/47af53be-a3a9-4e66-93e4-0a8a25cc1524/APP.PRODUCT" />
+    <entry file="das://table:/58b49183/47af53be-a3a9-4e66-93e4-0a8a25cc1524/APP.PRODUCT" />
+    <entry file="das://table:/58b49183/47af53be-a3a9-4e66-93e4-0a8a25cc1524/APP.PRODUCT" />
+    <entry file="jar:///usr/lib/jvm/default/lib/src.zip!/java.base/java/util/List.java" />
+    <entry file="das://table:/58b49183/47af53be-a3a9-4e66-93e4-0a8a25cc1524/APP.PRODUCT" />
+    <entry file="das://table:/58b49183/47af53be-a3a9-4e66-93e4-0a8a25cc1524/APP.PRODUCT" />
+    <entry file="das://table:/58b49183/47af53be-a3a9-4e66-93e4-0a8a25cc1524/APP.PRODUCT" />
+    <entry file="das://table:/2a8d9513/47af53be-a3a9-4e66-93e4-0a8a25cc1524/APP.PRODUCT" />
+    <entry file="jar://C:/Program Files/Java/jdk-9/lib/src.zip!/java.base/java/lang/Math.java" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_112/src.zip!/java/awt/List.java" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_112/src.zip!/java/util/List.java" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_112/src.zip!/java/lang/Math.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Product/ProductType.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Customer/CustomerType.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Basket/Container.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Basket/Basket.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Customer/CashHolder.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Customer/CardCashHolder.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Customer/BonusesHolder.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Customer/CustomerInterface.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Customer/Customer.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Database/DatabaseInterface.java" />
+    <entry file="jar:///usr/lib/jvm/default/lib/src.zip!/java.base/java/util/HashSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="94" column="40" lean-forward="false" selection-start-line="94" selection-start-column="40" selection-end-line="94" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/default/lib/src.zip!/java.base/java/util/AbstractMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="327" column="28" lean-forward="false" selection-start-line="327" selection-start-column="28" selection-end-line="327" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Payment/Discount.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Supermarket/SupermarketWorkInterface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Payment/Bill.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="16" column="44" lean-forward="true" selection-start-line="16" selection-start-column="44" selection-end-line="16" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Product/Product.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="27" lean-forward="false" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
+          <folding>
+            <element signature="e#805#806#0" expanded="false" />
+            <element signature="e#824#825#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/default/lib/src.zip!/java.base/java/util/HashMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="610" column="13" lean-forward="false" selection-start-line="610" selection-start-column="13" selection-end-line="610" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/58b49183/47af53be-a3a9-4e66-93e4-0a8a25cc1524/APP.PRODUCT" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/RandomHelper/RandomHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="19" column="9" lean-forward="false" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
+          <folding>
+            <element signature="e#276#277#0" expanded="false" />
+            <element signature="e#344#345#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/SupermarketSimulator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="43" lean-forward="false" selection-start-line="12" selection-start-column="43" selection-end-line="12" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Payment/PaymentMethod.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="25" lean-forward="false" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Payment/ProductSummator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="29" column="5" lean-forward="false" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Supermarket/Logger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="28" column="66" lean-forward="false" selection-start-line="28" selection-start-column="66" selection-end-line="28" selection-end-column="66" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/CashDesk/LoggingCashDesk.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="33" lean-forward="false" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/CashDesk/CashDesk.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/CashDesk/NamedCashDesk.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="466">
+          <caret line="58" column="66" lean-forward="false" selection-start-line="58" selection-start-column="66" selection-end-line="58" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Supermarket/SupermarketWork.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding>
+            <marker date="1509293188607" expanded="true" signature="3364:3367" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/ab9da4cb/47af53be-a3a9-4e66-93e4-0a8a25cc1524/APP.PRODUCT">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/ab9da4cb/47af53be-a3a9-4e66-93e4-0a8a25cc1524/APP.PRODUCT">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/ab9da4cb/47af53be-a3a9-4e66-93e4-0a8a25cc1524/APP.PRODUCT">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/ab9da4cb/47af53be-a3a9-4e66-93e4-0a8a25cc1524/APP.PRODUCT">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/ab9da4cb/47af53be-a3a9-4e66-93e4-0a8a25cc1524/APP.PRODUCT">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Supermarket/Supermarket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="33" column="25" lean-forward="false" selection-start-line="33" selection-start-column="25" selection-end-line="33" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/ab9da4cb/47af53be-a3a9-4e66-93e4-0a8a25cc1524/APP.PRODUCT">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/ab9da4cb/47af53be-a3a9-4e66-93e4-0a8a25cc1524/APP.PRODUCT">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/ab9da4cb/47af53be-a3a9-4e66-93e4-0a8a25cc1524/APP.PRODUCT">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/47af53be-a3a9-4e66-93e4-0a8a25cc1524/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Database/Database.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="20" column="13" lean-forward="true" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>Lab_2</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

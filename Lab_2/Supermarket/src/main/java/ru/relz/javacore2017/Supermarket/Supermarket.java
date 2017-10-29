@@ -31,7 +31,9 @@ public class Supermarket {
 	private int workingTimeLeft = 0;
 
 	public Supermarket() {
-		Database.createConnection();
+		if (!Database.createConnection()) {
+			throw new RuntimeException();
+		}
 		products = Database.getProducts();
 	}
 

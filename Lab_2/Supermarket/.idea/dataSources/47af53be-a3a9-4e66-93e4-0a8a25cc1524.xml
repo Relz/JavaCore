@@ -17,75 +17,49 @@
     <schema id="11" parent="1" name="SYSPROC"/>
     <schema id="12" parent="1" name="SYSSTAT"/>
     <table id="13" parent="2" name="PRODUCT"/>
-    <table id="14" parent="2" name="PRODUCT_TYPE"/>
-    <column id="15" parent="13" name="ID_PRODUCT">
+    <column id="14" parent="13" name="ID_PRODUCT">
       <Position>1</Position>
       <DataType>INTEGER(10)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="16" parent="13" name="NAME">
+    <column id="15" parent="13" name="NAME">
       <Position>2</Position>
       <DataType>VARCHAR(20)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="17" parent="13" name="PRICE">
+    <column id="16" parent="13" name="PRICE">
       <Position>3</Position>
       <DataType>DOUBLE(52)|8</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="18" parent="13" name="AMOUNT">
+    <column id="17" parent="13" name="AMOUNT">
       <Position>4</Position>
       <DataType>INTEGER(10)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="19" parent="13" name="ID_PRODUCT_TYPE">
+    <column id="18" parent="13" name="ID_PRODUCT_TYPE">
       <Position>5</Position>
-      <DataType>INTEGER(10)|4</DataType>
+      <DataType>SMALLINT(5)|5</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="20" parent="13" name="BONUS">
+    <column id="19" parent="13" name="BONUS">
       <Position>6</Position>
       <DataType>DOUBLE(52)|8</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="21" parent="13" name="FOR_ADULT">
+    <column id="20" parent="13" name="FOR_ADULT">
       <Position>7</Position>
       <DataType>BOOLEAN(1)|16</DataType>
+      <NotNull>1</NotNull>
       <DefaultExpression>FALSE</DefaultExpression>
     </column>
-    <index id="22" parent="13" name="PRODUCT_NAME_UINDEX">
+    <index id="21" parent="13" name="PRODUCT_NAME_UINDEX">
       <ColNames>NAME</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="23" parent="13" name="SQL171021202903690">
+    <key id="22" parent="13" name="SQL171029174254390">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID_PRODUCT</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="24" parent="13" name="PRODUCT_PRODUCT_TYPE_ID_PRODUCT_TYPE_FK">
-      <ColNames>ID_PRODUCT_TYPE</ColNames>
-      <RefSchemaName>APP</RefSchemaName>
-      <RefTableName>PRODUCT_TYPE</RefTableName>
-      <RefKeyName>SQL171020210214980</RefKeyName>
-      <RefColNames>ID_PRODUCT_TYPE</RefColNames>
-    </foreign-key>
-    <column id="25" parent="14" name="ID_PRODUCT_TYPE">
-      <Position>1</Position>
-      <DataType>INTEGER(10)|4</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="26" parent="14" name="NAME">
-      <Position>2</Position>
-      <DataType>VARCHAR(20)|12</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <index id="27" parent="14" name="PRODUCT_TYPE_NAME_UINDEX">
-      <ColNames>NAME</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <key id="28" parent="14" name="SQL171020210214980">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>ID_PRODUCT_TYPE</ColNames>
       <Primary>1</Primary>
     </key>
   </database-model>

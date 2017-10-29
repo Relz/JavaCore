@@ -17,12 +17,14 @@ public final class Database {
 	 * Loads apache derby embedded driver and initializes connection to database.
 	 * Prints stack trace if a database access error occurs or the url is {@code null}
 	 */
-	public static void createConnection() {
+	public static boolean createConnection() {
 		try {
 			Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
-			connection = DriverManager.getConnection("jdbc:derby:/data/workspace/Java/Lab_2/supermarket;create=true");
+			connection = DriverManager.getConnection("jdbc:derby:/data/workspace/Java/Lab_2/Supermarket/supermarket;create=false");
+			return true;
 		} catch (Exception except) {
 			except.printStackTrace();
+			return false;
 		}
 	}
 
