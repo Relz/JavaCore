@@ -20,7 +20,7 @@ public final class Database {
 	public static void createConnection() {
 		try {
 			Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
-			connection = DriverManager.getConnection("jdbc:derby:D:/workspace/Java/Lab_2/supermarket;create=true");
+			connection = DriverManager.getConnection("jdbc:derby:/data/workspace/Java/Lab_2/supermarket;create=true");
 		} catch (Exception except) {
 			except.printStackTrace();
 		}

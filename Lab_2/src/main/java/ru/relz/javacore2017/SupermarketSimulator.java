@@ -10,7 +10,7 @@ public class SupermarketSimulator {
 
 	public static void main(String[] args) throws IOException {
 		Supermarket supermarket = new Supermarket();
-		supermarket.setWorkingTimeMinutes(50);
+		supermarket.setWorkingTimeMinutes(20);
 		supermarket.addDiscount(CustomerType.Retired, 20);
 		supermarket.addCashDesk("Красная");
 		supermarket.addCashDesk("Жёлтая");

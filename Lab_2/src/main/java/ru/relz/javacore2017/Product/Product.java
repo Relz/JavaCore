@@ -2,7 +2,7 @@ package main.java.ru.relz.javacore2017.Product;
 
 public class Product {
 
-	public Product(int id, String name, double price, int amount, ProductType productType, int bonus, boolean forAdult) {
+	public Product(int id, String name, double price, int amount, ProductType productType, double bonus, boolean forAdult) {
 		this.id = id;
 		this.name = name;
 		this.price = price;
@@ -37,8 +37,8 @@ public class Product {
 		return productType;
 	}
 
-	private final int bonus;
-	public int getBonus() {
+	private final double bonus;
+	public double getBonus() {
 		return bonus;
 	}
 

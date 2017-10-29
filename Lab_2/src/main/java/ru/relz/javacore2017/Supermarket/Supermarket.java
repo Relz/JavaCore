@@ -25,6 +25,7 @@ public class Supermarket {
 	private final Date startDate = new Date();
 	private final List<NamedCashDesk> cashDesks = new ArrayList<>();
 	private final HashMap<CustomerType, Discount> discountPercentages = new HashMap<>();
+	private final Logger logger = new Logger();
 
 	private int customerId = 0;
 	private int workingTimeLeft = 0;
@@ -56,7 +57,9 @@ public class Supermarket {
 	 * @return Discount object for {@code customerType}
 	 * */
 	public Discount getDiscount(CustomerType customerType) {
-		return discountPercentages.get(customerType);
+		return discountPercentages.containsKey(customerType)
+				? discountPercentages.get(customerType)
+				: new Discount(0);
 	}
 
 	/**
@@ -76,6 +79,7 @@ public class Supermarket {
 	 * */
 	public void addCashDesk(String name) {
 		NamedCashDesk cashDesk = new NamedCashDesk(this, name);
+		cashDesk.setLogger(logger);
 		cashDesks.add(cashDesk);
 	}
 
@@ -97,7 +101,7 @@ public class Supermarket {
 		++customerId;
 		customers.add(customer);
 		customer.setId(customerId);
-		System.out.println(customer.getFullName() + " вошёл в магазин");
+		System.out.printf("%s вошёл в магазин\n", customer.getFullName());
 	}
 
 	/**
@@ -111,7 +115,7 @@ public class Supermarket {
 	Product getProduct(Customer customer, int productId, int productAmount) {
 		Product result = Database.getProduct(productId, productAmount);
 		if (result != null) {
-			System.out.print(customer.getFullName() + " положил в свою корзину " + result.getAmount());
+			System.out.printf("%s положил в свою корзину %s", customer.getFullName(), result.getAmount());
 			if (result.getType() == ProductType.Packed) {
 				System.out.print(" шт ");
 			} else if (result.getType() == ProductType.Bulk) {
@@ -131,11 +135,11 @@ public class Supermarket {
 	public void removeCustomer(Iterator<Customer> customerIterator, Customer customer) {
 		String customerName = customer.getFullName();
 		if (!customer.getBacket().isEmpty()) {
-			System.out.println("Предотвращена попытка ухода покупателя " + customerName + " с корзиной с продуктами");
+			System.out.printf("Предотвращена попытка ухода покупателя %s с корзиной с продуктами\n", customerName);
 
 			return;
 		}
-		System.out.println(customerName + " вышел из магазина");
+		System.out.printf("%s вышел из магазина\n", customerName);
 		if (customerIterator == null) {
 			customers.remove(customer);
 		} else {
@@ -148,7 +152,7 @@ public class Supermarket {
 	 * */
 	public void returnProductBack(Product product, Customer customer) {
 		Database.returnBackProduct(product);
-		System.out.println(customer.getFullName() + " положил " + product.getName() + " обратно");
+		System.out.printf("%s положил %s обратно\n", customer.getFullName(), product.getName());
 	}
 
 	/**
@@ -159,7 +163,7 @@ public class Supermarket {
 	public void work(SupermarketWorkInterface supermarketWorkInterface) throws IOException {
 		System.out.println("Магазин начал свою работу");
 		while (workingTimeMinutes > 0) {
-			System.out.println("Сейчас " + dateFormat.format(startDate.getTime() + workingTimeLeft * SECONDS_IN_MINUTE * MILLISECONDS_IN_SECOND));
+			System.out.printf("Сейчас %s\n", dateFormat.format(startDate.getTime() + workingTimeLeft * SECONDS_IN_MINUTE * MILLISECONDS_IN_SECOND));
 			supermarketWorkInterface.onEachTimeUnit(this);
 			workingTimeMinutes -= TIME_UNIT_MINUTES;
 			workingTimeLeft += TIME_UNIT_MINUTES;
@@ -199,5 +203,9 @@ public class Supermarket {
 				}
 			}
 		});
+	}
+
+	void printOutLog() {
+		logger.printOut();
 	}
 }

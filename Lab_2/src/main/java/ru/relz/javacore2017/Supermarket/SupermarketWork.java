@@ -27,7 +27,7 @@ public class SupermarketWork implements SupermarketWorkInterface {
 				if (productMaxAmount == 0) {
 					continue;
 				}
-				int productAmount = getRandomProductAmount(randomProduct, productMaxAmount / 5);
+				int productAmount = getRandomProductAmount(randomProduct, productMaxAmount);
 				Product wantedProduct = supermarket.getProduct(customer, randomProduct.getId(), productAmount);
 				if (wantedProduct != null) {
 					customer.getBacket().add(wantedProduct);
@@ -77,5 +77,6 @@ public class SupermarketWork implements SupermarketWorkInterface {
 			});
 			supermarket.removeCustomer(customerIterator, customer);
 		});
+		supermarket.printOutLog();
 	}
 }

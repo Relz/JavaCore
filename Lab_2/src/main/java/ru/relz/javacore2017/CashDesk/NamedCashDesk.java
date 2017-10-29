@@ -10,7 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class NamedCashDesk implements CashDesk {
+public class NamedCashDesk implements CashDesk, LoggingCashDesk {
 	private final String name;
 	private final Supermarket supermarket;
 	private final List<Customer> queue = new ArrayList<>();
@@ -19,6 +19,11 @@ public class NamedCashDesk implements CashDesk {
 	public NamedCashDesk(Supermarket supermarket, String name) {
 		this.name = name;
 		this.supermarket = supermarket;
+	}
+
+	private Logger logger;
+	public void setLogger(Logger value) {
+		logger = value;
 	}
 
 	public int getQueueSize() {
@@ -35,7 +40,7 @@ public class NamedCashDesk implements CashDesk {
 	}
 
 	public void close() {
-		System.out.println("Касса " + name + " закрылась");
+		System.out.printf("Касса %s закрылась\n", name);
 		opened = false;
 		Iterator<Customer> customerIterator = queue.iterator();
 		while (customerIterator.hasNext()) {
@@ -48,13 +53,13 @@ public class NamedCashDesk implements CashDesk {
 	public void addCustomerToQueue(Customer customer) {
 		queue.add(customer);
 		customer.setInQueue(true);
-		System.out.println(customer.getFullName() + " встал в очередь на кассу " + name);
+		System.out.printf("%s встал в очередь на кассу %s\n", customer.getFullName(), name);
 	}
 
 	public void removeCustomerFromQueue(Iterator<Customer> customerIterator, Customer customer) {
 		customerIterator.remove();
 		customer.setInQueue(false);
-		System.out.println(customer.getFullName() + " покинул кассу " + name);
+		System.out.printf("%s покинул кассу %s\n", customer.getFullName(), name);
 	}
 
 	public void processQueue(int customerCount) {
@@ -69,7 +74,7 @@ public class NamedCashDesk implements CashDesk {
 			while (!customer.getBacket().isEmpty()) {
 				Product product = customer.getBacket().get();
 				if (product.isForAdult() && customer.getType() == CustomerType.Child) {
-					System.out.println("Предотвращена попытка " + customer.getFullName() + " купить " + product.getName());
+					System.out.printf("Предотвращена попытка %s купить %s\n", customer.getFullName(), product.getName());
 					supermarket.returnProductBack(product, customer);
 					continue;
 				}
@@ -77,31 +82,37 @@ public class NamedCashDesk implements CashDesk {
 				products.add(product);
 			}
 
-			System.out.print("Сумма покупки: " + bill.getTotalAmount());
-			Discount discount = new Discount(supermarket.getDiscountPercentages().get(customer.getType()));
-			bill.applyDiscount(discount);
-			if (discount.getPercentage() != 0) {
-				System.out.print(", со скидкой: " + bill.getTotalAmount());
-			}
-			System.out.println();
+			if (!bill.getProducts().isEmpty()) {
+				System.out.printf("Сумма покупки: %.2f", bill.calculateTotalAmount());
+				bill.setDiscount(supermarket.getDiscount(customer.getType()));
+				double totalAmount = bill.calculateTotalAmount();
+				if (bill.getDiscount().getPercentage() != 0) {
+					System.out.printf(", со скидкой: %.2f", totalAmount);
+				}
+				System.out.println();
 
-			PaymentMethod paymentMethod = customer.getDesiredPaymentMethod(bill.getTotalAmount());
-			System.out.print(customer.getFullName());
-			if (!customer.pay(bill.getTotalAmount(), bill.getTotalBonuses(), paymentMethod)) {
-				System.out.println(" не в состоянии оплатить покупку (" + bill.getTotalAmount() + ")");
-				products.forEach((Product product) -> supermarket.returnProductBack(product, customer));
-			} else {
-				System.out.print(" оплатил покупку (" + bill.getTotalAmount() + ")");
-				switch (paymentMethod) {
-					case Cash:
-						System.out.println(" наличными и получил " + bill.getTotalBonuses() + " бонусов");
-						break;
-					case Card:
-						System.out.println(" картой и получил " + bill.getTotalBonuses() + " бонусов");
-						break;
-					case Bonuses:
-						System.out.println(" бонусами");
-						break;
+				double totalBonuses = bill.calculateTotalBonuses();
+				PaymentMethod paymentMethod = customer.getDesiredPaymentMethod(totalAmount);
+				System.out.print(customer.getFullName());
+				if (!customer.pay(totalAmount, totalBonuses, paymentMethod)) {
+					System.out.printf(" не в состоянии оплатить покупку (%.2f)\n", totalAmount);
+					products.forEach((Product product) -> supermarket.returnProductBack(product, customer));
+				} else {
+					System.out.printf(" оплатил покупку (%.2f)", totalAmount);
+					switch (paymentMethod) {
+						case Cash:
+							System.out.printf(" наличными и получил %.2f бонусов\n", totalBonuses);
+							break;
+						case Card:
+							System.out.printf(" картой и получил %.2f бонусов\n", totalBonuses);
+							break;
+						case Bonuses:
+							System.out.printf(" бонусами\n");
+							break;
+					}
+					if (logger != null) {
+						products.forEach((Product product) -> logger.addProductSelling(product));
+					}
 				}
 			}
 
