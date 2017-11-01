@@ -1,19 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ea1e2486-9287-4d2c-a289-56efee6bab97" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+    <list default="true" id="ea1e2486-9287-4d2c-a289-56efee6bab97" name="Default" comment="Теперь ячейка знает свою позицию">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SpreadsheetEngine.iml" afterPath="$PROJECT_DIR$/SpreadsheetEngine.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Cell/Cell.java" afterPath="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Cell/Cell.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Cell/CellDate.java" afterPath="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Cell/CellDate.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Cell/CellFormula.java" afterPath="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Cell/CellFormula.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Cell/CellNumber.java" afterPath="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Cell/CellNumber.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Cell/CellString.java" afterPath="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Cell/CellString.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Cell/CellType.java" afterPath="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Cell/CellType.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Spreadsheet/Spreadsheet.java" afterPath="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Spreadsheet/Spreadsheet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/SpreadsheetEngine.java" afterPath="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/SpreadsheetEngine.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Tree/Tree.java" afterPath="$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Tree/Tree.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,8 +17,8 @@
       <file leaf-file-name="Spreadsheet.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Spreadsheet/Spreadsheet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="222" column="20" lean-forward="true" selection-start-line="222" selection-start-column="20" selection-end-line="222" selection-end-column="20" />
+            <state relative-caret-position="391">
+              <caret line="231" column="63" lean-forward="true" selection-start-line="231" selection-start-column="63" selection-end-line="231" selection-end-column="63" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#6808#6809#0" expanded="true" />
@@ -264,7 +253,21 @@
       <option name="project" value="LOCAL" />
       <updated>1509300112971</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Теперь ячейка знает свою позицию">
+      <created>1509565854363</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1509565854363</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Обновлён gitignore, реализована проверка формулы перед выводом таблицы">
+      <created>1509566043201</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1509566043201</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -316,7 +319,9 @@
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
     <MESSAGE value="Инициализирован новый проект SpreadsheetEngine" />
-    <option name="LAST_COMMIT_MESSAGE" value="Инициализирован новый проект SpreadsheetEngine" />
+    <MESSAGE value="Теперь ячейка знает свою позицию" />
+    <MESSAGE value="Обновлён gitignore, реализована проверка формулы перед выводом таблицы" />
+    <option name="LAST_COMMIT_MESSAGE" value="Обновлён gitignore, реализована проверка формулы перед выводом таблицы" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -700,8 +705,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/relz/javacore2017/Spreadsheet/Spreadsheet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="222" column="20" lean-forward="true" selection-start-line="222" selection-start-column="20" selection-end-line="222" selection-end-column="20" />
+        <state relative-caret-position="391">
+          <caret line="231" column="63" lean-forward="true" selection-start-line="231" selection-start-column="63" selection-end-line="231" selection-end-column="63" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#6808#6809#0" expanded="true" />
