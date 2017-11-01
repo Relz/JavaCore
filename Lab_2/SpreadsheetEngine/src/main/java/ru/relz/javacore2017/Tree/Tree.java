@@ -115,7 +115,7 @@ public class Tree {
 					Date daveValue = Spreadsheet.dateFormat.parse(part);
 					result.setTimestampValue(daveValue.getTime());
 				} catch (ParseException parseException) {
-					throw new RuntimeException("String literal found in formula: " + part);
+					throw new RuntimeException("Обнаружен строковый литерал в формуле: " + part);
 				}
 			}
 		}

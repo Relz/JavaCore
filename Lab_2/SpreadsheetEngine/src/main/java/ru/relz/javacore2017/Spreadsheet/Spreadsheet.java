@@ -7,14 +7,14 @@ import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Scanner;
+import java.util.*;
 
 public class Spreadsheet {
 	public static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
 
 	private final HashMap<Row, HashMap<Column, Cell>> cells = new HashMap<>();
+	private final HashSet<Cell> cellsWithFormula = new HashSet<>();
+
 	private Column maxColumn = Column.A;
 	private Row maxRow = Row.ONE;
 
@@ -23,23 +23,22 @@ public class Spreadsheet {
 			DecimalFormat decimalFormat = new DecimalFormat();
 			decimalFormat.setParseBigDecimal(true);
 			BigDecimal doubleValue = new BigDecimal(value);
-			setCell(position.getColumn(), position.getRow(), new CellNumber(doubleValue));
+			setCell(position, new CellNumber(doubleValue, position));
 		} catch(NumberFormatException numberFormatException) {
 			try {
 				Date date = dateFormat.parse(value);
-				setCell(position.getColumn(), position.getRow(), new CellDate(date.getTime()));
+				setCell(position, new CellDate(date.getTime(), position));
 			} catch (ParseException parseException) {
-				setCell(position.getColumn(), position.getRow(), new CellString(value));
+				setCell(position, new CellString(value, position));
 			}
 		}
 	}
 
 	// Formula
 	public void setFormula(Position position, String value) {
-		System.out.println(value);
 		try {
 			Tree tree = Tree.createFromScanner(new Scanner(value).useDelimiter(" "), NodeType.OPERATION);
-			cells.get(position.getRow()).put(position.getColumn(), new CellFormula(tree));
+			setCell(position, new CellFormula(tree, position));
 		} catch (RuntimeException runtimeExcetion) {
 			System.out.println(runtimeExcetion.getMessage());
 		}
@@ -47,6 +46,9 @@ public class Spreadsheet {
 
 	public void display() {
 		if (cells.isEmpty()) {
+			return;
+		}
+		if (!areValidFormulaCells()) {
 			return;
 		}
 		int maxValueLength = getMaxValueLength();
@@ -70,6 +72,24 @@ public class Spreadsheet {
 		System.out.print(" ---");
 		printDashes(maxValueLength);
 		System.out.println();
+	}
+
+	private boolean areValidFormulaCells() {
+		boolean result = true;
+		for (Cell cell : cellsWithFormula) {
+			CellFormula cellFormula = ((CellFormula)cell);
+			HashSet<CellType> determinedCellTypes = determineCellTypes(cellFormula.getValue());
+			if (determinedCellTypes.size() != 1) {
+				result = false;
+				System.out.printf("Формула в ячейке %s совмещает в себе операции с несколькими типами: ", cellFormula.getPosition().toString());
+				for (CellType determinedCellType : determinedCellTypes) {
+					System.out.print(determinedCellType.toString() + ", ");
+				}
+				System.out.println();
+			}
+		}
+
+		return result;
 	}
 
 	private void printTableHead(int maxValueLength) {
@@ -135,20 +155,29 @@ public class Spreadsheet {
 		}
 	}
 
-	private void setCell(Column column, Row row, Cell cell) {
-		if (column.ordinal() > maxColumn.ordinal()) {
-			maxColumn = column;
+	private void setCell(Position position, Cell cell) {
+		if (position.getColumn().ordinal() > maxColumn.ordinal()) {
+			maxColumn = position.getColumn();
 		}
-		if (row.ordinal() > maxRow.ordinal()) {
-			maxRow = row;
+		if (position.getRow().ordinal() > maxRow.ordinal()) {
+			maxRow = position.getRow();
 		}
-		createRowIfNotExists(row);
-		cells.get(row).put(column, cell);
+		createRowIfNotExists(cells, position.getRow());
+		Cell oldCell = cells.get(position.getRow()).get(position.getColumn());
+		if (oldCell != null && oldCell.getType() == CellType.FORMULA) {
+			if (!cellsWithFormula.remove(oldCell)) {
+				System.out.println("Не удалось удалить ячейку с формулой из cellsWithFormula");
+			}
+		}
+		cells.get(position.getRow()).put(position.getColumn(), cell);
+		if (cell.getType() == CellType.FORMULA) {
+			cellsWithFormula.add(cell);
+		}
 	}
 
-	private void createRowIfNotExists(Row row) {
-		if (!cells.containsKey(row)) {
-			cells.put(row, new HashMap<>());
+	private void createRowIfNotExists(HashMap<Row, HashMap<Column, Cell>> table, Row row) {
+		if (!table.containsKey(row)) {
+			table.put(row, new HashMap<>());
 		}
 	}
 
@@ -187,34 +216,39 @@ public class Spreadsheet {
 	}
 
 	private String getFormulaCellValue(Cell cell) throws RuntimeException {
-		CellFormula cellFormula = ((CellFormula)cell);
-		CellType calculatedCellType = calculateCellType(cellFormula.getValue());
-		System.out.println(calculatedCellType);
-
-		return "";
+		return calculateFormula(((CellFormula)cell).getValue());
 	}
 
-	private CellType calculateCellType(Tree tree) throws RuntimeException {
-		Tree leftChild = tree;
-		while (leftChild.getLeft() != null) {
-			leftChild = leftChild.getLeft();
+	private String calculateFormula(Tree tree) {
+		return null;
+	}
+
+	private HashSet<CellType> determineCellTypes(Tree tree) throws RuntimeException {
+		HashSet<CellType> result = new HashSet<>();
+		if (tree.getLeft() != null) {
+			result.addAll(determineCellTypes(tree.getLeft()));
 		}
-		if (leftChild.getType() == NodeType.REFERENCE) {
-			Position reference = leftChild.getReference();
+		if (tree.getRight() != null) {
+			result.addAll(determineCellTypes(tree.getRight()));
+		}
+		if (tree.getType() == NodeType.OPERATION) {
+			return result;
+		}
+		if (tree.getType() == NodeType.REFERENCE) {
+			Position reference = tree.getReference();
 			if (cells.containsKey(reference.getRow()) && cells.get(reference.getRow()).containsKey(reference.getColumn())) {
-				return cells.get(reference.getRow()).get(reference.getColumn()).getType();
+				result.add(cells.get(reference.getRow()).get(reference.getColumn()).getType());
 			} else {
-				throw new RuntimeException("Reference to undefined cell");
+				throw new RuntimeException("Обнаружена ссылка на неназначенную ячейку: " + reference.toString());
 			}
+		} else if (tree.getDoubleValue() != null) {
+			result.add(CellType.NUMBER);
+		} else if (tree.getTimestampValue() != null) {
+			result.add(CellType.DATE);
+		} else {
+			result.add(CellType.STRING);
 		}
 
-		if (leftChild.getDoubleValue() != null) {
-			return CellType.NUMBER;
-		}
-		if (leftChild.getDoubleValue() != null) {
-			return CellType.DATE;
-		}
-
-		return CellType.STRING;
+		return result;
 	}
 }

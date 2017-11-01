@@ -14,14 +14,14 @@ public class SpreadsheetEngine {
 		keyboard.useDelimiter("\n");
 		Spreadsheet spreadsheet = new Spreadsheet();
 
-		System.out.println("Welcome to spreadsheet engine!");
+		System.out.println("Добро пожаловать в движок электронной таблицы!");
 		boolean work = true;
 		while (work) {
 			System.out.print("> ");
 			String[] splitInput = keyboard.next().split(" ");
 			Command command = Command.get(splitInput[0]);
 			if (command == null) {
-				System.out.printf("Unknown command: %s\n", splitInput[0]);
+				System.out.printf("Неизвестная команда: %s\n", splitInput[0]);
 				continue;
 			}
 			if (!Command.isEnoughArgumentCount(command, splitInput.length)) {
@@ -78,7 +78,7 @@ public class SpreadsheetEngine {
 				}
 			}
 		}
-		System.out.println("See you!");
+		System.out.println("До скорого!");
 	}
 
 	private static StringBuilder buildFormula(String[] splitInput) {
