@@ -1,10 +1,11 @@
 package main.java.ru.relz.javacore2017.Cell;
 
+import main.java.ru.relz.javacore2017.Spreadsheet.Position;
 import main.java.ru.relz.javacore2017.Tree.Tree;
 
 public class CellFormula extends Cell {
-	public CellFormula(Tree value) {
-		super(CellType.FORMULA);
+	public CellFormula(Tree value, Position position) {
+		super(CellType.FORMULA, position);
 		this.value = value;
 	}
 

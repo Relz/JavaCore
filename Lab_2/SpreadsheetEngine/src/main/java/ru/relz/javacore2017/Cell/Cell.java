@@ -1,8 +1,11 @@
 package main.java.ru.relz.javacore2017.Cell;
 
+import main.java.ru.relz.javacore2017.Spreadsheet.Position;
+
 public class Cell {
-	public Cell(CellType type) {
+	public Cell(CellType type, Position position) {
 		this.type = type;
+		this.position = position;
 	}
 
 	private CellType type;
@@ -10,7 +13,16 @@ public class Cell {
 		return type;
 	}
 
-	public void setType(CellType type) {
-		this.type = type;
+	public void setType(CellType value) {
+		type = value;
+	}
+
+	private Position position;
+	public Position getPosition() {
+		return position;
+	}
+
+	public void setPosition(Position value) {
+		position = value;
 	}
 }
