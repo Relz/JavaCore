@@ -1,5 +1,6 @@
 package main.java.ru.relz.javacore2017.Tree;
-;
+
+import main.java.ru.relz.javacore2017.Cell.CellType;
 import main.java.ru.relz.javacore2017.Spreadsheet.Column;
 import main.java.ru.relz.javacore2017.Spreadsheet.Position;
 import main.java.ru.relz.javacore2017.Spreadsheet.Row;
@@ -35,13 +36,22 @@ public class Tree {
 		return type;
 	}
 
-	private BigDecimal doubleValue;
-	public BigDecimal getDoubleValue() {
-		return doubleValue;
+	private CellType valueType;
+	public CellType getValueType() {
+		return valueType;
 	}
 
-	public void setDoubleValue(BigDecimal value) {
-		this.doubleValue = value;
+	public void setValueType(CellType value) {
+		this.valueType = value;
+	}
+
+	private BigDecimal numberValue;
+	public BigDecimal getNumberValue() {
+		return numberValue;
+	}
+
+	public void setNumberValue(BigDecimal value) {
+		this.numberValue = value;
 		this.type = NodeType.VALUE;
 	}
 
@@ -109,7 +119,7 @@ public class Tree {
 				DecimalFormat decimalFormat = new DecimalFormat();
 				decimalFormat.setParseBigDecimal(true);
 				BigDecimal doubleValue = new BigDecimal(part);
-				result.setDoubleValue(doubleValue);
+				result.setNumberValue(doubleValue);
 			} catch(NumberFormatException numberFormatException) {
 				try {
 					Date daveValue = Spreadsheet.dateFormat.parse(part);
