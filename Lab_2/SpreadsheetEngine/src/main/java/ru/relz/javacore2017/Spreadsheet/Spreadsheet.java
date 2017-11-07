@@ -288,7 +288,8 @@ public class Spreadsheet {
 		if (tree.getType() == NodeType.REFERENCE) {
 			Position reference = tree.getReference();
 			if (cells.containsKey(reference.getRow()) && cells.get(reference.getRow()).containsKey(reference.getColumn())) {
-				result.add(cells.get(reference.getRow()).get(reference.getColumn()).getType());
+				Cell referencedCell = cells.get(reference.getRow()).get(reference.getColumn());
+				result.add(referencedCell.getType());
 			} else {
 				throw new RuntimeException("Обнаружена ссылка на неназначенную ячейку: " + reference.toString());
 			}
