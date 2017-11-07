@@ -227,7 +227,11 @@ public class Spreadsheet {
 	private String calculateFormula(Tree tree) {
 		switch (tree.getValueType()) {
 			case NUMBER:
-				return calculateNumberValue(tree).toString();
+				try {
+					return calculateNumberValue(tree).toString();
+				} catch (ArithmeticException arithmeticException) {
+					return "Бесконечность";
+				}
 			case DATE:
 				return dateFormat.format(calculateDateValue(tree));
 			default:
