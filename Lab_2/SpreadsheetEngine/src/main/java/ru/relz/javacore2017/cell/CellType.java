@@ -1,4 +1,4 @@
-package main.java.ru.relz.javacore2017.Cell;
+package main.java.ru.relz.javacore2017.cell;
 
 public enum CellType {
 	NUMBER("число"),

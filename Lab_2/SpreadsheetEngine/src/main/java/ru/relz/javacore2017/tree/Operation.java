@@ -1,6 +1,4 @@
-package main.java.ru.relz.javacore2017.Tree;
-
-import main.java.ru.relz.javacore2017.Spreadsheet.Column;
+package main.java.ru.relz.javacore2017.tree;
 
 import java.util.HashMap;
 

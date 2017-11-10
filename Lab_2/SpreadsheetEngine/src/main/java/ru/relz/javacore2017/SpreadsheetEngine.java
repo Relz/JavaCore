@@ -1,6 +1,6 @@
 package main.java.ru.relz.javacore2017;
 
-import main.java.ru.relz.javacore2017.Spreadsheet.*;
+import main.java.ru.relz.javacore2017.spreadsheet.*;
 
 import java.util.Scanner;
 

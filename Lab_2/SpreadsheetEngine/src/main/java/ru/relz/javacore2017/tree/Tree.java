@@ -1,10 +1,10 @@
-package main.java.ru.relz.javacore2017.Tree;
+package main.java.ru.relz.javacore2017.tree;
 
-import main.java.ru.relz.javacore2017.Cell.CellType;
-import main.java.ru.relz.javacore2017.Spreadsheet.Column;
-import main.java.ru.relz.javacore2017.Spreadsheet.Position;
-import main.java.ru.relz.javacore2017.Spreadsheet.Row;
-import main.java.ru.relz.javacore2017.Spreadsheet.Spreadsheet;
+import main.java.ru.relz.javacore2017.cell.CellType;
+import main.java.ru.relz.javacore2017.spreadsheet.Column;
+import main.java.ru.relz.javacore2017.spreadsheet.Position;
+import main.java.ru.relz.javacore2017.spreadsheet.Row;
+import main.java.ru.relz.javacore2017.spreadsheet.Spreadsheet;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
@@ -98,6 +98,9 @@ public class Tree {
 				result.setOperation(operation);
 				result.left = createFromScanner(scanner, NodeType.ANY);
 				result.right = createFromScanner(scanner, NodeType.ANY);
+				if (result.left.getType() == null || result.right.getType() == null) {
+					throw new RuntimeException("Неверно задана формула");
+				}
 
 				return result;
 			}

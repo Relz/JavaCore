@@ -1,7 +1,8 @@
-package main.java.ru.relz.javacore2017.Spreadsheet;
+package main.java.ru.relz.javacore2017.spreadsheet;
 
-import main.java.ru.relz.javacore2017.Cell.*;
-import main.java.ru.relz.javacore2017.Tree.*;
+import main.java.ru.relz.javacore2017.cell.*;
+import main.java.ru.relz.javacore2017.datetime.DateTimeHelper;
+import main.java.ru.relz.javacore2017.tree.*;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -9,6 +10,7 @@ import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 public class Spreadsheet {
 	public static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
@@ -18,6 +20,8 @@ public class Spreadsheet {
 
 	private Column maxColumn = Column.A;
 	private Row maxRow = Row.ONE;
+
+	private final String divisionByZeroCellString = "Бесконечность";
 
 	public void set(Position position, String value) {
 		try {
@@ -39,6 +43,12 @@ public class Spreadsheet {
 	public void setFormula(Position position, String value) {
 		try {
 			Tree tree = Tree.createFromScanner(new Scanner(value).useDelimiter(" "), NodeType.OPERATION);
+			if (tree.getType() == null) {
+				tree = Tree.createFromScanner(new Scanner(value).useDelimiter(" "), NodeType.REFERENCE);
+			}
+			if (tree.getType() == null) {
+				throw new RuntimeException("Неверно задана формула");
+			}
 			setCell(position, new CellFormula(tree, position));
 		} catch (RuntimeException runtimeExcetion) {
 			System.out.println(runtimeExcetion.getMessage());
@@ -80,20 +90,23 @@ public class Spreadsheet {
 		for (Cell cell : cellsWithFormula) {
 			CellFormula cellFormula = ((CellFormula)cell);
 			try {
-				HashSet<CellType> determinedCellTypes = determineCellTypes(cellFormula.getTree());
-				if (determinedCellTypes.size() != 1) {
+				HashSet<CellType> determinedCellTypes = determineCellTypes(cellFormula.getTree(), new HashSet<>());
+				if (determinedCellTypes.size() != 1 && !determinedCellTypes.contains(CellType.DATE) && !determinedCellTypes.contains(CellType.NUMBER)) {
 					result = false;
 					System.out.printf("Формула в ячейке %s совмещает в себе операции с несколькими типами: ", cellFormula.getPosition().toString());
 					for (CellType determinedCellType : determinedCellTypes) {
 						System.out.print(determinedCellType.toString() + ", ");
 					}
 					System.out.println();
+				} else if (determinedCellTypes.size() == 2) {
+					cellFormula.getTree().setValueType(CellType.DATE);
 				} else {
-					cellFormula.getTree().setValueType(determinedCellTypes.iterator().next());
+					CellType cellType = determinedCellTypes.iterator().next();
+					cellFormula.getTree().setValueType(cellType);
 				}
 			} catch (RuntimeException runtimeException) {
 				result = false;
-				System.out.printf("В ячейке %s: %s\n", cellFormula.getPosition().toString(), runtimeException.getMessage());
+				System.out.printf("При расчёте формулы в ячейке %s: %s\n", cellFormula.getPosition().toString(), runtimeException.getMessage());
 			}
 		}
 
@@ -132,7 +145,13 @@ public class Spreadsheet {
 				break;
 			case FORMULA:
 				String cellFormulaValue = getFormulaCellValue(cell);
-				System.out.printf("| %s ", cellFormulaValue);
+				System.out.print("| ");
+				if (cellFormulaValue.equals(divisionByZeroCellString)) {
+					System.out.printf("\033[31m%s\033[37m", cellFormulaValue);
+				} else {
+					System.out.printf("%s", cellFormulaValue);
+				}
+				System.out.print(" ");
 				printSpaces(maxValueLength - cellFormulaValue.length());
 				break;
 		}
@@ -230,13 +249,23 @@ public class Spreadsheet {
 				try {
 					return calculateNumberValue(tree).toString();
 				} catch (ArithmeticException arithmeticException) {
-					return "Бесконечность";
+					return divisionByZeroCellString;
 				}
 			case DATE:
 				return dateFormat.format(calculateDateValue(tree));
-			default:
-				return "";
+			case STRING:
+				if (tree.getType() == NodeType.OPERATION) {
+					throw new RuntimeException("Обнаружен строковый литерал");
+				}
+				Position position = tree.getReference();
+				Cell referencedCell = cells.get(position.getRow()).get(position.getColumn());
+				if (referencedCell.getType() == CellType.FORMULA) {
+					return getFormulaCellValue(referencedCell);
+				}
+
+				return getStringCellValue(referencedCell);
 		}
+		return "";
 	}
 
 	private BigDecimal calculateNumberValue(Tree tree) {
@@ -257,6 +286,9 @@ public class Spreadsheet {
 			case REFERENCE:
 				Position position = tree.getReference();
 				Cell referencedCell = cells.get(position.getRow()).get(position.getColumn());
+				if (referencedCell.getType() == CellType.FORMULA) {
+					return calculateNumberValue(((CellFormula)referencedCell).getTree());
+				}
 
 				return ((CellNumber)referencedCell).getValue();
 			default:
@@ -267,10 +299,13 @@ public class Spreadsheet {
 	private Long calculateDateValue(Tree tree) {
 		switch (tree.getType()) {
 			case OPERATION:
-				return calculateDateValue(tree.getLeft()) + calculateDateValue(tree.getRight());
+				return calculateDateValue(tree.getLeft()) + calculateNumberValue(tree.getRight()).longValue() * DateTimeHelper.MILLISECONDS_IN_DAY;
 			case REFERENCE:
 				Position position = tree.getReference();
 				Cell referencedCell = cells.get(position.getRow()).get(position.getColumn());
+				if (referencedCell.getType() == CellType.FORMULA) {
+					return calculateDateValue(((CellFormula)referencedCell).getTree());
+				}
 
 				return ((CellDate)referencedCell).getValue();
 			default:
@@ -278,13 +313,13 @@ public class Spreadsheet {
 		}
 	}
 
-	private HashSet<CellType> determineCellTypes(Tree tree) throws RuntimeException {
+	private HashSet<CellType> determineCellTypes(Tree tree, HashSet<Cell> referencedCells) throws RuntimeException {
 		HashSet<CellType> result = new HashSet<>();
 		if (tree.getLeft() != null) {
-			result.addAll(determineCellTypes(tree.getLeft()));
+			result.addAll(determineCellTypes(tree.getLeft(), new HashSet<>(referencedCells)));
 		}
 		if (tree.getRight() != null) {
-			result.addAll(determineCellTypes(tree.getRight()));
+			result.addAll(determineCellTypes(tree.getRight(), new HashSet<>(referencedCells)));
 		}
 		if (tree.getType() == NodeType.OPERATION) {
 			return result;
@@ -293,7 +328,16 @@ public class Spreadsheet {
 			Position reference = tree.getReference();
 			if (cells.containsKey(reference.getRow()) && cells.get(reference.getRow()).containsKey(reference.getColumn())) {
 				Cell referencedCell = cells.get(reference.getRow()).get(reference.getColumn());
-				result.add(referencedCell.getType());
+				if (referencedCells.contains(referencedCell)) {
+					throw new RuntimeException("Обнаружена ссылка на саму себя");
+				}
+				referencedCells.add(referencedCell);
+				if (referencedCell.getType() == CellType.FORMULA) {
+					CellFormula referencedCellFormula = (CellFormula)referencedCell;
+					result.addAll(determineCellTypes(referencedCellFormula.getTree(), referencedCells));
+				} else {
+					result.add(referencedCell.getType());
+				}
 			} else {
 				throw new RuntimeException("Обнаружена ссылка на неназначенную ячейку: " + reference.toString());
 			}

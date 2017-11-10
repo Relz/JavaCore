@@ -1,7 +1,7 @@
-package main.java.ru.relz.javacore2017.Cell;
+package main.java.ru.relz.javacore2017.cell;
 
-import main.java.ru.relz.javacore2017.Spreadsheet.Position;
-import main.java.ru.relz.javacore2017.Tree.Tree;
+import main.java.ru.relz.javacore2017.spreadsheet.Position;
+import main.java.ru.relz.javacore2017.tree.Tree;
 
 public class CellFormula extends Cell {
 	public CellFormula(Tree tree, Position position) {
