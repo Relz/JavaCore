@@ -299,7 +299,18 @@ public class Spreadsheet {
 	private Long calculateDateValue(Tree tree) {
 		switch (tree.getType()) {
 			case OPERATION:
-				return calculateDateValue(tree.getLeft()) + calculateNumberValue(tree.getRight()).longValue() * DateTimeHelper.MILLISECONDS_IN_DAY;
+				Long operand0 = calculateDateValue(tree.getLeft());
+				Long operand1 = calculateNumberValue(tree.getRight()).longValue() * DateTimeHelper.MILLISECONDS_IN_DAY;
+				switch (tree.getOperation()) {
+					case ADDITION:
+						return operand0 + operand1;
+					case SUBTRACTION:
+						return operand0 - operand1;
+					case MULTIPLICATION:
+						return operand0 * operand1;
+					case DIVISION:
+						return operand0 / operand1;
+				}
 			case REFERENCE:
 				Position position = tree.getReference();
 				Cell referencedCell = cells.get(position.getRow()).get(position.getColumn());
