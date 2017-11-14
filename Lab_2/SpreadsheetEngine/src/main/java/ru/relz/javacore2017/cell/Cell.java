@@ -1,8 +1,9 @@
 package main.java.ru.relz.javacore2017.cell;
 
+import main.java.ru.relz.javacore2017.spreadsheet.IPositioned;
 import main.java.ru.relz.javacore2017.spreadsheet.Position;
 
-public class Cell {
+public class Cell implements IPositioned {
 	public Cell(CellType type, Position position) {
 		this.type = type;
 		this.position = position;
@@ -13,16 +14,8 @@ public class Cell {
 		return type;
 	}
 
-	public void setType(CellType value) {
-		type = value;
-	}
-
 	private Position position;
 	public Position getPosition() {
 		return position;
-	}
-
-	public void setPosition(Position value) {
-		position = value;
 	}
 }

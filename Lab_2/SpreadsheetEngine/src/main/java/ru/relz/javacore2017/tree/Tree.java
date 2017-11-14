@@ -12,7 +12,7 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.Scanner;
 
-public class Tree {
+public class Tree implements IBinaryTree, ITypedTree, INumberNodeSupport, ITimestampNodeSupport, IOperationNodeSupport, IReferenceNodeSupport {
 	private Tree left;
 	public Tree getLeft() {
 		return left;
@@ -80,7 +80,7 @@ public class Tree {
 		return reference;
 	}
 
-	public void setReference(Position value) throws RuntimeException {
+	public void setReference(Position value) {
 		this.reference = value;
 		this.type = NodeType.REFERENCE;
 	}
@@ -98,9 +98,6 @@ public class Tree {
 				result.setOperation(operation);
 				result.left = createFromScanner(scanner, NodeType.ANY);
 				result.right = createFromScanner(scanner, NodeType.ANY);
-				if (result.left.getType() == null || result.right.getType() == null) {
-					throw new RuntimeException("Неверно задана формула");
-				}
 
 				return result;
 			}

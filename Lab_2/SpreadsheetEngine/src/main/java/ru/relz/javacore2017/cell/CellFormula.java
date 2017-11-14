@@ -13,8 +13,4 @@ public class CellFormula extends Cell {
 	public Tree getTree() {
 		return tree;
 	}
-
-	public void setTree(Tree tree) {
-		this.tree = tree;
-	}
 }
