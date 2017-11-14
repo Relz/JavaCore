@@ -10,7 +10,7 @@ public enum Command {
 
 	private final String text;
 
-	private Command(final String text) {
+	Command(final String text) {
 		this.text = text;
 	}
 
@@ -19,40 +19,40 @@ public enum Command {
 		return text;
 	}
 
-	private static HashMap<String, Command> stringsToCommands = new HashMap<>() {{
+	private final static HashMap<String, Command> stringsToCommands = new HashMap<>() {{
 		put(EXIT.toString(), EXIT);
 		put(SET.toString(), SET);
 		put(SET_FORMULA.toString(), SET_FORMULA);
 		put(DISPLAY.toString(), DISPLAY);
 	}};
 
-	private static HashMap<Command, Integer> commandsToMinArgumentCounts = new HashMap<>() {{
+	private final static HashMap<Command, Integer> commandsToMinArgumentCounts = new HashMap<>() {{
 		put(EXIT, 1);
 		put(SET, 3);
 		put(SET_FORMULA, 3);
 		put(DISPLAY, 1);
 	}};
 
-	private static HashMap<Command, String> commandsToUsageStrings = new HashMap<>() {{
-		put(EXIT, "exit");
-		put(SET, "set <coordinate> <value>");
-		put(SET_FORMULA, "setformula <coordinate> <formula>");
-		put(DISPLAY, "display");
+	private final static HashMap<Command, String> commandsToUsageStrings = new HashMap<>() {{
+		put(EXIT, EXIT.toString());
+		put(SET, SET.toString() + " <coordinate> <value>");
+		put(SET_FORMULA, SET_FORMULA.toString() + " <coordinate> <formula>");
+		put(DISPLAY, DISPLAY.toString());
 	}};
 
-	public static Command get(String commandString) {
+	public boolean isEnoughArgumentCount(int argumentCount) {
+		return argumentCount >= commandsToMinArgumentCounts.get(this);
+	}
+
+	public void printUsage() {
+		System.out.println(commandsToUsageStrings.get(this));
+	}
+
+	public static Command createFromString(String commandString) {
 		return stringsToCommands.get(commandString);
 	}
 
-	public static boolean isEnoughArgumentCount(Command command, int argumentCount) {
-		return argumentCount >= commandsToMinArgumentCounts.get(command);
-	}
-
-	public static void printUsage(Command command) {
-		System.out.println(commandsToUsageStrings.get(command));
-	}
-
-	public static boolean isValidCoordinateFormat(String coordinate) {
-		return coordinate.length() == 2;
+	public static boolean isInvalidCoordinateFormat(String coordinate) {
+		return coordinate == null || coordinate.length() != 2;
 	}
 }

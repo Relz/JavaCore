@@ -23,7 +23,7 @@ public enum Row {
 		return character;
 	}
 
-	private static HashMap<Character, Row> charsToRows = new HashMap<>() {{
+	private final static HashMap<Character, Row> charsToRows = new HashMap<>() {{
 		put(ONE.character, ONE);
 		put(TWO.character, TWO);
 		put(THREE.character, THREE);
@@ -35,7 +35,7 @@ public enum Row {
 		put(NINE.character, NINE);
 	}};
 
-	private static HashMap<Integer, Row> ordinalsToRows = new HashMap<>() {{
+	private final static HashMap<Integer, Row> ordinalsToRows = new HashMap<>() {{
 		put(ONE.ordinal(), ONE);
 		put(TWO.ordinal(), TWO);
 		put(THREE.ordinal(), THREE);
@@ -47,11 +47,11 @@ public enum Row {
 		put(NINE.ordinal(), NINE);
 	}};
 
-	public static Row get(char character) {
+	public static Row createFromCharacter(char character) {
 		return charsToRows.get(character);
 	}
 
-	public static Row get(int ordinal) {
+	public static Row createFromOrdinal(int ordinal) {
 		return ordinalsToRows.get(ordinal);
 	}
 }

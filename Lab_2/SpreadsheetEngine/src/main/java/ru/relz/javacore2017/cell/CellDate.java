@@ -10,7 +10,7 @@ public class CellDate extends Cell {
 		this.value = value;
 	}
 
-	private long value;
+	private final long value;
 	public long getValue() {
 		return value;
 	}

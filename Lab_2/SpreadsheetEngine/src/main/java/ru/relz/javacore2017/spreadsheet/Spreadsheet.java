@@ -7,10 +7,12 @@ import main.java.ru.relz.javacore2017.tree.Tree;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
 
 public class Spreadsheet {
 	public static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
@@ -25,14 +27,10 @@ public class Spreadsheet {
 
 	public void set(Position position, String value) {
 		try {
-			DecimalFormat decimalFormat = new DecimalFormat();
-			decimalFormat.setParseBigDecimal(true);
-			BigDecimal doubleValue = new BigDecimal(value);
-			setCell(position, new CellNumber(doubleValue, position));
+			setCell(position, new CellNumber(new BigDecimal(value), position));
 		} catch(NumberFormatException numberFormatException) {
 			try {
-				Date date = dateFormat.parse(value);
-				setCell(position, new CellDate(date.getTime(), position));
+				setCell(position, new CellDate(dateFormat.parse(value).getTime(), position));
 			} catch (ParseException parseException) {
 				setCell(position, new CellString(value, position));
 			}
@@ -46,8 +44,8 @@ public class Spreadsheet {
 				throw new RuntimeException("Неверно задана формула");
 			}
 			setCell(position, new CellFormula(tree, position));
-		} catch (RuntimeException runtimeExcetion) {
-			System.out.println(runtimeExcetion.getMessage());
+		} catch (RuntimeException runtimeException) {
+			System.out.println(runtimeException.getMessage());
 		}
 	}
 
@@ -85,13 +83,13 @@ public class Spreadsheet {
 		int maxValueLength = getMaxValueLength();
 		Printer.printTableHead(maxValueLength, maxColumn.ordinal());
 		for (int rowIndex = 0; rowIndex <= maxRow.ordinal(); ++rowIndex) {
-			Row row = Row.get(rowIndex);
+			Row row = Row.createFromOrdinal(rowIndex);
 			System.out.print(" ---");
 			Printer.printDashes(maxValueLength, maxColumn.ordinal());
 			System.out.println();
 			System.out.printf("| %c ", row.toCharacter());
 			for (int columnIndex = 0; columnIndex <= maxColumn.ordinal(); ++columnIndex) {
-				Column column = Column.get(columnIndex);
+				Column column = Column.createFromOrdinal(columnIndex);
 				if (!cells.containsKey(row) || !cells.get(row).containsKey(column)) {
 					Printer.printEmptyCell(maxValueLength);
 				} else {

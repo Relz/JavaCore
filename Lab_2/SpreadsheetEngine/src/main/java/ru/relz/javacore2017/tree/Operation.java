@@ -13,19 +13,15 @@ public enum Operation {
 	Operation(final char character) {
 		this.character = character;
 	}
-	
-	public char toCharacter() {
-		return character;
-	}
 
-	private static HashMap<Character, Operation> charsToOperations = new HashMap<>() {{
+	private final static HashMap<Character, Operation> charsToOperations = new HashMap<>() {{
 		put(ADDITION.character, ADDITION);
 		put(SUBTRACTION.character, SUBTRACTION);
 		put(MULTIPLICATION.character, MULTIPLICATION);
 		put(DIVISION.character, DIVISION);
 	}};
 
-	public static Operation get(char character) {
+	public static Operation createFromCharacter(char character) {
 		return charsToOperations.get(character);
 	}
 }

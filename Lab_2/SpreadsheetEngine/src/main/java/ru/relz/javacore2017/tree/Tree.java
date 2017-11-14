@@ -93,7 +93,7 @@ public class Tree implements IBinaryTree, ITypedTree, INumberNodeSupport, ITimes
 		String part = scanner.next();
 
 		if ((nodeType == NodeType.ANY || nodeType == NodeType.OPERATION) && part.length() == 1) {
-			Operation operation = Operation.get(part.charAt(0));
+			Operation operation = Operation.createFromCharacter(part.charAt(0));
 			if (operation != null) {
 				result.setOperation(operation);
 				result.left = createFromScanner(scanner, NodeType.ANY);
@@ -104,8 +104,8 @@ public class Tree implements IBinaryTree, ITypedTree, INumberNodeSupport, ITimes
 		}
 
 		if ((nodeType == NodeType.ANY || nodeType == NodeType.REFERENCE) && part.length() == 2) {
-			Column column = Column.get(part.charAt(0));
-			Row row = Row.get(part.charAt(1));
+			Column column = Column.createFromCharacter(part.charAt(0));
+			Row row = Row.createFromCharacter(part.charAt(1));
 			if (column != null && row != null) {
 				Position reference = new Position(column, row);
 				result.setReference(reference);

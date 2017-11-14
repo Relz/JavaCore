@@ -1,6 +1,6 @@
 package main.java.ru.relz.javacore2017.tree;
 
-public interface IBinaryTree {
+interface IBinaryTree {
 	Tree getLeft();
 	void setLeft(Tree left);
 	Tree getRight();

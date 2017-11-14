@@ -19,13 +19,13 @@ public class SpreadsheetEngine {
 		while (work) {
 			System.out.print("> ");
 			String[] splitInput = keyboard.next().split(" ");
-			Command command = Command.get(splitInput[0]);
+			Command command = Command.createFromString(splitInput[0]);
 			if (command == null) {
 				System.out.printf("Неизвестная команда: %s\n", splitInput[0]);
 				continue;
 			}
-			if (!Command.isEnoughArgumentCount(command, splitInput.length)) {
-				Command.printUsage(command);
+			if (!command.isEnoughArgumentCount(splitInput.length)) {
+				command.printUsage();
 				continue;
 			}
 
@@ -36,16 +36,16 @@ public class SpreadsheetEngine {
 				}
 				case SET: {
 					String coordinate = splitInput[1];
-					if (!Command.isValidCoordinateFormat(coordinate)) {
+					if (Command.isInvalidCoordinateFormat(coordinate)) {
 						System.out.println(coordinateFormat);
 						continue;
 					}
-					Column column = Column.get(coordinate.charAt(0));
+					Column column = Column.createFromCharacter(coordinate.charAt(0));
 					if (column == null) {
 						System.out.println(columnFormat);
 						continue;
 					}
-					Row row = Row.get(coordinate.charAt(1));
+					Row row = Row.createFromCharacter(coordinate.charAt(1));
 					if (row == null) {
 						System.out.println(rowFormat);
 						continue;
@@ -55,16 +55,16 @@ public class SpreadsheetEngine {
 				}
 				case SET_FORMULA: {
 					String coordinate = splitInput[1];
-					if (!Command.isValidCoordinateFormat(coordinate)) {
+					if (Command.isInvalidCoordinateFormat(coordinate)) {
 						System.out.println(coordinateFormat);
 						continue;
 					}
-					Column column = Column.get(coordinate.charAt(0));
+					Column column = Column.createFromCharacter(coordinate.charAt(0));
 					if (column == null) {
 						System.out.println(columnFormat);
 						continue;
 					}
-					Row row = Row.get(coordinate.charAt(1));
+					Row row = Row.createFromCharacter(coordinate.charAt(1));
 					if (row == null) {
 						System.out.println(rowFormat);
 						continue;

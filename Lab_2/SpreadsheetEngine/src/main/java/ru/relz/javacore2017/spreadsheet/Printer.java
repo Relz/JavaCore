@@ -2,13 +2,12 @@ package main.java.ru.relz.javacore2017.spreadsheet;
 
 final class Printer {
 	static void printTableHead(int maxValueLength, int maxColumn) {
-		System.out.print("    ");
+		printSpaces(4);
 		printDashes(maxValueLength, maxColumn);
 		System.out.println();
-		System.out.print("    ");
+		printSpaces(4);
 		for (int columnIndex = 0; columnIndex <= maxColumn; ++columnIndex) {
-			char columnChar = Column.get(columnIndex).toCharacter();
-			System.out.printf("| %c ", columnChar);
+			System.out.printf("| %c ", Column.createFromOrdinal(columnIndex).toCharacter());
 			printSpaces(maxValueLength - 1);
 		}
 		System.out.println("|");

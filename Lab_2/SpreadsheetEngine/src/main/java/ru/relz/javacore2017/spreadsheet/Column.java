@@ -41,7 +41,7 @@ public enum Column {
 		return character;
 	}
 
-	private static HashMap<Character, Column> charsToColumns = new HashMap<>() {{
+	private final static HashMap<Character, Column> charsToColumns = new HashMap<>() {{
 		put(A.character, A);
 		put(B.character, B);
 		put(C.character, C);
@@ -70,7 +70,7 @@ public enum Column {
 		put(Z.character, Z);
 	}};
 
-	private static HashMap<Integer, Column> ordinalsToColumns = new HashMap<>() {{
+	private final static HashMap<Integer, Column> ordinalsToColumns = new HashMap<>() {{
 		put(A.ordinal(), A);
 		put(B.ordinal(), B);
 		put(C.ordinal(), C);
@@ -99,11 +99,11 @@ public enum Column {
 		put(Z.ordinal(), Z);
 	}};
 
-	public static Column get(char character) {
+	public static Column createFromCharacter(char character) {
 		return charsToColumns.get(character);
 	}
 
-	public static Column get(int ordinal) {
+	public static Column createFromOrdinal(int ordinal) {
 		return ordinalsToColumns.get(ordinal);
 	}
 }

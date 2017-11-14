@@ -10,7 +10,7 @@ public class CellNumber extends Cell {
 		this.value = value;
 	}
 
-	private BigDecimal value;
+	private final BigDecimal value;
 	public BigDecimal getValue() {
 		return value;
 	}

@@ -6,13 +6,13 @@ public class Position {
 		this.row = row;
 	}
 
-	private Column column;
-	public Column getColumn() {
+	private final Column column;
+	Column getColumn() {
 		return column;
 	}
 
-	private Row row;
-	public Row getRow() {
+	private final Row row;
+	Row getRow() {
 		return row;
 	}
 
@@ -22,14 +22,14 @@ public class Position {
 	}
 
 	@Override
-	public boolean equals(Object aThat) {
-		if (this == aThat) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
-		if (!(aThat instanceof Position)) {
+		if (!(obj instanceof Position)) {
 			return false;
 		}
-		Position that = (Position)aThat;
+		Position that = (Position)obj;
 
 		return this.column == that.column && this.row == that.row;
 	}

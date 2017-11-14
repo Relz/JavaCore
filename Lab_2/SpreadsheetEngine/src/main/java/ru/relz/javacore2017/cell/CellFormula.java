@@ -9,7 +9,7 @@ public class CellFormula extends Cell {
 		this.tree = tree;
 	}
 
-	private Tree tree;
+	private final Tree tree;
 	public Tree getTree() {
 		return tree;
 	}

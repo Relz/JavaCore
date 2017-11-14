@@ -1,5 +1,5 @@
 package main.java.ru.relz.javacore2017.tree;
 
-public interface ITypedTree {
+interface ITypedTree {
 	NodeType getType();
 }
