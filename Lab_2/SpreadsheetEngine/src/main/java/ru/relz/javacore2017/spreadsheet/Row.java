@@ -23,6 +23,22 @@ public enum Row {
 		return character;
 	}
 
+	public boolean isEquals(Row other) {
+		return this.ordinal() == other.ordinal();
+	}
+
+	public boolean isMore(Row other) {
+		return this.ordinal() > other.ordinal();
+	}
+
+	public boolean isLess(Row other) {
+		return this.ordinal() < other.ordinal();
+	}
+
+	public static Row max(Row lhs, Row rhs) {
+		return lhs.isMore(rhs) ? lhs : rhs;
+	}
+
 	private final static HashMap<Character, Row> charsToRows = new HashMap<>() {{
 		put(ONE.character, ONE);
 		put(TWO.character, TWO);

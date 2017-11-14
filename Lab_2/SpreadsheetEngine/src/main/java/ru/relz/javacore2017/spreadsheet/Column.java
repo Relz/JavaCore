@@ -41,6 +41,22 @@ public enum Column {
 		return character;
 	}
 
+	public boolean isEquals(Column other) {
+		return this.ordinal() == other.ordinal();
+	}
+
+	public boolean isMore(Column other) {
+		return this.ordinal() > other.ordinal();
+	}
+
+	public boolean isLess(Column other) {
+		return this.ordinal() < other.ordinal();
+	}
+
+	public static Column max(Column lhs, Column rhs) {
+		return lhs.isMore(rhs) ? lhs : rhs;
+	}
+
 	private final static HashMap<Character, Column> charsToColumns = new HashMap<>() {{
 		put(A.character, A);
 		put(B.character, B);

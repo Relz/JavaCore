@@ -9,7 +9,6 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
@@ -17,22 +16,17 @@ import java.util.Set;
 public class Spreadsheet {
 	public static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
 
-	private final HashMap<Row, HashMap<Column, Cell>> cells = new HashMap<>();
-	private final HashSet<Cell> cellsWithFormula = new HashSet<>();
-
-	private Column maxColumn = Column.A;
-	private Row maxRow = Row.ONE;
-
+	private final Table table = new Table();
 	private final String divisionByZeroCellString = "Бесконечность";
 
 	public void set(Position position, String value) {
 		try {
-			setCell(position, new CellNumber(new BigDecimal(value), position));
+			table.setCell(position, new CellNumber(new BigDecimal(value), position));
 		} catch(NumberFormatException numberFormatException) {
 			try {
-				setCell(position, new CellDate(dateFormat.parse(value).getTime(), position));
+				table.setCell(position, new CellDate(dateFormat.parse(value).getTime(), position));
 			} catch (ParseException parseException) {
-				setCell(position, new CellString(value, position));
+				table.setCell(position, new CellString(value, position));
 			}
 		}
 	}
@@ -43,96 +37,73 @@ public class Spreadsheet {
 			if (tree.getType() == null) {
 				throw new RuntimeException("Неверно задана формула");
 			}
-			setCell(position, new CellFormula(tree, position));
+			table.setCell(position, new CellFormula(tree, position));
 		} catch (RuntimeException runtimeException) {
-			System.out.println(runtimeException.getMessage());
-		}
-	}
-
-	private void setCell(Position position, Cell cell) {
-		if (position.getColumn().ordinal() > maxColumn.ordinal()) {
-			maxColumn = position.getColumn();
-		}
-		if (position.getRow().ordinal() > maxRow.ordinal()) {
-			maxRow = position.getRow();
-		}
-		createRowIfNotExists(cells, position.getRow());
-		Cell oldCell = cells.get(position.getRow()).get(position.getColumn());
-		if (oldCell != null && oldCell.getType() == CellType.FORMULA) {
-			cellsWithFormula.remove(oldCell);
-		}
-		cells.get(position.getRow()).put(position.getColumn(), cell);
-		if (cell.getType() == CellType.FORMULA) {
-			cellsWithFormula.add(cell);
-		}
-	}
-
-	private void createRowIfNotExists(HashMap<Row, HashMap<Column, Cell>> table, Row row) {
-		if (!table.containsKey(row)) {
-			table.put(row, new HashMap<>());
+			Printer.printLineError(runtimeException.getMessage());
 		}
 	}
 
 	public void display() {
-		if (cells.isEmpty()) {
+		if (table.isEmpty()) {
 			return;
 		}
 		if (!areValidFormulaCells()) {
 			return;
 		}
 		int maxValueLength = getMaxValueLength();
-		Printer.printTableHead(maxValueLength, maxColumn.ordinal());
-		for (int rowIndex = 0; rowIndex <= maxRow.ordinal(); ++rowIndex) {
+		Printer.printTableHead(maxValueLength, table.getMaxColumn().ordinal());
+		for (int rowIndex = 0; rowIndex <= table.getMaxRow().ordinal(); ++rowIndex) {
 			Row row = Row.createFromOrdinal(rowIndex);
-			System.out.print(" ---");
-			Printer.printDashes(maxValueLength, maxColumn.ordinal());
-			System.out.println();
-			System.out.printf("| %c ", row.toCharacter());
-			for (int columnIndex = 0; columnIndex <= maxColumn.ordinal(); ++columnIndex) {
+			Printer.printDashes(1, 0);
+			Printer.printDashes(maxValueLength, table.getMaxColumn().ordinal());
+			Printer.printLine();
+			Printer.printCharacterInCell(row.toCharacter());
+			for (int columnIndex = 0; columnIndex <= table.getMaxColumn().ordinal(); ++columnIndex) {
 				Column column = Column.createFromOrdinal(columnIndex);
-				if (!cells.containsKey(row) || !cells.get(row).containsKey(column)) {
+				if (!table.containsCell(new Position(column, row))) {
 					Printer.printEmptyCell(maxValueLength);
 				} else {
-					printCell(cells.get(row).get(column), maxValueLength);
+					printCell(table.getCell(new Position(column, row)), maxValueLength);
 				}
 			}
-			System.out.println("|");
+			Printer.printLine("|");
 		}
-		System.out.print(" ---");
-		Printer.printDashes(maxValueLength, maxColumn.ordinal());
-		System.out.println();
+		Printer.printDashes(1, 0);
+		Printer.printDashes(maxValueLength, table.getMaxColumn().ordinal());
+		Printer.printLine();
 	}
 
 	private boolean areValidFormulaCells() {
 		boolean result = true;
-		for (Cell cell : cellsWithFormula) {
-			CellFormula cellFormula = ((CellFormula)cell);
+		for (CellFormula cellFormula : table.getCellsFormula()) {
 			try {
 				Set<CellType> determinedCellTypes = determineCellTypes(cellFormula.getTree(), new HashSet<>());
 				if (determinedCellTypes.size() == 2 && determinedCellTypes.contains(CellType.DATE) && determinedCellTypes.contains(CellType.NUMBER)) {
 					cellFormula.getTree().setValueType(CellType.DATE);
 				} else if (determinedCellTypes.size() != 1) {
-					result = false;
-					System.out.printf("Формула в ячейке %s совмещает в себе операции с несколькими типами: ", cellFormula.getPosition().toString());
-					for (CellType determinedCellType : determinedCellTypes) {
-						System.out.print(determinedCellType.toString() + ", ");
+					StringBuilder cellTypesString = new StringBuilder();
+					int processedCount = 0;
+					for (CellType cellType : determinedCellTypes) {
+						cellTypesString.append(cellType.toString());
+						++processedCount;
+						if (processedCount != determinedCellTypes.size()) {
+							cellTypesString.append(", ");
+						}
 					}
-					System.out.println();
+					throw new RuntimeException("совмещены операции с несколькими типами: " + cellTypesString);
 				} else {
 					CellType cellType = determinedCellTypes.iterator().next();
 					if (cellType == CellType.DATE && cellFormula.getTree().getReference() == null) {
-						result = false;
-						System.out.println("Операции даты с датой не доступны");
+						throw new RuntimeException("операции даты с датой не доступны");
 					} else if (cellType == CellType.STRING && cellFormula.getTree().getReference() == null) {
-						result = false;
-						System.out.println("Математические операции над строками не допустимы");
+						throw new RuntimeException("математические операции над строками не допустимы");
 					} else {
 						cellFormula.getTree().setValueType(cellType);
 					}
 				}
 			} catch (RuntimeException runtimeException) {
 				result = false;
-				System.out.printf("При расчёте формулы в ячейке %s: %s\n", cellFormula.getPosition().toString(), runtimeException.getMessage());
+				Printer.printLineError("При расчёте формулы в ячейке " + cellFormula.getPosition().toString() + ": " + runtimeException.getMessage());
 			}
 		}
 
@@ -142,22 +113,20 @@ public class Spreadsheet {
 	private int getMaxValueLength() {
 		int result = 1;
 
-		for (HashMap<Column, Cell> columnsToCells : cells.values()) {
-			for (Cell cell : columnsToCells.values()) {
-				switch (cell.getType()) {
-					case NUMBER:
-						result = Math.max(result, ((CellNumber)cell).getStringValue().length());
-						break;
-					case STRING:
-						result = Math.max(result, ((CellString)cell).getValue().length());
-						break;
-					case DATE:
-						result = Math.max(result, ((CellDate)cell).getStringValue(dateFormat).length());
-						break;
-					case FORMULA:
-						result = Math.max(result, calculateFormula(((CellFormula)cell).getTree()).length());
-						break;
-				}
+		for (Cell cell : table.getCells()) {
+			switch (cell.getType()) {
+				case NUMBER:
+					result = Math.max(result, ((CellNumber)cell).getStringValue().length());
+					break;
+				case STRING:
+					result = Math.max(result, ((CellString)cell).getValue().length());
+					break;
+				case DATE:
+					result = Math.max(result, ((CellDate)cell).getStringValue(dateFormat).length());
+					break;
+				case FORMULA:
+					result = Math.max(result, calculateFormula(((CellFormula)cell).getTree()).length());
+					break;
 			}
 		}
 
@@ -176,7 +145,7 @@ public class Spreadsheet {
 				return dateFormat.format(calculateDateValue(tree));
 			case STRING:
 				Position position = tree.getReference();
-				Cell referencedCell = cells.get(position.getRow()).get(position.getColumn());
+				Cell referencedCell = table.getCell(position);
 				if (referencedCell.getType() == CellType.FORMULA) {
 					return calculateFormula(((CellFormula)referencedCell).getTree());
 				}
@@ -204,7 +173,7 @@ public class Spreadsheet {
 				}
 			case REFERENCE:
 				Position position = tree.getReference();
-				Cell referencedCell = cells.get(position.getRow()).get(position.getColumn());
+				Cell referencedCell = table.getCell(position);
 				if (referencedCell.getType() == CellType.FORMULA) {
 					return calculateNumberValue(((CellFormula)referencedCell).getTree());
 				}
@@ -224,7 +193,7 @@ public class Spreadsheet {
 					case ADDITION:
 						return operand0 + operand1;
 					case SUBTRACTION:
-						return (tree.getLeft().getValueType() == CellType.NUMBER) ? operand1 - operand0 : operand0 - operand1;
+						return operand0 - operand1;
 					case MULTIPLICATION:
 						return operand0 * operand1;
 					case DIVISION:
@@ -232,7 +201,7 @@ public class Spreadsheet {
 				}
 			case REFERENCE:
 				Position position = tree.getReference();
-				Cell referencedCell = cells.get(position.getRow()).get(position.getColumn());
+				Cell referencedCell = table.getCell(position);
 				if (referencedCell.getType() == CellType.FORMULA) {
 					return calculateDateValue(((CellFormula)referencedCell).getTree());
 				}
@@ -266,8 +235,8 @@ public class Spreadsheet {
 		}
 		if (tree.getType() == NodeType.REFERENCE) {
 			Position reference = tree.getReference();
-			if (cells.containsKey(reference.getRow()) && cells.get(reference.getRow()).containsKey(reference.getColumn())) {
-				Cell referencedCell = cells.get(reference.getRow()).get(reference.getColumn());
+			if (table.containsCell(reference)) {
+				Cell referencedCell = table.getCell(reference);
 				if (referencedCells.contains(referencedCell)) {
 					throw new RuntimeException("Обнаружена ссылка на саму себя");
 				}
@@ -314,28 +283,26 @@ public class Spreadsheet {
 		switch (cell.getType()) {
 			case NUMBER:
 				String cellNumberValue = ((CellNumber)cell).getStringValue();
-				System.out.printf("| %s ", cellNumberValue);
+				Printer.print("| " + cellNumberValue + " ");
 				Printer.printSpaces(maxValueLength - cellNumberValue.length());
 				break;
 			case STRING:
 				String cellStringValue = ((CellString)cell).getValue();
-				System.out.printf("| %s ", cellStringValue);
+				Printer.print("| " + cellStringValue + " ");
 				Printer.printSpaces(maxValueLength - cellStringValue.length());
 				break;
 			case DATE:
 				String cellDateValue = ((CellDate)cell).getStringValue(Spreadsheet.dateFormat);
-				System.out.printf("| %s ", cellDateValue);
+				Printer.print("| " + cellDateValue + " ");
 				Printer.printSpaces(maxValueLength - cellDateValue.length());
 				break;
 			case FORMULA:
 				String cellFormulaValue = calculateFormula(((CellFormula)cell).getTree());
-				System.out.print("| ");
 				if (cellFormulaValue.equals(divisionByZeroCellString)) {
-					System.out.printf("\033[31m%s\033[37m", cellFormulaValue);
+					Printer.printErrorStringInCell(cellFormulaValue);
 				} else {
-					System.out.printf("%s", cellFormulaValue);
+					Printer.printStringInCell(cellFormulaValue);
 				}
-				System.out.print(" ");
 				Printer.printSpaces(maxValueLength - cellFormulaValue.length());
 				break;
 		}

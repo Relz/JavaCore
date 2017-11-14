@@ -1,18 +1,18 @@
 package main.java.ru.relz.javacore2017.spreadsheet;
 
-public class Position {
+public class Position implements TwoDimensional {
 	public Position(Column column, Row row) {
 		this.column = column;
 		this.row = row;
 	}
 
 	private final Column column;
-	Column getColumn() {
+	public Column getColumn() {
 		return column;
 	}
 
 	private final Row row;
-	Row getRow() {
+	public Row getRow() {
 		return row;
 	}
 
