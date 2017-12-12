@@ -5,11 +5,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public final class DatabaseHelper {
+	public static Connection connection = null;
 	private static String className = "org.apache.derby.jdbc.EmbeddedDriver";
 	private static String databasePath =
 			"jdbc:derby:/data/workspace/Java/Lab_2/SupermarketSimulator/supermarket;create=false";
-	public static Connection connection = null;
-
 	/**
 	 * Loads apache derby embedded driver and initializes connection to database.
 	 */

@@ -18,8 +18,8 @@ public class ProductService {
 	 * Asks database for product with specified id and amount.
 	 *
 	 * @return {@code null} if there is no product with such id or there is not enough product amount,
-	 * 			otherwise product object
-	 * */
+	 * otherwise product object
+	 */
 	public static Product getProduct(int productId) {
 		try {
 			statement = DatabaseHelper.connection.createStatement();
@@ -45,8 +45,8 @@ public class ProductService {
 	 * if there is such product id and enough amount.
 	 *
 	 * @return {@code null} if there is no product with such id or there is not enough product amount,
-	 * 			otherwise product object
-	 * */
+	 * otherwise product object
+	 */
 	public static Product fetchProduct(int productId, int productAmount) {
 		Product product = getProduct(productId);
 		if (product == null || product.getAmount() < productAmount) {
@@ -103,7 +103,7 @@ public class ProductService {
 
 	/**
 	 * Restores product to database
-	 * */
+	 */
 	public static void giveProductBack(Product product) {
 		try {
 			statement = DatabaseHelper.connection.createStatement();
@@ -118,8 +118,8 @@ public class ProductService {
 	 * Parses {@code ResultSet object} for product object
 	 *
 	 * @return {@code product object} if resultSet has required columns,
-	 * 			otherwise {@code null}
-	 * */
+	 * otherwise {@code null}
+	 */
 	private static Product createProductFromResultSet(ResultSet resultSet) throws SQLException {
 		if (!resultSet.next()) {
 			return null;

@@ -37,7 +37,7 @@ public class ProductContainer implements ProductContainerInterface {
 
 	/**
 	 * Removes all products from container
-	 * */
+	 */
 	public void clear() {
 		products.clear();
 	}

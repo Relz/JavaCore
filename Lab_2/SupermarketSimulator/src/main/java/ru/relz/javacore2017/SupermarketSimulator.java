@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 public class SupermarketSimulator {
 	private static final int workingTimeMinutes = 20;
-	private static final int retiredDescountPercent = 20;
+	private static final int retiredDiscountPercent = 20;
 
 	public static void main(String[] args) throws IOException {
 		Supermarket supermarket;
@@ -19,7 +19,7 @@ public class SupermarketSimulator {
 			e.printStackTrace();
 			return;
 		}
-		supermarket.addDiscount(CustomerType.Retired, retiredDescountPercent);
+		supermarket.addDiscount(CustomerType.Retired, retiredDiscountPercent);
 		supermarket.addCashDesk("Красная");
 		supermarket.addCashDesk("Жёлтая");
 		supermarket.addCashDesk("Зелёная");

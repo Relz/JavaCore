@@ -1,5 +1,5 @@
 package ru.relz.javacore2017.model.customer;
 
-public interface CashHolder {
+interface CashHolder {
 	double getCash();
 }

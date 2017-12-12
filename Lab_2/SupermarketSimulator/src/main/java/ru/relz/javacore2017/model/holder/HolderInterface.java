@@ -1,6 +1,6 @@
 package ru.relz.javacore2017.model.holder;
 
-public interface HolderInterface {
+interface HolderInterface {
 	/**
 	 * Increases holder value with specified parameter value
 	 *

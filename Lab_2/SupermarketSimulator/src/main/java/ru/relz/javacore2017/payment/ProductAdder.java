@@ -3,7 +3,7 @@ package ru.relz.javacore2017.payment;
 import ru.relz.javacore2017.model.ProductContainer.ProductContainer;
 import ru.relz.javacore2017.model.product.Product;
 
-public class ProductSummator extends ProductContainer {
+public class ProductAdder extends ProductContainer {
 	public double calculateTotalAmount() {
 		double result = 0;
 		for (Product product : getProducts().values()) {

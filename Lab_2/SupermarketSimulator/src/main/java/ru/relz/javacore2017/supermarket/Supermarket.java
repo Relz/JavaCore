@@ -1,10 +1,12 @@
 package ru.relz.javacore2017.supermarket;
 
 import ru.relz.javacore2017.database.DatabaseHelper;
-import ru.relz.javacore2017.model.cash_desk.*;
-import ru.relz.javacore2017.model.customer.*;
+import ru.relz.javacore2017.model.cash_desk.NamedCashDesk;
+import ru.relz.javacore2017.model.customer.Customer;
+import ru.relz.javacore2017.model.customer.CustomerType;
+import ru.relz.javacore2017.model.product.Product;
+import ru.relz.javacore2017.model.product.ProductType;
 import ru.relz.javacore2017.payment.Discount;
-import ru.relz.javacore2017.model.product.*;
 import ru.relz.javacore2017.service.ProductService;
 
 import java.io.IOException;
@@ -32,14 +34,13 @@ public class Supermarket {
 	private int customerId = 0;
 	private int workingTimeLeft = 0;
 	private int workingTimeMinutes;
+	private List<Product> products;
 
 	public Supermarket(int workingTimeMinutes) throws SQLException, ClassNotFoundException {
 		DatabaseHelper.createConnection();
 		this.workingTimeMinutes = workingTimeMinutes;
 		products = ProductService.getProducts();
 	}
-
-	private List<Product> products;
 	List<Product> getProducts() {
 		return products;
 	}
@@ -48,9 +49,8 @@ public class Supermarket {
 	 * Returns discount for specified customer type
 	 *
 	 * @param customerType customer type
-	 *
 	 * @return Discount object for {@code customerType}
-	 * */
+	 */
 	public Discount getDiscount(CustomerType customerType) {
 		return discountPercentages.containsKey(customerType)
 				? discountPercentages.get(customerType)
@@ -61,8 +61,8 @@ public class Supermarket {
 	 * Adds percentage discount to all customers with specified type
 	 *
 	 * @param customerType customer type
-	 * @param percentage percentage of discount to specified customer type
-	 * */
+	 * @param percentage   percentage of discount to specified customer type
+	 */
 	public void addDiscount(CustomerType customerType, int percentage) {
 		discountPercentages.put(customerType, new Discount(percentage));
 	}
@@ -71,7 +71,7 @@ public class Supermarket {
 	 * Adds cash desk to supermarket with specified name
 	 *
 	 * @param name name for cash desk
-	 * */
+	 */
 	public void addCashDesk(String name) {
 		NamedCashDesk cashDesk = new NamedCashDesk(this, name);
 		cashDesk.setReporter(reporter);
@@ -80,7 +80,7 @@ public class Supermarket {
 
 	/**
 	 * Performs the given action for each customer iterator
-	 * */
+	 */
 	void forEachCustomer(Consumer<Iterator<Customer>> action) {
 		Iterator<Customer> customerIterator = customers.iterator();
 		while (customerIterator.hasNext()) {
@@ -105,8 +105,8 @@ public class Supermarket {
 	 * if there is such product id and enough amount.
 	 *
 	 * @return {@code null} if there is no product with such id or there is not enough product amount,
-	 * 			otherwise product object
-	 * */
+	 * otherwise product object
+	 */
 	Product getProduct(Customer customer, int productId, int productAmount) {
 		Product result = ProductService.fetchProduct(productId, productAmount);
 		if (result != null) {
@@ -124,12 +124,12 @@ public class Supermarket {
 
 	/**
 	 * Removes the first occurrence of the specified element from this list of customers
-	 * if he hasn't any product in his basket,
+	 * if he hasn't any product in his bucket,
 	 * prints customer's action
-	 * */
+	 */
 	public void removeCustomer(Iterator<Customer> customerIterator, Customer customer) {
 		String customerName = customer.getName();
-		if (!customer.getBacket().isEmpty()) {
+		if (!customer.getBucket().isEmpty()) {
 			System.out.printf("Предотвращена попытка ухода покупателя %s с корзиной с продуктами\n", customerName);
 
 			return;
@@ -144,7 +144,7 @@ public class Supermarket {
 
 	/**
 	 * Returns product back to supermarket, prints customer's return back action
-	 * */
+	 */
 	public void giveProductBack(Product product, Customer customer) {
 		ProductService.giveProductBack(product);
 		System.out.printf("%s положил %s обратно\n", customer.getName(), product.getName());
@@ -172,7 +172,7 @@ public class Supermarket {
 	 * Determines opened cash desk with less customers in queue
 	 *
 	 * @return opened NamedCashDesk object in supermarket with less customers in queue
-	 * */
+	 */
 	NamedCashDesk getBestCashDesk() {
 		NamedCashDesk bestCashDesk = cashDesks.get(0);
 		for (NamedCashDesk cashDesk : cashDesks) {
@@ -186,7 +186,7 @@ public class Supermarket {
 
 	/**
 	 * Processes each opened cash desk in supermarket
-	 * */
+	 */
 	void processCashDesks() {
 		cashDesks.forEach((NamedCashDesk cashDesk) -> {
 			cashDesk.processQueue(Supermarket.TIME_UNIT_MINUTES);

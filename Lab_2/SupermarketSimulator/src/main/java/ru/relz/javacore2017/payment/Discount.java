@@ -1,11 +1,11 @@
 package ru.relz.javacore2017.payment;
 
 public class Discount {
+	private final int percentage;
+
 	public Discount(int percentage) {
 		this.percentage = percentage;
 	}
-
-	private int percentage = 0;
 	public int getPercentage() {
 		return percentage;
 	}

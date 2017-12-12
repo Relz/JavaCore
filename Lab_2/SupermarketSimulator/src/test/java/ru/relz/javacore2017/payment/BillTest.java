@@ -11,8 +11,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BillTest {
-	private static Bill bill;
-
 	private static final List<Product> products = new ArrayList<>() {{
 		add(createProduct(1, 10, 1, ProductType.Packed, 1));
 		add(createProduct(2, 20, 5, ProductType.Packed, 10));
@@ -21,29 +19,26 @@ class BillTest {
 		add(createProduct(5, 2.3, 150, ProductType.Bulk, 5));
 		add(createProduct(6, 30, 20, ProductType.Packed, 100));
 	}};
-
+	private static Bill bill;
+	private static Product createProduct(int id, double price, int amount, ProductType type, int bonus) {
+		return new Product(id, "Продукт", price, amount, type, bonus, false);
+	}
 	@BeforeEach
 	void setUp() {
 		bill = new Bill();
 		products.forEach(bill::add);
 	}
-
 	@Test
-	void calculateTotalAmountConsideDiscount() {
+	void calculateTotalAmountConsiderDiscount() {
 		final double totalAmount = bill.calculateTotalAmount();
 		bill.setDiscount(new Discount(50));
 		assertEquals(totalAmount / 2, bill.calculateTotalAmount());
 	}
-
 	@Test
 	void getDiscount() {
 		int discountPercentage = 50;
 		assertEquals(bill.getDiscount().getPercentage(), 0);
 		bill.setDiscount(new Discount(discountPercentage));
 		assertEquals(bill.getDiscount().getPercentage(), discountPercentage);
-	}
-
-	private static Product createProduct(int id, double price, int amount, ProductType type, int bonus) {
-		return new Product(id, "Продукт", price, amount, type, bonus, false);
 	}
 }

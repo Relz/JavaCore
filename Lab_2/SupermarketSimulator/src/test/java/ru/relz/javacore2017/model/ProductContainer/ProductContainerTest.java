@@ -2,7 +2,6 @@ package ru.relz.javacore2017.model.ProductContainer;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ru.relz.javacore2017.model.ProductContainer.ProductContainer;
 import ru.relz.javacore2017.model.product.Product;
 import ru.relz.javacore2017.model.product.ProductType;
 
@@ -41,7 +40,9 @@ class ProductContainerTest {
 
 		Product expectedProduct = getProduct(2);
 		expectedProduct.setAmount(2 * amountBefore);
-		assertTrue(areProductsEqual(getProductById(productContainer, 2), expectedProduct));
+		Product product1 = getProductById(productContainer, 2);
+		assertNotNull(product1);
+		assertTrue(areProductsEqual(product1, expectedProduct));
 	}
 
 	@Test

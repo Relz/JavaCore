@@ -1,4 +1,4 @@
-package ru.relz.javacore2017.model.basket;
+package ru.relz.javacore2017.model.bucket;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,25 +9,23 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class BasketTest {
-	private Basket basket;
+class BucketTest {
+	private Bucket bucket;
 
 	@BeforeEach
 	void setUp() {
-		basket = new Basket();
+		bucket = new Bucket();
 	}
 
 	@Test
 	void forEachProduct() {
-		basket.add(getProduct(1));
-		basket.add(getProduct(2));
-		basket.add(getProduct(3));
+		bucket.add(getProduct(1));
+		bucket.add(getProduct(2));
+		bucket.add(getProduct(3));
 		List<Product> products = new ArrayList<>();
-		basket.forEachProduct((Iterator<Product> productIterator) -> {
-			products.add(productIterator.next());
-		});
+		bucket.forEachProduct((Iterator<Product> productIterator) -> products.add(productIterator.next()));
 		for (int i = 0; i < products.size(); ++i) {
 			Product product = products.get(i);
 			Product expectedProduct = getProduct(i + 1);

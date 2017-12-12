@@ -3,12 +3,12 @@ package ru.relz.javacore2017.model.cash_desk;
 import ru.relz.javacore2017.supermarket.Supermarket;
 
 public class NamedCashDesk extends CashDesk implements Named {
+	private final String name;
+
 	public NamedCashDesk(Supermarket supermarket, String name) {
 		super(supermarket);
 		this.name = name;
 	}
-
-	private final String name;
 	public String getName() {
 		return name;
 	}

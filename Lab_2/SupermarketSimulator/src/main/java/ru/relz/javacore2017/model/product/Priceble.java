@@ -1,5 +1,5 @@
 package ru.relz.javacore2017.model.product;
 
-public interface Priceble {
+interface Priceble {
 	double getPrice();
 }

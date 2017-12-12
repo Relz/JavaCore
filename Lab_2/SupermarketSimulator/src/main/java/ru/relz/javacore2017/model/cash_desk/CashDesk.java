@@ -16,25 +16,21 @@ import java.util.function.Consumer;
 public class CashDesk implements CashDeskInterface {
 	private final Supermarket supermarket;
 	private final List<Customer> queue = new ArrayList<>();
+	private boolean opened = true;
+	private ReporterInterface reporter;
 
 	public CashDesk(Supermarket supermarket) {
 		this.supermarket = supermarket;
 	}
-
 	public int getQueueSize() {
 		return queue.size();
 	}
-
-	private boolean opened = true;
 	public boolean isOpened() {
 		return opened;
 	}
-
 	public boolean isClosed() {
 		return !opened;
 	}
-
-	private ReporterInterface reporter;
 	public void setReporter(ReporterInterface value) {
 		reporter = value;
 	}
@@ -54,7 +50,7 @@ public class CashDesk implements CashDeskInterface {
 		closeMessage();
 	}
 
-	protected void closeMessage() {
+	void closeMessage() {
 		System.out.println("Касса закрылась");
 	}
 
@@ -65,7 +61,7 @@ public class CashDesk implements CashDeskInterface {
 		addCustomerToQueueMessage();
 	}
 
-	protected void addCustomerToQueueMessage() {
+	void addCustomerToQueueMessage() {
 		System.out.println("встал в очередь на кассу");
 	}
 
@@ -76,7 +72,7 @@ public class CashDesk implements CashDeskInterface {
 		removeCustomerFromQueueMessage();
 	}
 
-	protected void removeCustomerFromQueueMessage() {
+	void removeCustomerFromQueueMessage() {
 		System.out.println("покинул кассу");
 	}
 
@@ -142,8 +138,8 @@ public class CashDesk implements CashDeskInterface {
 
 	private Bill createBillForCustomer(Customer customer) {
 		Bill bill = new Bill();
-		customer.getBacket().forEachProduct((Iterator<Product> productIterator) -> {
-			Product product = customer.getBacket().remove(productIterator);
+		customer.getBucket().forEachProduct((Iterator<Product> productIterator) -> {
+			Product product = customer.getBucket().remove(productIterator);
 			if (product.isForAdult() && customer.getType() == CustomerType.Child) {
 				System.out.printf("Предотвращена попытка %s купить %s\n", customer.getName(), product.getName());
 				supermarket.giveProductBack(product, customer);

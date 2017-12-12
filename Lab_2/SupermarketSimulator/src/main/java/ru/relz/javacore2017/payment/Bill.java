@@ -1,6 +1,6 @@
 package ru.relz.javacore2017.payment;
 
-public class Bill extends ProductSummator implements Discountable {
+public class Bill extends ProductAdder implements Discountable {
 	private Discount discount = new Discount(0);
 	public Discount getDiscount() {
 		return discount;

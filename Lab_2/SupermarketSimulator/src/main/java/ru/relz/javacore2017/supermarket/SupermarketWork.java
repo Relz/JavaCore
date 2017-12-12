@@ -29,34 +29,37 @@ public class SupermarketWork implements SupermarketWorkInterface {
 				int productAmount = randomProduct.getRandomProductAmount(productMaxAmount);
 				Product wantedProduct = supermarket.getProduct(customer, randomProduct.getId(), productAmount);
 				if (wantedProduct != null) {
-					customer.getBacket().add(wantedProduct);
+					customer.getBucket().add(wantedProduct);
 				}
 			}
 			if (getRandomNumber(0, 1) == 0) {
 				int randomNumber = getRandomNumber(0, 6);
-				if (randomNumber == 0) {
-					// Try to get out without returning back products
-					supermarket.removeCustomer(customerIterator, customer);
-				} else if (randomNumber == 1) {
-					// Return back products and get out
-					customer.getBacket().forEachProduct((Iterator<Product> productIterator) -> {
-						Product product = productIterator.next();
-						customer.getBacket().remove(productIterator);
-						supermarket.giveProductBack(product, customer);
-					});
-					supermarket.removeCustomer(customerIterator, customer);
-				} else {
-					// May be return back some products
-					customer.getBacket().forEachProduct((Iterator<Product> productIterator) -> {
-						Product product = productIterator.next();
-						if (getRandomNumber(0, 4) == 0) {
-							customer.getBacket().remove(productIterator);
+				switch (randomNumber) {
+					case 0:
+						// Try to get out without returning back products
+						supermarket.removeCustomer(customerIterator, customer);
+						break;
+					case 1:
+						// Return back products and get out
+						customer.getBucket().forEachProduct((Iterator<Product> productIterator) -> {
+							Product product = productIterator.next();
+							customer.getBucket().remove(productIterator);
 							supermarket.giveProductBack(product, customer);
-						}
-					});
+						});
+						supermarket.removeCustomer(customerIterator, customer);
+						break;
+					default:
+						// May be return back some products
+						customer.getBucket().forEachProduct((Iterator<Product> productIterator) -> {
+							Product product = productIterator.next();
+							if (getRandomNumber(0, 4) == 0) {
+								customer.getBucket().remove(productIterator);
+								supermarket.giveProductBack(product, customer);
+							}
+						});
 				}
 			}
-			if (!customer.isInQueue() && !customer.getBacket().isEmpty()) {
+			if (!customer.isInQueue() && !customer.getBucket().isEmpty()) {
 				// Join to cash desk
 				NamedCashDesk bestCashDesk = supermarket.getBestCashDesk();
 				bestCashDesk.addCustomerToQueue(customer);
@@ -69,9 +72,9 @@ public class SupermarketWork implements SupermarketWorkInterface {
 	public void onFinished(Supermarket supermarket) {
 		supermarket.forEachCustomer((Iterator<Customer> customerIterator) -> {
 			Customer customer = customerIterator.next();
-			customer.getBacket().forEachProduct((Iterator<Product> productIterator) -> {
+			customer.getBucket().forEachProduct((Iterator<Product> productIterator) -> {
 				Product product = productIterator.next();
-				customer.getBacket().remove(productIterator);
+				customer.getBucket().remove(productIterator);
 				supermarket.giveProductBack(product, customer);
 			});
 			supermarket.removeCustomer(customerIterator, customer);

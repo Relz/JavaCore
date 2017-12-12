@@ -25,25 +25,33 @@ class SupermarketTest {
 	private static Supermarket supermarket;
 
 	@BeforeAll
-	static void beforeAll() throws SQLException, ClassNotFoundException {
+	static void beforeAll() {
 		System.setOut(new PrintStream(new OutputStream() {
 			@Override
-			public void write(int b) { }
+			public void write(int b) {
+			}
 		}));
 	}
-
+	private static Field setSupermarketFieldAccessible(Supermarket supermarket, String fieldName) {
+		Field field = null;
+		try {
+			field = supermarket.getClass().getDeclaredField(fieldName);
+			field.setAccessible(true);
+		} catch (NoSuchFieldException e) {
+			fail("Supermarket does not have field \"" + fieldName + "\"");
+		}
+		return field;
+	}
 	@BeforeEach
 	void setUp() throws SQLException, ClassNotFoundException {
 		supermarket = new Supermarket(supermarketWorkingTime);
 	}
-
 	@Test
 	void getDiscountReturnsZeroIfDiscountForCustomerTypeIsNotSet() {
 		assertEquals(0, supermarket.getDiscount(CustomerType.Child).getPercentage());
 		assertEquals(0, supermarket.getDiscount(CustomerType.Adult).getPercentage());
 		assertEquals(0, supermarket.getDiscount(CustomerType.Retired).getPercentage());
 	}
-
 	@Test
 	void addDiscount() {
 		int childDiscount = 10;
@@ -56,7 +64,6 @@ class SupermarketTest {
 		assertEquals(adultDiscount, supermarket.getDiscount(CustomerType.Adult).getPercentage());
 		assertEquals(retiredDiscount, supermarket.getDiscount(CustomerType.Retired).getPercentage());
 	}
-
 	@Test
 	void addCashDesk() throws IllegalAccessException {
 		List<String> cashDesksNames = new ArrayList<>() {{
@@ -64,16 +71,13 @@ class SupermarketTest {
 			add("second");
 			add("third");
 		}};
-		cashDesksNames.forEach((String cashDeskName) -> {
-			supermarket.addCashDesk(cashDeskName);
-		});
+		cashDesksNames.forEach(supermarket::addCashDesk);
 		Field cashDesksField = setSupermarketFieldAccessible(supermarket, "cashDesks");
 		List<NamedCashDesk> cashDesks = (List<NamedCashDesk>) cashDesksField.get(supermarket);
 		for (int index = 0; index < cashDesks.size(); ++index) {
 			assertEquals(cashDesksNames.get(index), cashDesks.get(index).getName());
 		}
 	}
-
 	@Test
 	void addCustomer() {
 		supermarket.addCustomer(createCustomer(1));
@@ -83,7 +87,6 @@ class SupermarketTest {
 			assertEquals(customer.getType().toString() + " " + customer.getId(), customer.getName());
 		});
 	}
-
 	@Test
 	void getProduct() {
 		int productId = 1;
@@ -95,7 +98,6 @@ class SupermarketTest {
 
 		supermarket.giveProductBack(product, customer);
 	}
-
 	@Test
 	void getBestCashDesk() throws IllegalAccessException {
 		CashDesk firstCashDesk = new NamedCashDesk(supermarket, "first");
@@ -115,28 +117,15 @@ class SupermarketTest {
 
 		assertEquals(thirdCashDesk, supermarket.getBestCashDesk());
 	}
-
 	private void addCustomersToCashDesk(CashDesk cashDesk, int count) {
 		for (int i = 0; i < count; ++i) {
 			cashDesk.addCustomerToQueue(createCustomer(i));
 		}
 	}
-
 	private Customer createCustomer(int id) {
-		Customer customer = new Customer(CustomerType.Child,0, 0, 0);
+		Customer customer = new Customer(CustomerType.Child, 0, 0, 0);
 		customer.setId(id);
 
 		return customer;
-	}
-
-	private static Field setSupermarketFieldAccessible(Supermarket supermarket, String fieldName) {
-		Field field = null;
-		try {
-			field = supermarket.getClass().getDeclaredField(fieldName);
-			field.setAccessible(true);
-		} catch (NoSuchFieldException e) {
-			fail("Supermarket does not have field \"" + fieldName + "\"");
-		}
-		return field;
 	}
 }

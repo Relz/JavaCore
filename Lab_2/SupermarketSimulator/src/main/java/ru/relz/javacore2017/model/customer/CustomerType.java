@@ -10,13 +10,11 @@ public enum CustomerType {
 	CustomerType(final String name) {
 		this.name = name;
 	}
-
+	public static CustomerType getRandom() {
+		return CustomerType.values()[(int) (Math.random() * (CustomerType.values().length))];
+	}
 	@Override
 	public String toString() {
 		return this.name;
-	}
-
-	public static CustomerType getRandom() {
-		return CustomerType.values()[(int) (Math.random() * (CustomerType.values().length))];
 	}
 }

@@ -1,6 +1,5 @@
 package ru.relz.javacore2017.model.customer;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.relz.javacore2017.model.product.Product;
 import ru.relz.javacore2017.model.product.ProductType;
@@ -14,12 +13,8 @@ class CustomerTest {
 	private static final int customerCash = 10;
 	private static final int customerCardCash = 100;
 	private static final int customerBonusCount = 1000;
-	private Customer customer =
+	private final Customer customer =
 			new Customer(CustomerType.Child, customerCash, customerCardCash, customerBonusCount);
-
-	@BeforeEach
-	void setUp() {
-	}
 
 	@Test
 	void defaultIdIsZero() {
@@ -51,8 +46,8 @@ class CustomerTest {
 	}
 
 	@Test
-	void getBacketIsEmptyByDefault() {
-		assertTrue(customer.getBacket().isEmpty());
+	void getBucketIsEmptyByDefault() {
+		assertTrue(customer.getBucket().isEmpty());
 	}
 
 	@Test

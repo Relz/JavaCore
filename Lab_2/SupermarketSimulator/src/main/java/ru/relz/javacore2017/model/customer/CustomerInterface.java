@@ -1,12 +1,15 @@
 package ru.relz.javacore2017.model.customer;
 
-import ru.relz.javacore2017.model.basket.Basket;
 import ru.relz.javacore2017.model.Identified;
 import ru.relz.javacore2017.model.Named;
+import ru.relz.javacore2017.model.bucket.Bucket;
 
-public interface CustomerInterface extends Identified, Named, Payeer, BonusesHolder, CashHolder, CardCashHolder {
+interface CustomerInterface extends Identified, Named, Payer, BonusesHolder, CashHolder, CardCashHolder {
 	CustomerType getType();
-	Basket getBacket();
+
+	Bucket getBucket();
+
 	boolean isInQueue();
+
 	void setInQueue(boolean value);
 }

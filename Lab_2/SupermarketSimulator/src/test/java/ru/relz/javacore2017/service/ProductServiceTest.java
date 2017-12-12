@@ -16,19 +16,20 @@ class ProductServiceTest {
 	static void init() throws SQLException, ClassNotFoundException {
 		DatabaseHelper.createConnection();
 	}
-
+	@AfterAll
+	static void afterAll() throws SQLException {
+		DatabaseHelper.closeConnection();
+	}
 	@Test
 	void getProductReturnsNullIfIdNotFound() {
 		Product product = ProductService.getProduct(999999999);
 		assertNull(product);
 	}
-
 	@Test
 	void getProducts() {
 		List<Product> products = ProductService.getProducts();
 		assertNotNull(products);
 	}
-
 	@Test
 	void fetchProduct() {
 		Product product = ProductService.getProduct(1);
@@ -37,14 +38,6 @@ class ProductServiceTest {
 		assertNotNull(fetchedProduct);
 		assertTrue(areProductsEqual(product, fetchedProduct));
 		ProductService.giveProductBack(fetchedProduct);
-	}
-
-	@Test
-	void fetchProductReturnsNullIfFetchTooMuch() {
-		Product product = ProductService.getProduct(1);
-		assertNotNull(product);
-		Product fetchedProduct = ProductService.fetchProduct(product.getId(), product.getAmount() + 1);
-		assertNull(fetchedProduct);
 	}
 
 //	@Test
@@ -57,7 +50,13 @@ class ProductServiceTest {
 //		product.setAmount(product.getAmount() * 2);
 //		assertTrue(areProductsEqual(product, productAfterGivingBack));
 //	}
-
+	@Test
+	void fetchProductReturnsNullIfFetchTooMuch() {
+		Product product = ProductService.getProduct(1);
+		assertNotNull(product);
+		Product fetchedProduct = ProductService.fetchProduct(product.getId(), product.getAmount() + 1);
+		assertNull(fetchedProduct);
+	}
 	private boolean areProductsEqual(Product lhs, Product rhs) {
 		return lhs.getId() == rhs.getId()
 				&& lhs.getName().equals(rhs.getName())
@@ -66,10 +65,5 @@ class ProductServiceTest {
 				&& lhs.getType() == rhs.getType()
 				&& lhs.getBonus() == rhs.getBonus()
 				&& lhs.isForAdult() == rhs.isForAdult();
-	}
-
-	@AfterAll
-	static void afterAll() throws SQLException {
-		DatabaseHelper.closeConnection();
 	}
 }

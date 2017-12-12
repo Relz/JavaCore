@@ -7,7 +7,7 @@ import ru.relz.javacore2017.model.customer.Customer;
 import ru.relz.javacore2017.model.customer.CustomerType;
 import ru.relz.javacore2017.model.product.Product;
 import ru.relz.javacore2017.model.product.ProductType;
-import ru.relz.javacore2017.payment.ProductSummator;
+import ru.relz.javacore2017.payment.ProductAdder;
 import ru.relz.javacore2017.supermarket.Reporter;
 import ru.relz.javacore2017.supermarket.Supermarket;
 
@@ -28,7 +28,8 @@ class CashDeskTest {
 	static void beforeAll() {
 		System.setOut(new PrintStream(new OutputStream() {
 			@Override
-			public void write(int b) { }
+			public void write(int b) {
+			}
 		}));
 	}
 
@@ -61,22 +62,22 @@ class CashDeskTest {
 	@Test
 	void processQueueGiveProductBackIfProductIsForAdultAndCustomerIsChild() {
 		Customer customer = createCustomer(100, 99, 99);
-		customer.getBacket().add(new Product(1, "Продукт для взрослых", 50, 2, ProductType.Packed, 10, true));
+		customer.getBucket().add(new Product(1, "Продукт для взрослых", 50, 2, ProductType.Packed, 10, true));
 		cashDesk.addCustomerToQueue(customer);
 		cashDesk.processQueue(1);
 		assertEquals(0, cashDesk.getQueueSize());
-		assertTrue(customer.getBacket().isEmpty());
+		assertTrue(customer.getBucket().isEmpty());
 		assertEquals(100, customer.getCash());
 	}
 
 	@Test
 	void processQueueGiveProductBackIfProductIsTooExpensiveForChild() {
 		Customer customer = createCustomer(100, 99, 99);
-		customer.getBacket().add(new Product(1, "Очень дорогой товар", 99999, 1, ProductType.Packed, 10, false));
+		customer.getBucket().add(new Product(1, "Очень дорогой товар", 99999, 1, ProductType.Packed, 10, false));
 		cashDesk.addCustomerToQueue(customer);
 		cashDesk.processQueue(1);
 		assertEquals(0, cashDesk.getQueueSize());
-		assertTrue(customer.getBacket().isEmpty());
+		assertTrue(customer.getBucket().isEmpty());
 		assertEquals(100, customer.getCash());
 	}
 
@@ -84,37 +85,35 @@ class CashDeskTest {
 	void processQueuePayByCash() throws IllegalAccessException {
 		Product product = processQueueProduct;
 		Customer customer = createCustomer(100, 99, 99);
-		customer.getBacket().add(product);
+		customer.getBucket().add(product);
 		cashDesk.addCustomerToQueue(customer);
 		Reporter reporter = new Reporter();
 		cashDesk.setReporter(reporter);
 		cashDesk.processQueue(1);
 		assertEquals(0, cashDesk.getQueueSize());
-		assertTrue(customer.getBacket().isEmpty());
+		assertTrue(customer.getBucket().isEmpty());
 		assertEquals(0, customer.getCash());
 
-		Field productSummatorField = setReporterFieldAccessible(reporter, "productSummator");
-		ProductSummator productSummator = (ProductSummator) productSummatorField.get(reporter);
-		assertFalse(productSummator.isEmpty());
-		assertEquals(product.getPrice() * product.getAmount(), productSummator.calculateTotalAmount());
-		assertEquals(product.getBonus() * product.getAmount(), productSummator.calculateTotalBonuses());
+		Field productAdderField = setReporterFieldAccessible(reporter, "productAdder");
+		ProductAdder productAdder = (ProductAdder) productAdderField.get(reporter);
+		assertFalse(productAdder.isEmpty());
+		assertEquals(product.getPrice() * product.getAmount(), productAdder.calculateTotalAmount());
+		assertEquals(product.getBonus() * product.getAmount(), productAdder.calculateTotalBonuses());
 	}
 
 	@Test
-	void processQueuePayByCardCash() throws IllegalAccessException {
-		Product product = processQueueProduct;
+	void processQueuePayByCardCash() {
 		Customer customer = createCustomer(99, 100, 99);
-		customer.getBacket().add(product);
+		customer.getBucket().add(processQueueProduct);
 		cashDesk.addCustomerToQueue(customer);
 		cashDesk.processQueue(1);
 		assertEquals(0, customer.getCardCash());
 	}
 
 	@Test
-	void processQueuePayByBonuses() throws IllegalAccessException {
-		Product product = processQueueProduct;
+	void processQueuePayByBonuses() {
 		Customer customer = createCustomer(99, 99, 100);
-		customer.getBacket().add(product);
+		customer.getBucket().add(processQueueProduct);
 		cashDesk.addCustomerToQueue(customer);
 		cashDesk.processQueue(1);
 		assertEquals(0, customer.getBonusCount());
