@@ -128,4 +128,31 @@ class SupermarketTest {
 
 		return customer;
 	}
+
+	@Test
+	void getProducts() {
+		try {
+			supermarket.getProducts();
+		} catch (Exception e) {
+			fail("Supermarket getProducts shouldn't throw exception");
+		}
+	}
+
+	@Test
+	void work() {
+		try {
+			supermarket.work(new SupermarketWorkInterface() {
+				@Override
+				public void onEachTimeUnit(Supermarket supermarket) {
+
+				}
+				@Override
+				public void onFinished(Supermarket supermarket) {
+
+				}
+			}, false);
+		} catch (Exception e) {
+			fail("Supermarket work shouldn't throw exception");
+		}
+	}
 }

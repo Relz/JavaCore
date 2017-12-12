@@ -23,6 +23,6 @@ public class SupermarketSimulator {
 		supermarket.addCashDesk("Красная");
 		supermarket.addCashDesk("Жёлтая");
 		supermarket.addCashDesk("Зелёная");
-		supermarket.work(new SupermarketWork());
+		supermarket.work(new SupermarketWork(), true);
 	}
 }

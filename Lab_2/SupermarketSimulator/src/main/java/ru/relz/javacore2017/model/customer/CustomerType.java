@@ -13,6 +13,7 @@ public enum CustomerType {
 	public static CustomerType getRandom() {
 		return CustomerType.values()[(int) (Math.random() * (CustomerType.values().length))];
 	}
+
 	@Override
 	public String toString() {
 		return this.name;

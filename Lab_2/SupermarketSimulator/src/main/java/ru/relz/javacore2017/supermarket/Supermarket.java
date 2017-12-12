@@ -155,14 +155,16 @@ public class Supermarket {
 	 * Calls {@code onEachTimeUnit} method each unit of time.
 	 * Calls {@code onFinished} method on working time ends.
 	 */
-	public void work(SupermarketWorkInterface supermarketWorkInterface) throws IOException {
+	public void work(SupermarketWorkInterface supermarketWorkInterface, boolean wait) throws IOException {
 		System.out.println("Магазин начал свою работу");
 		while (workingTimeMinutes > 0) {
 			System.out.printf("Сейчас %s\n", dateFormat.format(startDate.getTime() + workingTimeLeft * SECONDS_IN_MINUTE * MILLISECONDS_IN_SECOND));
 			supermarketWorkInterface.onEachTimeUnit(this);
 			workingTimeMinutes -= TIME_UNIT_MINUTES;
 			workingTimeLeft += TIME_UNIT_MINUTES;
-			System.in.read();
+			if (wait) {
+				System.in.read();
+			}
 		}
 		System.out.println("Кассы завершили свою работу, магазин готовится к закрытию");
 		supermarketWorkInterface.onFinished(this);

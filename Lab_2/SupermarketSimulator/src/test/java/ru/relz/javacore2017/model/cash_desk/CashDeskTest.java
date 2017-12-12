@@ -142,4 +142,13 @@ class CashDeskTest {
 		}
 		return field;
 	}
+
+	@Test
+	void open() {
+		try {
+			cashDesk.open();
+		} catch (Exception e) {
+			fail("CashDesk open shouldn't throw exception");
+		}
+	}
 }
