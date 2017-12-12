@@ -1,6 +1,6 @@
 package ru.relz.javacore2017.payment;
 
-import ru.relz.javacore2017.model.basket.ProductContainer;
+import ru.relz.javacore2017.model.ProductContainer.ProductContainer;
 import ru.relz.javacore2017.model.product.Product;
 
 public class ProductSummator extends ProductContainer {

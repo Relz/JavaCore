@@ -1,13 +1,13 @@
 ----------------------------------------------------------------
-Mon Dec 04 01:41:26 GMT 2017:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.1.0 - (1808820): instance a816c00e-0160-1f2f-5e43-00000682abf0 
-on database directory /data/workspace/Java/Lab_2/SupermarketSimulator/supermarket with class loader java.net.URLClassLoader@5406b270 
+Tue Dec 12 04:11:29 GMT 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.1.0 - (1808820): instance a816c00e-0160-48eb-9d20-000006fd05f0 
+on database directory /data/workspace/Java/Lab_2/SupermarketSimulator/supermarket with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@1b9e1916 
 Loaded from file:/home/relz/.m2/repository/org/apache/derby/derby/10.14.1.0/derby-10.14.1.0.jar
 java.vendor=Oracle Corporation
 java.runtime.version=9.0.1+11
 user.dir=/data/workspace/Java/Lab_2/SupermarketSimulator
 os.name=Linux
 os.arch=amd64
-os.version=4.13.12-1-ARCH
+os.version=4.14.4-1-ARCH
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''

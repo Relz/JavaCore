@@ -2,22 +2,27 @@ package ru.relz.javacore2017.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public final class DatabaseHelper {
+	private static String className = "org.apache.derby.jdbc.EmbeddedDriver";
+	private static String databasePath =
+			"jdbc:derby:/data/workspace/Java/Lab_2/SupermarketSimulator/supermarket;create=false";
 	public static Connection connection = null;
 
 	/**
 	 * Loads apache derby embedded driver and initializes connection to database.
-	 * Prints stack trace if a database access error occurs or the url is {@code null}
 	 */
-	static {
-		try {
-			Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
-			connection = DriverManager.getConnection(
-					"jdbc:derby:/data/workspace/Java/Lab_2/SupermarketSimulator/supermarket;create=false"
-			);
-		} catch (Exception except) {
-			except.printStackTrace();
+	public static void createConnection() throws ClassNotFoundException, SQLException {
+		if (connection == null || connection.isClosed()) {
+			Class.forName(DatabaseHelper.className);
+			connection = DriverManager.getConnection(DatabaseHelper.databasePath);
+		}
+	}
+
+	public static void closeConnection() throws SQLException {
+		if (connection != null && !connection.isClosed()) {
+			connection.close();
 		}
 	}
 }

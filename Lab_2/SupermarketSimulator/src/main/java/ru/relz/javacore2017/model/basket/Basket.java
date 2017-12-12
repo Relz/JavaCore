@@ -1,5 +1,6 @@
 package ru.relz.javacore2017.model.basket;
 
+import ru.relz.javacore2017.model.ProductContainer.ProductContainer;
 import ru.relz.javacore2017.model.product.Product;
 
 import java.util.Iterator;

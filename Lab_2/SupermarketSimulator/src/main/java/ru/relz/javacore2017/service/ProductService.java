@@ -2,6 +2,7 @@ package ru.relz.javacore2017.service;
 
 import ru.relz.javacore2017.database.DatabaseHelper;
 import ru.relz.javacore2017.model.product.Product;
+import ru.relz.javacore2017.model.product.ProductType;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,32 +16,64 @@ public class ProductService {
 
 	/**
 	 * Asks database for product with specified id and amount.
-	 * removes product amount from database
-	 * if there is such product id and enough amount.
 	 *
 	 * @return {@code null} if there is no product with such id or there is not enough product amount,
 	 * 			otherwise product object
 	 * */
-	public static Product getProduct(int productId, int productAmount) {
+	public static Product getProduct(int productId) {
 		try {
 			statement = DatabaseHelper.connection.createStatement();
 			ResultSet resultSet =
 					statement.executeQuery(String.format(
 							"SELECT * FROM %s WHERE ID_PRODUCT = %d", TABLE_NAME, productId
 					));
-			Product product = createProductFromResultSet(resultSet);
-			if (product == null || product.getAmount() < productAmount) {
-				return null;
-			}
-			statement.execute(String.format("UPDATE %s SET AMOUNT = AMOUNT - %d WHERE ID_PRODUCT = %d", TABLE_NAME, productAmount, productId));
+
+			Product result = createProductFromResultSet(resultSet);
 			statement.close();
 
-			return new Product(product.getId(), product.getName(), product.getPrice(), productAmount, product.getType(), product.getBonus(), product.isForAdult());
-		} catch (SQLException sqlExcept) {
-			sqlExcept.printStackTrace();
+			return result;
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 
 		return null;
+	}
+
+	/**
+	 * Asks database for product with specified id and amount.
+	 * removes product amount from database
+	 * if there is such product id and enough amount.
+	 *
+	 * @return {@code null} if there is no product with such id or there is not enough product amount,
+	 * 			otherwise product object
+	 * */
+	public static Product fetchProduct(int productId, int productAmount) {
+		Product product = getProduct(productId);
+		if (product == null || product.getAmount() < productAmount) {
+			return null;
+		}
+		try {
+			statement = DatabaseHelper.connection.createStatement();
+			statement.execute(
+					String.format(
+							"UPDATE %s SET AMOUNT = AMOUNT - %d WHERE ID_PRODUCT = %d",
+							TABLE_NAME, productAmount, productId
+					)
+			);
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return new Product(
+				product.getId(),
+				product.getName(),
+				product.getPrice(),
+				productAmount,
+				product.getType(),
+				product.getBonus(),
+				product.isForAdult()
+		);
 	}
 
 	/**
@@ -51,7 +84,7 @@ public class ProductService {
 	 */
 	public static List<Product> getProducts() {
 		try {
-			List<Product> result = new ArrayList<Product>();
+			List<Product> result = new ArrayList<>();
 			statement = DatabaseHelper.connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(String.format("SELECT * FROM %s", TABLE_NAME));
 			while (resultSet.next()) {
@@ -87,13 +120,18 @@ public class ProductService {
 	 * @return {@code product object} if resultSet has required columns,
 	 * 			otherwise {@code null}
 	 * */
-	private static Product createProductFromResultSet(ResultSet resultSet) {
-		try {
-			return resultSet.next() ? new Product(resultSet) : null;
-		} catch (SQLException sqlExcept) {
-			sqlExcept.printStackTrace();
+	private static Product createProductFromResultSet(ResultSet resultSet) throws SQLException {
+		if (!resultSet.next()) {
+			return null;
 		}
-
-		return null;
+		return new Product(
+				resultSet.getInt(1),
+				resultSet.getString(2),
+				resultSet.getDouble(3),
+				resultSet.getInt(4),
+				ProductType.createFromInteger(resultSet.getInt(5)),
+				resultSet.getInt(6),
+				resultSet.getBoolean(7)
+		);
 	}
 }

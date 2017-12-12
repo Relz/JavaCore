@@ -1,5 +1,6 @@
 package ru.relz.javacore2017.supermarket;
 
+import ru.relz.javacore2017.database.DatabaseHelper;
 import ru.relz.javacore2017.model.cash_desk.*;
 import ru.relz.javacore2017.model.customer.*;
 import ru.relz.javacore2017.payment.Discount;
@@ -7,6 +8,7 @@ import ru.relz.javacore2017.model.product.*;
 import ru.relz.javacore2017.service.ProductService;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -31,12 +33,13 @@ public class Supermarket {
 	private int workingTimeLeft = 0;
 	private int workingTimeMinutes;
 
-	public Supermarket(int workingTimeMinutes) {
+	public Supermarket(int workingTimeMinutes) throws SQLException, ClassNotFoundException {
+		DatabaseHelper.createConnection();
 		this.workingTimeMinutes = workingTimeMinutes;
 		products = ProductService.getProducts();
 	}
 
-	private List<Product> products = new ArrayList<>();
+	private List<Product> products;
 	List<Product> getProducts() {
 		return products;
 	}
@@ -76,7 +79,7 @@ public class Supermarket {
 	}
 
 	/**
-	 * Performs the given action for each customer
+	 * Performs the given action for each customer iterator
 	 * */
 	void forEachCustomer(Consumer<Iterator<Customer>> action) {
 		Iterator<Customer> customerIterator = customers.iterator();
@@ -105,7 +108,7 @@ public class Supermarket {
 	 * 			otherwise product object
 	 * */
 	Product getProduct(Customer customer, int productId, int productAmount) {
-		Product result = ProductService.getProduct(productId, productAmount);
+		Product result = ProductService.fetchProduct(productId, productAmount);
 		if (result != null) {
 			System.out.printf("%s положил в свою корзину %s", customer.getName(), result.getAmount());
 			if (result.getType() == ProductType.Packed) {

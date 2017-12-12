@@ -1,9 +1,8 @@
 package ru.relz.javacore2017.model.holder;
 
 public class Holder implements HolderInterface {
-	private double value = 0;
+	private double value;
 
-	public Holder() {}
 	public Holder(double value) {
 		this.value = value;
 	}

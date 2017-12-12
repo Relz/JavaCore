@@ -13,12 +13,16 @@ import java.util.Map;
 import static ru.relz.javacore2017.random_helper.RandomHelper.getRandomNumber;
 
 public class Customer implements CustomerInterface {
+	private final HashMap<PaymentMethod, Holder> paymentMethodToHolder = new HashMap<>();
+
 	public Customer(CustomerType type, double cash, double cardCash, double bonusCount) {
 		this.type = type;
 
-		this.paymentMethodToHolder.put(PaymentMethod.Cash, new Holder(cash));
-		this.paymentMethodToHolder.put(PaymentMethod.Card, new Holder(cardCash));
-		this.paymentMethodToHolder.put(PaymentMethod.Bonuses, new Holder(bonusCount));
+		bonusHolder = new Holder(bonusCount);
+		cashHolder = new Holder(cash);
+		cardCashHolder = new Holder(cardCash);
+		paymentMethodToHolder.put(PaymentMethod.Cash, cashHolder);
+		paymentMethodToHolder.put(PaymentMethod.Card, cardCashHolder);
 	}
 
 	private int id;
@@ -35,11 +39,19 @@ public class Customer implements CustomerInterface {
 		return type;
 	}
 
-	private final HashMap<PaymentMethod, Holder> paymentMethodToHolder = new HashMap<>();
-
-	private Holder bonusHolder = new Holder();
+	private Holder bonusHolder;
 	public double getBonusCount() {
 		return bonusHolder.getValue();
+	}
+
+	private Holder cashHolder;
+	public double getCash() {
+		return cashHolder.getValue();
+	}
+
+	private Holder cardCashHolder;
+	public double getCardCash() {
+		return cardCashHolder.getValue();
 	}
 
 	private final Basket basket = new Basket();
@@ -71,7 +83,7 @@ public class Customer implements CustomerInterface {
 	public boolean pay(Bill bill) {
 		double totalAmount = bill.calculateTotalAmount();
 		double totalBonuses = bill.calculateTotalBonuses();
-		if (getBonusCount() > totalAmount) {
+		if (getBonusCount() >= totalAmount) {
 			bonusHolder.decrease(totalAmount);
 		} else {
 			PaymentMethod paymentMethod = getDesiredPaymentMethod(totalAmount);
@@ -85,20 +97,23 @@ public class Customer implements CustomerInterface {
 	}
 
 	public PaymentMethod getDesiredPaymentMethod(double totalPaymentAmount) {
-		List<PaymentMethod> result = new ArrayList<>();
+		if (bonusHolder.getValue() >= totalPaymentAmount) {
+			return PaymentMethod.Bonuses;
+		}
+		List<PaymentMethod> possiblePaymentMethods = new ArrayList<>();
 		for (Map.Entry<PaymentMethod, Holder> paymentMethodHolderEntry : paymentMethodToHolder.entrySet()) {
 			PaymentMethod paymentMethod = paymentMethodHolderEntry.getKey();
 			Holder holder = paymentMethodHolderEntry.getValue();
 
-			if (holder.getValue() > totalPaymentAmount) {
-				result.add(paymentMethod);
+			if (holder.getValue() >= totalPaymentAmount) {
+				possiblePaymentMethods.add(paymentMethod);
 			}
 		}
-		if (result.isEmpty()) {
+		if (possiblePaymentMethods.isEmpty()) {
 			return null;
 		}
 
-		return getRandomPaymentMethod(result);
+		return getRandomPaymentMethod(possiblePaymentMethods);
 	}
 
 	private static PaymentMethod getRandomPaymentMethod(List<PaymentMethod> paymentMethods) {

@@ -1,4 +1,4 @@
-package ru.relz.javacore2017.model.basket;
+package ru.relz.javacore2017.model.ProductContainer;
 
 import ru.relz.javacore2017.model.product.Product;
 
@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 public class ProductContainer implements ProductContainerInterface {
-	private final HashMap<Integer, Product> products = new HashMap<Integer, Product>();
+	private final HashMap<Integer, Product> products = new HashMap<>();
 	public HashMap<Integer, Product> getProducts() {
 		return products;
 	}
@@ -36,7 +36,7 @@ public class ProductContainer implements ProductContainerInterface {
 	}
 
 	/**
-	 * Removes all products from the bill
+	 * Removes all products from container
 	 * */
 	public void clear() {
 		products.clear();
